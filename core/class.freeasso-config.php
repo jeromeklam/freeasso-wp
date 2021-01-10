@@ -97,7 +97,7 @@ class Freeasso_Config
         $datas->hawkUser = $this->getHawkUser();
         $datas->hawkKey = $this->getHawkKey();
         $rawConfig = json_encode($datas);
-        return add_option(self::FREEASSO_CONFIG, $rawConfig);
+        return update_option(self::FREEASSO_CONFIG, $rawConfig);
     }
 
     /**
