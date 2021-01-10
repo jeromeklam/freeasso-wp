@@ -1,0 +1,13 @@
+# Docker
+/docker-db
+/docker-logs
+/docker-dumps
+/docker-compose.yml
+
+# eclipse
+/.settings
+/.project
+/.buildpath
+
+# misc
+.DS_Store
