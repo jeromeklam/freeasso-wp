@@ -137,17 +137,23 @@ class Freeasso
      */
     protected function initShortcodes()
     {
+        $freeStats = Freeasso_Stats::getInstance();
+        $freeCauses = Freeasso_Causes_Search::getInstance();
         add_shortcode('FreeAsso_Gibbons', [
-            'Freeasso_Api_Stats',
-            'getGibbons'
+            &$freeStats,
+            'echoGibbons'
         ]);
         add_shortcode('FreeAsso_Hectares', [
-            'Freeasso_Api_Stats',
-            'getHectares'
+            &$freeStats,
+            'echoHectares'
         ]);
         add_shortcode('FreeAsso_Amis', [
-            'Freeasso_Api_Stats',
-            'getAmis'
+            &$freeStats,
+            'echoAmis'
+        ]);
+        add_shortcode('FreeAsso_Causes', [
+            &$freeCauses,
+            'echoForm'
         ]);
         return $this;
     }

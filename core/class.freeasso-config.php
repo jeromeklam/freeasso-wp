@@ -92,7 +92,7 @@ class Freeasso_Config
     public function saveConfig()
     {
         $datas = new \stdClass();
-        $datas->wsBaseurl = $this->getWsBaseUrl();
+        $datas->wsBaseUrl = $this->getWsBaseUrl();
         $datas->apiId = $this->getApiId();
         $datas->hawkUser = $this->getHawkUser();
         $datas->hawkKey = $this->getHawkKey();

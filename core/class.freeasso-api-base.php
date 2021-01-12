@@ -192,13 +192,42 @@ class Freeasso_Api_Base
     protected function getFiltersForQuery()
     {
         $filters = false;
-        $part1 = false;
+        $part1 = [];
         if (is_array($this->filters) && array_key_exists('fixed', $this->filters)) {
             $fixed = $this->filters['fixed'];
             if (is_array($fixed) && count($fixed) > 0) {
-                $part1 = [];
                 foreach ($fixed as $oneCrit) {
-                    $part1[] = 'filter[and][' . $oneCrit->field . '][' . $oneCrit->oper . ']=' . $oneCrit->val1;
+                    switch ($oneCrit->oper) {
+                        case self::OPER_IN:
+                            $val = $oneCrit->val1;
+                            if (is_array($val)) {
+                                $val = implode(',', $val);
+                            }
+                            break;
+                        default:
+                            $val = $oneCrit->val1;
+                            break;
+                    }
+                    $part1[] = 'filter[and][' . $oneCrit->field . '][' . $oneCrit->oper . ']=' . $val;
+                }
+            }
+        }
+        if (is_array($this->filters) && array_key_exists('simple', $this->filters)) {
+            $simple = $this->filters['simple'];
+            if (is_array($simple) && count($simple) > 0) {
+                foreach ($simple as $oneCrit) {
+                    switch ($oneCrit->oper) {
+                        case self::OPER_IN:
+                            $val = $oneCrit->val1;
+                            if (is_array($val)) {
+                                $val = implode(',', $val);
+                            }
+                            break;
+                        default:
+                            $val = $oneCrit->val1;
+                            break;
+                    }
+                    $part1[] = 'filter[and][' . $oneCrit->field . '][' . $oneCrit->oper . ']=' . $val;
                 }
             }
         }

@@ -40,11 +40,14 @@ require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso-api-base.php';
 require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso-config.php';
 require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso.php';
 require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso-admin.php';
+require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-causes.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-sites.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-species.php';
-require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-causes.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-stats.php';
+require_once FREEASSO_PLUGIN_DIR . 'controllers/class.freeasso-causes-search.php';
+require_once FREEASSO_PLUGIN_DIR . 'controllers/class.freeasso-stats.php';
 require_once FREEASSO_PLUGIN_DIR . 'widgets/class.freeasso-widget-amis.php';
+require_once FREEASSO_PLUGIN_DIR . 'widgets/class.freeasso-widget-causes.php';
 require_once FREEASSO_PLUGIN_DIR . 'widgets/class.freeasso-widget-hectares.php';
 require_once FREEASSO_PLUGIN_DIR . 'widgets/class.freeasso-widget-gibbons.php';
 
