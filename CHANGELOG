@@ -1,0 +1,13 @@
+# 1.0.1 : 11/01/2021
+
+* Statistiques basiques
+    * Correction de l'intégration des shortcode Amis, Hectares et Gibbons
+* Adoptions
+    * Début de la recherche
+* Administration
+    * Correction de l'enregistrement du paramètre du serveur
+* Adaptation de la page README.md
+
+# 1.0.0 : 10/01/2021
+
+* Première version de test

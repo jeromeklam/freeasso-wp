@@ -9,6 +9,11 @@ class Freeasso_Api_Causes extends Freeasso_Api_Base
 {
 
     /**
+     * Behaviour
+     */
+    use Freeasso_View;
+
+    /**
      * Causes
      *
      * @var array
@@ -63,7 +68,7 @@ class Freeasso_Api_Causes extends Freeasso_Api_Base
             if ($cause->code == '') {
                 $cause->code = $oneCause->cau_id;
             }
-            $cause->label = $oneCause->cau_name;
+            $cause->name = $oneCause->cau_name;
             $cause->site = $oneCause->site->site_name;
             $cause->desc = $oneCause->cau_desc;
             $cause->gender = $oneCause->cau_sex;

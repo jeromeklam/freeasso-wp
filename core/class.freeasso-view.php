@@ -6,7 +6,7 @@
  * @author jeromeklam
  *
  */
-class Freeasso_View
+trait Freeasso_View
 {
 
     /**
@@ -34,6 +34,12 @@ class Freeasso_View
     protected $errorMessage = null;
 
     /**
+     * Params
+     * @var array
+     */
+    protected $params = [];
+
+    /**
      * Init all
      *
      * @return self
@@ -43,6 +49,32 @@ class Freeasso_View
         $this->message = null;
         $this->errorMessage = null;
         return $this;
+    }
+
+    /**
+     * Get params from query
+     *
+     * @return Freeasso_View
+     */
+    protected function loadParams()
+    {
+        $this->params = $_GET;
+        return $this;
+    }
+
+    /**
+     * Return param
+     *
+     * @param string $p_name
+     *
+     * @return mixed
+     */
+    protected function getParam($p_name)
+    {
+        if (isset($this->params[$p_name])) {
+            return $this->params[$p_name];
+        }
+        return '';
     }
 
     /**

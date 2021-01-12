@@ -6,8 +6,13 @@
  * @author jeromeklam
  *
  */
-class Freeasso_Admin extends Freeasso_View
+class Freeasso_Admin
 {
+
+    /**
+     * Behaviour
+     */
+    use Freeasso_View;
 
     /**
      * Instance
