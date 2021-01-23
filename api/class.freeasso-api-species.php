@@ -52,7 +52,7 @@ class Freeasso_Api_Species extends Freeasso_Api_Base
     protected function __construct()
     {
         parent::__construct();
-        $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/v1/asso/subspecies');
+        $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/subspecies');
         $this->setPrivate();
         $this->addSortField('sspe_name');
     }

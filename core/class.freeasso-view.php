@@ -66,15 +66,16 @@ trait Freeasso_View
      * Return param
      *
      * @param string $p_name
+     * @param mixed  $p_default
      *
      * @return mixed
      */
-    protected function getParam($p_name)
+    protected function getParam($p_name, $p_default = null)
     {
         if (isset($this->params[$p_name])) {
             return $this->params[$p_name];
         }
-        return '';
+        return $p_default;
     }
 
     /**

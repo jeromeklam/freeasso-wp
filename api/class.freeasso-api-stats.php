@@ -106,7 +106,7 @@ class Freeasso_Api_Stats extends Freeasso_Api_Base {
         parent::__construct();
         $this
             ->setMethod(self::FREEASSO_METHOD_GET)
-            ->setUrl('/v1/asso/dashboard/stats')
+            ->setUrl('/dashboard/stats')
         ;
     }
 
@@ -161,14 +161,26 @@ class Freeasso_Api_Stats extends Freeasso_Api_Base {
     {
         $result = $this->call();
         if ($result && is_object($result)) {
-            if (isset($result->total_friends)) {
-                $this->setAmis($result->total_friends);
-            }
-            if (isset($result->total_cause)) {
-                $this->setGibbons($result->total_cause);
-            }
-            if (isset($result->hectaresproteges)) {
-                $this->setHectares($result->hectaresproteges);
+            if ($this->getConfig()->getVersion() == 'v1') {
+                if (isset($result->amis)) {
+                    $this->setAmis($result->amis);
+                }
+                if (isset($result->gibbons)) {
+                    $this->setGibbons($result->gibbons);
+                }
+                if (isset($result->hectares)) {
+                    $this->setHectares($result->hectares);
+                }
+            } else {
+                if (isset($result->total_friends)) {
+                    $this->setAmis($result->total_friends);
+                }
+                if (isset($result->total_cause)) {
+                    $this->setGibbons($result->total_cause);
+                }
+                if (isset($result->hectaresproteges)) {
+                    $this->setHectares($result->hectaresproteges);
+                }
             }
             return true;
         }

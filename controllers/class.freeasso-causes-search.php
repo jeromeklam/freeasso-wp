@@ -14,6 +14,12 @@ class Freeasso_Causes_Search
     use Freeasso_View;
 
     /**
+     * Config
+     * @var Freeasso_Config
+     */
+    protected $config = null;
+
+    /**
      * Causes
      * @var array
      */
@@ -23,13 +29,73 @@ class Freeasso_Causes_Search
      * Gender
      * @var array
      */
-    protected $gender = null;
+    protected $genders = null;
 
     /**
      * Sites
      * @var array
      */
     protected $sites = null;
+
+    /**
+     * Species
+     * @var array
+     */
+    protected $species = null;
+
+    /**
+     * Names
+     * @var array
+     */
+    protected $names = null;
+
+    /**
+     * Total causes
+     * @var integer
+     */
+    protected $total_causes = 0;
+
+    /**
+     * Current page
+     * @var integer
+     */
+    protected $param_page = 1;
+
+    /**
+     * page length
+     * @var integer
+     */
+    protected $param_length = 16;
+
+    /**
+     * Selected gender
+     * @var string
+     */
+    protected $param_gender = '';
+
+    /**
+     * Selected site
+     * @var string
+     */
+    protected $param_site = '';
+
+    /**
+     * Selected species
+     * @var string
+     */
+    protected $param_species = '';
+
+    /**
+     * Specific Gibbon
+     * @var string
+     */
+    protected $param_names = '';
+
+    /**
+     * Current lang
+     * @var string
+     */
+    protected $param_lang = 'fr_FR';
 
     /**
      * Instance
@@ -42,7 +108,10 @@ class Freeasso_Causes_Search
      * Constructor
      */
     protected function __construct()
-    {}
+    {
+        $this->param_lang = get_locale();
+        $this->config     = Freeasso_Config::getInstance();
+    }
 
     /**
      * Get instance
@@ -58,71 +127,70 @@ class Freeasso_Causes_Search
     }
 
     /**
+     * Get config
+     *
+     * @return Freeasso_Config
+     */
+    public function getConfig()
+    {
+        return $this->config;
+    }
+
+    /**
      * Load datas
      *
      * @return Freeasso_Causes_Search
      */
     protected function loadDatas()
     {
-        // Ugly cache in session...
-        $wp_session = WP_Session::get_instance();
         // Gender
-        if ($this->gender === null) {
-            if (!isset($wp_session['freeasso_gender'])) {
-                $wp_session['freeasso_gender'] = [
-                    (object)['id' => 'F', 'label' => 'Femelle'],
-                    (object)['id' => 'M', 'label' => 'Mâle']
-                ];
-                $wp_session['freeasso_gender.ts'] = microtime(true); // @todo, cache delay in admin field
-            }
-            $this->gender = $wp_session['freeasso_gender'];
-        }
-        // Causes & Filters
+        $myGendersApi = FreeAsso_Api_Genders::getFactory();
+        $this->genders = $myGendersApi->getGenders();
+        // Species
+        $mySpeciesApi = FreeAsso_Api_Species::getFactory();
+        $this->species = $mySpeciesApi->getMainSpecies();
+        // Sites
+        $mySitesApi = FreeAsso_Api_Sites::getFactory();
+        $this->sites = $mySitesApi->getSites();
+        // Names
+        $myNamesApi = FreeAsso_Api_Names::getFactory();
+        $this->names = $myNamesApi->getNames();
+        // Params
+        $this->param_page    = $this->getParam('freeasso-cause-search-page', 1);
+        $this->param_length  = $this->getParam('freeasso-cause-search-length', 16);
+        $this->param_gender  = $this->getparam('freeasso-cause-search-gender', '');
+        $this->param_site    = $this->getparam('freeasso-cause-search-site', '');
+        $this->param_species = $this->getparam('freeasso-cause-search-species', '');
+        $this->param_names   = $this->getparam('freeasso-cause-search-names', '');
+        // Filters
         $myCausesApi = FreeAsso_Api_Causes::getFactory();
-        $gender = $this->getParam('freeasso-cause-search-gender');
-        if ($gender != '') {
-            $myCausesApi->addSimpleFilter('cau_sex', $gender);
-        }
-        $site = $this->getParam('freeasso-cause-search-site');
-        if ($site != '') {
-            $myCausesApi->addSimpleFilter('site.id', $site);
-        }
-        $species = $this->getParam('freeasso-cause-search-species');
-        if ($species != '') {
-            $mySpeciesApi = FreeAsso_Api_Species::getFactory();
-            foreach ($mySpeciesApi->getMainSpecies() as $oneSpecies) {
-                if ($oneSpecies->id == $species) {
-                    $myCausesApi->addSimpleFilter('subspecies.id', $oneSpecies->all, Freeasso_Api_Base::OPER_IN);
-                    break;
+        $myCausesApi->setPagination($this->param_page, $this->param_length);
+        // If specific Gibbon, prioritary, no other filters, but keeped
+        if ($this->param_names != '') {
+            $myCausesApi->setId($this->param_names);
+        } else {
+            //
+            if ($this->param_gender != '') {
+                $myCausesApi->addSimpleFilter('cau_sex', $this->param_gender);
+            }
+            if ($this->param_site != '') {
+                $myCausesApi->addSimpleFilter('site.id', $this->param_site);
+            }
+            if ($this->param_species != '') {
+                foreach ($this->species as $oneSpecies) {
+                    if ($oneSpecies->id == $this->param_species) {
+                        $myCausesApi->addSimpleFilter('subspecies.id', $oneSpecies->all, Freeasso_Api_Base::OPER_IN);
+                        break;
+                    }
                 }
             }
         }
         $updateCauses = true;
         if ($this->causes === null || $updateCauses) {
-            if ($updateCauses || !isset($wp_session['freeasso_causes'])) {
-                $wp_session['freeasso_causes'] = $myCausesApi->getCauses();
-                $wp_session['freeasso_causes.ts'] = microtime(true); // @todo, cache delay in admin field
-            }
-            $this->causes = $wp_session['freeasso_causes'];
+            $this->causes       = $myCausesApi->getCauses();
+            $this->total_causes = $myCausesApi->getTotalCauses();
         }
-        // Sites
-        if ($this->sites === null) {
-            if (true || !isset($wp_session['freeasso_sites'])) {
-                $mySitesApi = FreeAsso_Api_Sites::getFactory();
-                $wp_session['freeasso_sites'] = $mySitesApi->getSites();
-                $wp_session['freeasso_sites.ts'] = microtime(true); // @todo, cache delay in admin field
-            }
-            $this->sites = $wp_session['freeasso_sites'];
-        }
-        // Species
-        if ($this->species === null) {
-            if (!isset($wp_session['freeasso_species'])) {
-                $mySpeciesApi = FreeAsso_Api_Species::getFactory();
-                $wp_session['freeasso_species'] = $mySpeciesApi->getMainSpecies();
-                $wp_session['freeasso_species.ts'] = microtime(true); // @todo, cache delay in admin field
-            }
-            $this->species = $wp_session['freeasso_species'];
-        }
+        var_dump($this->param_lang);
         // End
         return $this;
     }

@@ -35,12 +35,16 @@ define('FREEASSO_PLUGIN_NAME', 'FreeAsso-WP');
 // --------------------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------------
 require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso-tools.php';
+require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso-session.php';
 require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso-view.php';
 require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso-api-base.php';
 require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso-config.php';
 require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso.php';
 require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso-admin.php';
+require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-cause.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-causes.php';
+require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-genders.php';
+require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-names.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-sites.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-species.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-stats.php';

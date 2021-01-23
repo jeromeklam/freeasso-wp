@@ -171,6 +171,11 @@ class Freeasso_Admin
                     $this->config->setWsBaseUrl($_REQUEST['freeasso_ws_base_url']);
                     $this->config->setApiId($_REQUEST['freeasso_api_id']);
                     $this->config->setHawkUser($_REQUEST['freeasso_hawk_user']);
+                    $this->config->setVersion($_REQUEST['freeasso_version']);
+                    $this->config->setImageSmallPrefix($_REQUEST['freeasso_small_prefix']);
+                    $this->config->setImageSmallSuffix($_REQUEST['freeasso_small_suffix']);
+                    $this->config->setImageStandardPrefix($_REQUEST['freeasso_standard_prefix']);
+                    $this->config->setImageStandardSuffix($_REQUEST['freeasso_standard_suffix']);
                     $key = trim($_REQUEST['freeasso_hawk_key']);
                     if ($key != '') {
                         $this->config->setHawkKey($key);
@@ -180,8 +185,7 @@ class Freeasso_Admin
                 }
             }
         }
-
-
+        // Test
         $this->configOK = $this->testConfig();
         $this->includeView('config', Freeasso_Config::FREEASSO_CONFIG);
     }

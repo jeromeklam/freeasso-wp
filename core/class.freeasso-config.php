@@ -28,7 +28,7 @@ class Freeasso_Config
      * Base url, no / at end and no version
      * @var string
      */
-    private $ws_base_url = 'http://kalaweit-bo-dev.freeasso.fr:8180/api';
+    private $ws_base_url = 'http://kalaweit-bo-dev.freeasso.fr:8180/api/v1/asso';
 
     /**
      * Api ID, see FreeAsso
@@ -47,6 +47,36 @@ class Freeasso_Config
      * @var string
      */
     private $hawk_key = '30964d295d6f673df7dc75600ac6f345';
+
+    /**
+     * Admin version
+     * @var string
+     */
+    private $version = 'v2';
+
+    /**
+     * Small image prefix (url)
+     * @var string
+     */
+    private $image_small_prefix = null;
+
+    /**
+     * Standard image prefix
+     * @var string
+     */
+    private $image_standard_prefix = null;
+
+    /**
+     * Small images suffix
+     * @var string
+     */
+    private $image_small_suffix = null;
+
+    /**
+     * Standard image suffix
+     * @var string
+     */
+    private $image_standard_suffix = null;
 
     /**
      * Constructor, only global class and uniq instance
@@ -79,6 +109,21 @@ class Freeasso_Config
                 if ($datas->hawkKey) {
                     $this->setHawkKey($datas->hawkKey);
                 }
+                if ($datas->version) {
+                    $this->setVersion($datas->version);
+                }
+                if ($datas->image_small_prefix) {
+                    $this->setImageSmallPrefix($datas->image_small_prefix);
+                }
+                if ($datas->image_standard_prefix) {
+                    $this->setImageStandardPrefix($datas->image_standard_prefix);
+                }
+                if ($datas->image_small_suffix) {
+                    $this->setImageSmallSuffix($datas->image_small_suffix);
+                }
+                if ($datas->image_standard_suffix) {
+                    $this->setImageStandardSuffix($datas->image_standard_suffix);
+                }
             }
         }
         return $this;
@@ -91,12 +136,17 @@ class Freeasso_Config
      */
     public function saveConfig()
     {
-        $datas = new \stdClass();
-        $datas->wsBaseUrl = $this->getWsBaseUrl();
-        $datas->apiId = $this->getApiId();
-        $datas->hawkUser = $this->getHawkUser();
-        $datas->hawkKey = $this->getHawkKey();
-        $rawConfig = json_encode($datas);
+        $datas                        = new \stdClass();
+        $datas->wsBaseUrl             = $this->getWsBaseUrl();
+        $datas->apiId                 = $this->getApiId();
+        $datas->hawkUser              = $this->getHawkUser();
+        $datas->hawkKey               = $this->getHawkKey();
+        $datas->version               = $this->getVersion();
+        $datas->image_small_prefix    = $this->getImageSmallPrefix();
+        $datas->image_standard_prefix = $this->getImageStandardPrefix();
+        $datas->image_small_suffix    = $this->getImageSmallSuffix();
+        $datas->image_standard_suffix = $this->getImageStandardSuffix();
+        $rawConfig                    = json_encode($datas);
         return update_option(self::FREEASSO_CONFIG, $rawConfig);
     }
 
@@ -203,5 +253,124 @@ class Freeasso_Config
     {
         $this->hawk_key = $p_key;
         return $this;
+    }
+
+    /**
+     * Set version
+     *
+     * @param string $p_vers
+     *
+     * @return Freeasso_Config
+     */
+    public function setVersion($p_vers)
+    {
+        if (strtolower($p_vers) == 'v1') {
+            $this->version = 'v1';
+        } else {
+            $this->version = 'v2';
+        }
+        return $this;
+    }
+
+    /**
+     * Get version
+     *
+     * @return string
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    /**
+     * Set image prefix
+     *
+     * @param string $p_prefix
+     *
+     * @return Freeasso_Config
+     */
+    public function setImageSmallPrefix($p_prefix)
+    {
+        $this->image_small_prefix = $p_prefix;
+        return $this;
+    }
+
+    /**
+     * Get image prefix
+     *
+     * @return string
+     */
+    public function getImageSmallPrefix()
+    {
+        return $this->image_small_prefix;
+    }
+
+    /**
+     * Set standard image prefix
+     *
+     * @param string $p_prefix
+     *
+     * @return Freeasso_Config
+     */
+    public function setImageStandardPrefix($p_prefix)
+    {
+        $this->image_standard_prefix = $p_prefix;
+        return $this;
+    }
+
+    /**
+     * Get image standard prefix
+     *
+     * @return string
+     */
+    public function getImageStandardPrefix()
+    {
+        return $this->image_standard_prefix;
+    }
+
+    /**
+     * Set image small suffix
+     *
+     * @param unknown $p_suffix
+     *
+     * @return Freeasso_Config
+     */
+    public function setImageSmallSuffix($p_suffix)
+    {
+        $this->image_small_suffix = $p_suffix;
+        return $this;
+    }
+
+    /**
+     * Get small image suffix
+     *
+     * @return string
+     */
+    public function getImageSmallSuffix()
+    {
+        return $this->image_small_suffix;
+    }
+
+    /**
+     * Set image standard suffix
+     *
+     * @param string $p_suffix
+     *
+     * @return Freeasso_Config
+     */
+    public function setImageStandardSuffix($p_suffix)
+    {
+        $this->image_standard_suffix = $p_suffix;
+        return $this;
+    }
+
+    /**
+     * Get image standard suffix
+     *
+     * @return string
+     */
+    public function getImageStandardSuffix()
+    {
+        return $this->image_standard_suffix;
     }
 }

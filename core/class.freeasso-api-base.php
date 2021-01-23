@@ -14,11 +14,11 @@ class Freeasso_Api_Base
      *
      * @var string
      */
-    const FREEASSO_METHOD_GET = 'get';
-    const FREEASSO_METHOD_PUT = 'put';
-    const FREEASSO_METHOD_POST = 'post';
-    const FREEASSO_METHOD_DELETE = 'delete';
-    const FREEASSO_METHOD_HEAD = 'head';
+    const FREEASSO_METHOD_GET     = 'get';
+    const FREEASSO_METHOD_PUT     = 'put';
+    const FREEASSO_METHOD_POST    = 'post';
+    const FREEASSO_METHOD_DELETE  = 'delete';
+    const FREEASSO_METHOD_HEAD    = 'head';
     const FREEASSO_METHOD_OPTIONS = 'options';
 
     /**
@@ -26,7 +26,7 @@ class Freeasso_Api_Base
      *
      * @var string
      */
-    const SORT_UP = '';
+    const SORT_UP   = '';
     const SORT_DOWN = '-';
 
     /**
@@ -64,6 +64,12 @@ class Freeasso_Api_Base
      * @var Freeasso_Config
      */
     private $config = null;
+
+    /**
+     * PHP Session
+     * @var Freeasso_Session
+     */
+    private $session = null;
 
     /**
      * Method
@@ -122,6 +128,12 @@ class Freeasso_Api_Base
     private $page_size = 0;
 
     /**
+     * Specific id
+     * @var string
+     */
+    protected $id = null;
+
+    /**
      * Get factory
      *
      * @return Freeasso_Api_Base
@@ -149,7 +161,7 @@ class Freeasso_Api_Base
         if (0 < preg_match_all($p_regex, $p_string, $matches, PREG_SET_ORDER)) {
             foreach ($matches as $match) {
                 $replace = '';
-                $method = $this->getMethodFromMatch($match[1]);
+                $method  = $this->getMethodFromMatch($match[1]);
                 if (method_exists($this, $method)) {
                     $replace = $this->{$method}();
                 }
@@ -185,6 +197,34 @@ class Freeasso_Api_Base
     }
 
     /**
+     * Set pagination
+     *
+     * @param number $p_page
+     * @param number $p_len
+     *
+     * @return Freeasso_Api_Base
+     */
+    public function setPagination($p_page=1, $p_len=16)
+    {
+        $this->page       = $p_page;
+        $this->page_size  = $p_len;
+        return $this;
+    }
+
+    /**
+     * Set id
+     *
+     * @param string $p_id
+     *
+     * @return Freeasso_Api_Base
+     */
+    public function setId($p_id)
+    {
+        $this->id = $p_id;
+        return $this;
+    }
+
+    /**
      * Get filters as string
      *
      * @return string | false
@@ -202,6 +242,9 @@ class Freeasso_Api_Base
                             $val = $oneCrit->val1;
                             if (is_array($val)) {
                                 $val = implode(',', $val);
+                            }
+                            if ($val != '') {
+                                $val = '[' . $val . ']';
                             }
                             break;
                         default:
@@ -221,6 +264,9 @@ class Freeasso_Api_Base
                             $val = $oneCrit->val1;
                             if (is_array($val)) {
                                 $val = implode(',', $val);
+                            }
+                            if ($val != '') {
+                                $val = '[' . $val . ']';
                             }
                             break;
                         default:
@@ -260,10 +306,14 @@ class Freeasso_Api_Base
      */
     protected function __construct()
     {
-        $freeasso = Freeasso::getInstance();
+        $freeasso     = Freeasso::getInstance();
         $this->config = $freeasso->getConfig();
         if (! $this->config instanceof Freeasso_Config) {
             throw new \Exception("Class Freeasso_Config not found !");
+        }
+        $this->session = $freeasso->getSession();
+        if (! $this->session instanceof Freeasso_Session) {
+            throw new \Exception("Class Freeasso_Session not found !");
         }
     }
 
@@ -286,12 +336,23 @@ class Freeasso_Api_Base
     {
         $url = rtrim($this->getConfig()->getWsBaseUrl(), "/");
         $url = $url . '/' . ltrim($this->url, '/');
+        if ($this->id != '') {
+            $url .= '/' . $this->id;
+        }
         $params = [];
         if (is_array($this->sort)) {
             $params['sort'] = implode(',', $this->sort);
         }
         if (is_array($this->include)) {
             $params['include'] = implode(',', $this->include);
+        }
+        if ($this->config->getVersion() == 'v1') {
+            $params['page'] = $this->page;
+            $params['len']  = $this->page_size;
+        } else {
+            $params['page']           = [];
+            $params['page']['offset'] = $this->page;
+            $params['page']['size']   = $this->page_size;
         }
         if (count($params) > 0) {
             $url = $url . '?' . http_build_query($params);
@@ -412,16 +473,18 @@ class Freeasso_Api_Base
     /**
      * Get Hawk auth header
      *
+     * @param string $p_url
+     *
      * @return string
      */
-    protected function getHawkAuth()
+    protected function getHawkAuth($p_url)
     {
-        $ts = $this->getTs();
-        $nonce = $this->getNonce();
-        $hawk = $this->getHawkArray($ts, $nonce);
+        $ts      = $this->getTs();
+        $nonce   = $this->getNonce();
+        $hawk    = $this->getHawkArray($p_url, $ts, $nonce);
         $hawkStr = implode("\n", $hawk) . "\n";
-        $hash = hash_hmac('sha256', $hawkStr, $this->getConfig()->getHawkKey(), true);
-        $auth = 'Hawk ' . 'id=' . $this->getConfig()->getHawkUser() . ', ' . 'ts=' . $ts . ', ' . 'nonce=' . $nonce . ', ' . 'mac=' . base64_encode($hash);
+        $hash    = hash_hmac('sha256', $hawkStr, $this->getConfig()->getHawkKey(), true);
+        $auth    = 'Hawk ' . 'id=' . $this->getConfig()->getHawkUser() . ', ' . 'ts=' . $ts . ', ' . 'nonce=' . $nonce . ', ' . 'mac=' . base64_encode($hash);
         return $auth;
     }
 
@@ -432,7 +495,7 @@ class Freeasso_Api_Base
      */
     protected function getUrlScheme()
     {
-        $url = strtolower($this->getConfig()->getWsBaseUrl());
+        $url   = strtolower($this->getConfig()->getWsBaseUrl());
         $parts = parse_url($url);
         if (is_array($parts) && array_key_exists('scheme', $parts)) {
             return strtolower($parts['scheme']);
@@ -447,7 +510,7 @@ class Freeasso_Api_Base
      */
     protected function getUrlHost()
     {
-        $url = $this->getConfig()->getWsBaseUrl();
+        $url   = $this->getConfig()->getWsBaseUrl();
         $parts = parse_url($url);
         if (is_array($parts) && array_key_exists('host', $parts)) {
             return strtolower($parts['host']);
@@ -458,14 +521,15 @@ class Freeasso_Api_Base
     /**
      * Get base url path
      *
+     * @param string  $p_url
      * @param boolean $p_with_query
      *
      * @return string
      */
-    protected function getUrlPath($p_with_query = false)
+    protected function getUrlPath($p_url, $p_with_query = false)
     {
-        $url = $this->getFullUrl();
-        $parts = parse_url($url);
+        $url    = $p_url;
+        $parts  = parse_url($url);
         $result = '';
         if (is_array($parts) && array_key_exists('path', $parts)) {
             $result = trim($parts['path']);
@@ -479,11 +543,13 @@ class Freeasso_Api_Base
     /**
      * Get base url path
      *
+     * @param string $p_url
+     *
      * @return string
      */
-    protected function getUrlPathWithQuery()
+    protected function getUrlPathWithQuery($p_url)
     {
-        return $this->getUrlPath(true);
+        return $this->getUrlPath($p_url, true);
     }
 
     /**
@@ -493,9 +559,9 @@ class Freeasso_Api_Base
      */
     protected function getUrlPort()
     {
-        $url = $this->getConfig()->getWsBaseUrl();
+        $url   = $this->getConfig()->getWsBaseUrl();
         $parts = parse_url($url);
-        $port = false;
+        $port  = false;
         if (is_array($parts) && array_key_exists('port', $parts)) {
             $port = $parts['port'];
         }
@@ -532,19 +598,20 @@ class Freeasso_Api_Base
     /**
      * get Hawk parts as array
      *
+     * @param string $p_url
      * @param string $p_ts
      * @param string $p_nonce
      *
      * @return array
      */
-    protected function getHawkArray($p_ts, $p_nonce)
+    protected function getHawkArray($p_url, $p_ts, $p_nonce)
     {
-        $hawk = [];
+        $hawk   = [];
         $hawk[] = 'hawk.1.header';
         $hawk[] = $p_ts;
         $hawk[] = $p_nonce;
         $hawk[] = strtoupper($this->getMethod());
-        $hawk[] = urldecode($this->getUrlPathWithQuery());
+        $hawk[] = urldecode($this->getUrlPathWithQuery($p_url));
         $hawk[] = $this->getUrlHost();
         $hawk[] = $this->getUrlPort();
         $hawk[] = '';
@@ -560,15 +627,16 @@ class Freeasso_Api_Base
         $args = [
             'timeout' => 20,
             'headers' => [
-                'Api-Id' => $this->getConfig()->getApiId(),
-                'Accept' => 'application/json', // Just accept json result, no jsonapi
+                'Api-Id'       => $this->getConfig()->getApiId(),
+                'Accept'       => 'application/json', // Just accept json result, no jsonapi
                 'Content-Type' => 'application/json' // Force json content
             ]
         ];
+        $url = $this->getFullUrl();
         if ($this->isPrivate()) {
-            $args['headers']['Authorization'] = $this->getHawkAuth();
+            $args['headers']['Authorization'] = $this->getHawkAuth($url);
         }
-        $result = wp_remote_get($this->getFullUrl(), $args);
+        $result = wp_remote_get($url, $args);
         if ($result && array_key_exists('response', $result)) {
             $response = $result['response'];
             if (array_key_exists('code', $response) && intval($response['code']) < 300) {
@@ -666,6 +734,36 @@ class Freeasso_Api_Base
     protected function addFixedFilter($p_name, $p_value, $p_oper = self::OPER_EQUAL, $p_other = null)
     {
         return $this->hAddFilter('fixed', $p_name, $p_value, $p_oper, $p_other);
+    }
+
+    /**
+     * Get from session
+     *
+     * @param string $p_key
+     * @param mixed  $p_default
+     *
+     * @return mixed
+     */
+    protected function getFromSession($p_key, $p_default = false)
+    {
+        if ($this->session->has($p_key)) {
+            return $this->session->get($p_key);
+        }
+        return $p_default;
+    }
+
+    /**
+     * Store a value in session
+     *
+     * @param string $p_key
+     * @param mixed  $p_value
+     *
+     * @return Freeasso_Api_Base
+     */
+    protected function storeInSession($p_key, $p_value)
+    {
+        $this->session->set($p_key, $p_value);
+        return $this;
     }
 
     /**

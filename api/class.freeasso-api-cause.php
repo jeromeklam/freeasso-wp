@@ -5,7 +5,7 @@
  *
  * @author jeromeklam
  */
-class Freeasso_Api_Causes extends Freeasso_Api_Base
+class Freeasso_Api_Cause extends Freeasso_Api_Base
 {
 
     /**
@@ -18,35 +18,19 @@ class Freeasso_Api_Causes extends Freeasso_Api_Base
      *
      * @var array
      */
-    protected $causes = null;
-
-    /**
-     * Total causes
-     * @var number
-     */
-    protected $total_causes = 0;
+    protected $cause = null;
 
     /**
      * Get all causes
      *
      * @return array
      */
-    public function getCauses()
+    public function getCause()
     {
-        if ($this->causes === null) {
+        if ($this->cause === null) {
             $this->getWS();
         }
-        return $this->causes;
-    }
-
-    /**
-     * Total count
-     *
-     * @return number
-     */
-    public function getTotalCauses()
-    {
-        return $this->total_causes;
+        return $this->cause;
     }
 
     /**
@@ -76,32 +60,20 @@ class Freeasso_Api_Causes extends Freeasso_Api_Base
     }
 
     /**
-     * Set causes
+     * Set cause
      *
-     * @param array $p_causes
+     * @param array $p_cause
      *
      * @return Freeasso_Api_Causes
      */
-    protected function setCauses($p_causes)
+    protected function setCause($p_cause)
     {
-        $this->causes = [];
-        $year         = intval(date('Y'));
-        if ($this->id != '') {
-            $this->total_causes = 1;
-            $causes = [$p_causes];
-        } else {
-            if (isset($p_causes->total)) {
-                $this->total_causes = intval($p_causes->total);
-            }
-            if (isset($p_causes->data)) {
-                $causes = $p_causes->data;
-            } else {
-                $causes = $p_causes;
-            }
-        }
-        foreach ($causes as $oneCause) {
-            $cause = new StdClass();
-            $cause->id = $oneCause->cau_id;
+        $this->cause = null;
+        $year        = intval(date('Y'));
+        if ($p_cause) {
+            $oneCause    = $p_cause;
+            $cause       = new StdClass();
+            $cause->id   = $oneCause->cau_id;
             $cause->code = $oneCause->cau_code;
             if ($cause->code == '') {
                 $cause->code = $oneCause->cau_id;
@@ -134,14 +106,14 @@ class Freeasso_Api_Causes extends Freeasso_Api_Base
             } else {
                 $cause->sponsors = null;
             }
-            $cause->age = null;
+            $cause->age      = null;
             if ($cause->born && $cause->born > 1900) {
                 $cause->age = $year - $cause->born;
             }
             $cause->species = $oneCause->subspecies->sspe_name;
-            $cause->raised = $oneCause->cau_mnt;
-            $cause->left = $oneCause->cau_mnt_left;
-            $this->causes[] = $cause;
+            $cause->raised  = $oneCause->cau_mnt;
+            $cause->left    = $oneCause->cau_mnt_left;
+            $this->cause    = $cause;
         }
         return $this;
     }
@@ -155,10 +127,10 @@ class Freeasso_Api_Causes extends Freeasso_Api_Base
     {
         $result = $this->call();
         if ($result && is_object($result) || is_array($result)) {
-            $this->setCauses($result);
+            $this->setCause($result);
             return true;
         }
-        $this->setCauses([]);
+        $this->setCause(null);
         return false;
     }
 }

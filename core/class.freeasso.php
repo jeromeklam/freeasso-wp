@@ -24,6 +24,12 @@ class Freeasso
     private $config = null;
 
     /**
+     * PHP session
+     * @var Freeasso_Session
+     */
+    private $session = null;
+
+    /**
      * Constructor
      */
     protected function __construct()
@@ -52,6 +58,8 @@ class Freeasso
      */
     public function initHooks()
     {
+        // Sessions
+        $this->initSession();
         // Filters
         $this->initFilters();
         // Actions
@@ -73,6 +81,16 @@ class Freeasso
     }
 
     /**
+     * Get PHP Session
+     *
+     * @return \Freeasso_Session
+     */
+    public function getSession()
+    {
+        return $this->session;
+    }
+
+    /**
      * Replace stats placeholders by real content
      *
      * @param string $p_content
@@ -90,6 +108,17 @@ class Freeasso
             return $content;
         }
         return $p_content;
+    }
+
+    /**
+     * Start PHP session
+     *
+     * @return Freeasso
+     */
+    protected function initSession()
+    {
+        $this->session = \Freeasso_Session::getInstance();
+        return $this;
     }
 
     /**
