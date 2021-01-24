@@ -18,7 +18,7 @@ Une fenêtre d'administration permet de paramétrer la connexion à l'administra
 
 Voici un exemple de configuration :
 
-![Configuration](./doc/configuration.png)
+![Configuration](./doc/admin.png)
 
 ### Détail :
 
