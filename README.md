@@ -3,126 +3,56 @@
 
 Ce plugin permet de récupérer certains éléments de l'administration gérée par FreeAsso.
 
-## Statistiques
+Il permet également de se connecter à l'administration Kalaweit.
 
-* Le nombre d'amis (membres effectuant des dons réguliers, tous programmes confondus),
-* Le nombre d'animaux présents dans les différents programmes,
-* Des variables saisies directement dans l'administration FreeAsso,
+Les documentations se trouvent dans le dossier doc :
 
-### Partie technique
+* [Statistiques](doc/stats.md)
+* [Causes](doc/causes.md)
+* [Apis](doc/apis.md)
 
-#### Insérer une donnée via un Widget
 
-Le plus imple mais le moins paramétrable, il suffit de choisir parmis les Widget FreeAsso.
+## Paramétrage
 
-#### Insérer une donnée via un shortcode
+Une fenêtre d'administration permet de paramétrer la connexion à l'administration.
 
-```
-   <?php echo do_shortcode('[FreeAsso_Amis]', '---'); ?>
-```
+Voici un exemple de configuration :
 
-* FreeAsso_Amis
-* FreeAsso_Gibbons
-* FreeAsso_Hectares
+![Configuration](doc/configuration.png)
 
-#### Insérer une donnée issue des statistiques directement dans le template
+### Détail :
 
-Il est possible d'ajouter une information directement dans le template, via du code PHP
+* Url de base du serveur :
+    * https://kalaweit.org/api pour l'administration Kalaweit
+    * https://freeasso.org/api/v1/asso pour l'administration FreeAsso
+* La version de l'administration
+* Identifiant de l'application : kalaweit
+* Identifiant de sécurité : kalaweit-site
+* Clef de sécurité (ne sera jamais affichée)
+    * Ce champ est à renseigner pour enregistrer une clef de sécurité
+* Préfixe des vignettes :
+    * https://images.kalaweit.org/images/vignettes/ pour l'administration kalaweit
+    * https://images.freeasso.org/images/vignettes/ pour l'administration FreeAsso
+* Suffixe des vignettes : non utilisé pour l'instant, servira pour préciser la taille de la vignette
+* Préfixe des photos :
+    * https://images.kalaweit.org/images/photos/ pour l'administration kalaweit
+    * https://images.freeasso.org/images/photos/ pour l'administration FreeAsso
+* Suffixe des photos : non utilisé pour l'instant
 
-```
-    ...
-    <?php $freeassoStats = Freeasso_Api_Stats::getFactory();?>
-    ...
-    <p>Kalaweit a déjà <?php echo $freeassoStats->getAmis(); ?> amis;<p>
-    ...
-```
+**Les informations sont sensibles à la casse**
 
-* getAmis
-* getGibbons
-* getHectares
+## Technique
 
-Par défaut ces méthodes retournent le résultat formaté. Pour avoir la valeur brute, il faut passer "false" en paramètre.
+La sécurité de l'API est basée sur les spécifications HAWK, même si ces données sont affichées sur le site public.
+D'autres appels seront développés, donc autant le prévoir tout de suite. Le plugin s'occupe de cette partie.
 
-#### Insérer une donnée issue des statistiques via une substitution
+L'Api fonctionne en mode RESTful avec résultats en json.
 
-Il est également possible d'utiliser une chaine de remplacement à placer dans le contenu. Il suffit ensuite d'appeler un hook sur le bon élément.
+Les vignettes et photos sont en cache côté serveur et actualisées lors de modifications.
 
-```
-    add_filter('the_content', ['Freeasso', 'filterStats']);
-```
+Les données des filtres sont susceptibles de changer donc merci d'utiliser les APIs afin de récupérer leurs valeurs.
 
-Il faut suivre le pattern de remplacement ci-dessous :
+## Exemples
 
-```
-[[:FreeAsso_Amis:]]
-```
-
-* FreeAsso_Amis
-* FreeAsso_Gibbons
-* FreeAsso_Hectares
-
-## Animaux
-
-* Une liste d'animaux selon certains critères (cf ci-dessous pour les filtres)
-* La fiche d'un animal
-
-### Données des filtres
-
-#### Les sites
-
-Les sites sont à récupérer de l'administration.
-
-```
-$myApi = Freeasso_Api_Sites::getFactory();
-$myApi->getSites();
-```
-
-Retourne un tableau d'objets :
-* id : identifiant principal
-* code : code pour les traductions
-* label : le nom du site
-
-#### Les espèces
-
-Les espèces sont à récupérer de l'administration.
-Il existe les espèces détaillées et simplifiées
-
-```
-$myApi = Freeasso_Api_Species::getFactory();
-$myApi->getMainSpecies();
-```
-
-Retourne un tableau d'objets :
-* id : identifiant principal
-* code : code pour les traductions
-* label : le nom de l'espèce simplifié
-* all : un tableau des Ids des espèces pour la recherche
-
-#### Personnaliser les filtres
-
-Les api ont des filtres par défaut que l'on ne peut pas retirer.
-
-Il existe aussi la possibilité de rajouter des filtres personnalisés, saisis par exemple depuis un formulaire.
-
-```php
-    /**
-     * Add filter
-     *
-     * @param string $p_name
-     * @param mixed  $p_value
-     * @param string $p_oper
-     * @param mixed  $p_other
-     *
-     * @return Freeasso_Api_Base
-     */
-    public function addSimpleFilter($p_name, $p_value, $p_oper = self::OPER_EQUAL, $p_other = null)
-```
-
-```php
-    $myCausesApi->addSimpleFilter('cau_sex', $gender);
-```
-
-Liste des opérateurs disponibles :
-
-* Freeasso_Api_Base::OPER_EQUAL
-* Freeasso_Api_Base::OPER_IN
+Une vue de recherche simplifiée existe.
+Une vue complète paramétrable sera mise à disposition.

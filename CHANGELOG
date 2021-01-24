@@ -1,8 +1,16 @@
-# 1.0.2 : 23/01/2021
+# TODO
+
+* Vue de recherche paramétrable
+* Fiche Gibbon
+* Logs
+* Finalisation des retours : langue / parrains et invités
+
+# 1.0.3 : 24/01/2021
 
 * Ancienne et nouvelle administration
 * Filtres sur les causes
 * Options de config pour les vignettes et photos
+* Documentation
 
 # 1.0.1 : 11/01/2021
 

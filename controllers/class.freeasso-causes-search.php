@@ -190,7 +190,6 @@ class Freeasso_Causes_Search
             $this->causes       = $myCausesApi->getCauses();
             $this->total_causes = $myCausesApi->getTotalCauses();
         }
-        var_dump($this->param_lang);
         // End
         return $this;
     }
