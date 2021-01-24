@@ -23,7 +23,7 @@ Voici un exemple de configuration :
 ### Détail :
 
 * Url de base du serveur :
-    * https://kalaweit.org/api pour l'administration Kalaweit
+    * https://administration.kalaweit.org/api pour l'administration Kalaweit
     * https://freeasso.org/api/v1/asso pour l'administration FreeAsso
 * La version de l'administration
 * Identifiant de l'application : kalaweit
@@ -32,11 +32,11 @@ Voici un exemple de configuration :
     * Ce champ est à renseigner pour enregistrer une clef de sécurité
 * Préfixe des vignettes :
     * https://images.kalaweit.org/images/vignettes/ pour l'administration kalaweit
-    * https://images.freeasso.org/images/vignettes/ pour l'administration FreeAsso
+    * https://freeasso.org/images/vignettes/ pour l'administration FreeAsso
 * Suffixe des vignettes : non utilisé pour l'instant, servira pour préciser la taille de la vignette
 * Préfixe des photos :
     * https://images.kalaweit.org/images/photos/ pour l'administration kalaweit
-    * https://images.freeasso.org/images/photos/ pour l'administration FreeAsso
+    * https://freeasso.org/images/photos/ pour l'administration FreeAsso
 * Suffixe des photos : non utilisé pour l'instant
 
 **Les informations sont sensibles à la casse**

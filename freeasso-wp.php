@@ -24,7 +24,7 @@ if (! function_exists('add_action')) {
 // --------------------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------------
 define('FREEASSO', 'FreeAsso');
-define('FREEASSO_VERSION', '1.0.0');
+define('FREEASSO_VERSION', '1.0.4');
 define('FREEASSO_MINIMUM_WP_VERSION', '5.6');
 define('FREEASSO_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FREEASSO_PLUGIN_NAME', 'FreeAsso-WP');
@@ -35,12 +35,14 @@ define('FREEASSO_PLUGIN_NAME', 'FreeAsso-WP');
 // --------------------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------------
 require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso-tools.php';
+require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso-migration.php';
 require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso-session.php';
 require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso-view.php';
 require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso-api-base.php';
 require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso-config.php';
 require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso.php';
 require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso-admin.php';
+require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-amounts.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-cause.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-causes.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-genders.php';
@@ -62,6 +64,11 @@ require_once FREEASSO_PLUGIN_DIR . 'widgets/class.freeasso-widget-gibbons.php';
 // --------------------------------------------------------------------------------------------------------------------
 $freeasso = Freeasso::getInstance();
 
+//
+add_action('plugins_loaded', [
+    &$freeasso,
+    'dbCheck'
+]);
 // Go all
 add_action('init', [
     &$freeasso,

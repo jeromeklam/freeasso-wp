@@ -114,6 +114,12 @@ class Freeasso_Api_Base
     private $filters = [];
 
     /**
+     * Options
+     * @var array
+     */
+    private $options = [];
+
+    /**
      * Page
      *
      * @var integer
@@ -187,6 +193,20 @@ class Freeasso_Api_Base
     }
 
     /**
+     * Add one option
+     *
+     * @param string $p_name
+     * @param mixed $p_value
+     *
+     * @return Freeasso_Api_Base
+     */
+    public function addOption($p_name, $p_value)
+    {
+        $this->options[$p_name] = $p_value;
+        return $this;
+    }
+
+    /**
      * Flush filters
      *
      * @return Freeasso_Api_Base
@@ -238,6 +258,9 @@ class Freeasso_Api_Base
             if (is_array($fixed) && count($fixed) > 0) {
                 foreach ($fixed as $oneCrit) {
                     switch ($oneCrit->oper) {
+                        case self::OPER_BETWEEN:
+                            $val = $oneCrit->val1 . ',' . $oneCrit->val2;
+                            break;
                         case self::OPER_IN:
                             $val = $oneCrit->val1;
                             if (is_array($val)) {
@@ -260,6 +283,9 @@ class Freeasso_Api_Base
             if (is_array($simple) && count($simple) > 0) {
                 foreach ($simple as $oneCrit) {
                     switch ($oneCrit->oper) {
+                        case self::OPER_BETWEEN:
+                            $val = $oneCrit->val1 . ',' . $oneCrit->val2;
+                            break;
                         case self::OPER_IN:
                             $val = $oneCrit->val1;
                             if (is_array($val)) {
@@ -353,6 +379,9 @@ class Freeasso_Api_Base
             $params['page']           = [];
             $params['page']['offset'] = $this->page;
             $params['page']['size']   = $this->page_size;
+        }
+        if (count($this->options) > 0) {
+            $params['option'] = $this->options;
         }
         if (count($params) > 0) {
             $url = $url . '?' . http_build_query($params);

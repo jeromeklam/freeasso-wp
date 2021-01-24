@@ -52,6 +52,22 @@ class Freeasso
     }
 
     /**
+     * Check db version
+     */
+    public function dbCheck()
+    {
+        $dbVers = str_replace('V', '', strtoupper($this->getConfig()->getDbVersion()));
+        $plVers = str_replace('V', '', strtoupper(FREEASSO_VERSION));
+        if ($dbVers == '' || version_compare($dbVers, $plVers) < 0) {
+            // Need dbUpgrade
+            $updater = Freeasso_Migration::getInstance();
+            $updater->upgrade($dbVers, $plVers);
+            // no exception, then ok
+            $this->getConfig()->setDbVersion(FREEASSO_VERSION)->saveConfig();
+        }
+    }
+
+    /**
      * init hooks
      *
      * @return Freeasso

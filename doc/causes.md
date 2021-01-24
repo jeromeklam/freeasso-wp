@@ -120,6 +120,15 @@ public function setPagination($p_page=1, $p_len=16)
 On peut ainsi spécifier la page et le nombre par page.
 L'API retourne le nombre total de résultat de la requête afin de pouvoir paginer le retour.
 
+#### La langue
+
+Il faut ici ajouter une option, par défaut on va utiliser la langue de wordpress
+
+```php
+$myCausesApi = FreeAsso_Api_Causes::getFactory();
+$myCausesApi->addOption('lang', get_locale());
+```
+
 #### Avec identifiant
 
 Il existe la possibilité de récupérer une seule cause.
@@ -153,7 +162,22 @@ $causes = $myCausesApi->getCauses();
 $total_causes = $myCausesApi->getTotalCauses();
 ```
 
-#### Champs disponibles
+Il n'est pas possible de mélanger des filtres pour un champ, par exempel >= et <=.
+Cela est une limitation des spécifications.
+
+#### Champs disponibles en recherche
+
+La nouvelle administration n'a pas de limite, par contre afin d'uniformiser les appels avec la version de Kalaweit, voici la liste des champs communs :
+
+* site.id : recherche sur le site (id)
+* subspecies.id : recherche sur l'espère (ids), on sélectionne en général une version commune de l'espèce
+* cau_sex : le sexe
+* cau_mnt_left : le montant restant à parrainer (plafoné à 280€)
+* cau_mnt_raised : le montant recolté (plafoné à 280€)
+* cau_year : l'année de naissance
+* cau_age : l'âge de l'animal
+
+#### Champs disponibles dans le résultat de la classe Api (objet)
 
 Pour chaque cause voici la description de l'objet retourné :
 

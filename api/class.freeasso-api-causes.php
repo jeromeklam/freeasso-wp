@@ -129,7 +129,7 @@ class Freeasso_Api_Causes extends Freeasso_Api_Base
             } else {
                 $cause->photo2 = null;
             }
-            if (isset($oneCause->sponsors)) {
+            if (isset($oneCause->cau_sponsors)) {
                 $cause->sponsors = $oneCause->cau_sponsors;
             } else {
                 $cause->sponsors = null;

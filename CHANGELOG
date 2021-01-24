@@ -1,9 +1,15 @@
 # TODO
 
 * Vue de recherche paramétrable
-* Fiche Gibbon
 * Logs
-* Finalisation des retours : langue / parrains et invités
+
+# 1.0.4 : 24/01/2021
+
+* Exemple plus complet :
+    * Fiche Gibbon
+    * Filtres sur montant
+    * Parrains
+    * Affichage plus sympa
 
 # 1.0.3 : 24/01/2021
 

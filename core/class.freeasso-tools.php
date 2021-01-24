@@ -106,4 +106,20 @@ class Freeasso_Tools
         $now = new \DateTime();
         return $now->format('Y-m-d');
     }
+
+    /**
+     * Throw new exception
+     *
+     * @param string $p_message
+     *
+     * @throws Exception
+     */
+    public static function throwException($p_message)
+    {
+        $error = new WP_Error('custom-error', $p_message);
+        if (is_wp_error($error)) {
+            $error_code = $error->get_error_code();
+            throw new Exception($error_code);
+        }
+    }
 }

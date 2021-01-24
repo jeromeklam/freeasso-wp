@@ -1,5 +1,5 @@
 <div class="wrap">
-    <h2><?php echo $this->pluginName; ?> &raquo; <?php esc_html_e( 'Config', 'freeasso' ); ?></h2>
+    <h2><?php echo $this->pluginName; ?> &raquo; <?php esc_html_e( 'Config', 'freeasso' ); ?> -- Version : <?php echo $this->version; ?></h2>
 
     <?php
     if ( isset( $this->message ) ) {

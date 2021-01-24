@@ -26,6 +26,12 @@ class Freeasso_Causes_Search
     protected $causes = null;
 
     /**
+     * Cause
+     * @var object
+     */
+    protected $cause = null;
+
+    /**
      * Gender
      * @var array
      */
@@ -48,6 +54,12 @@ class Freeasso_Causes_Search
      * @var array
      */
     protected $names = null;
+
+    /**
+     * Montants
+     * @var array
+     */
+    protected $amounts = null;
 
     /**
      * Total causes
@@ -90,6 +102,12 @@ class Freeasso_Causes_Search
      * @var string
      */
     protected $param_names = '';
+
+    /**
+     * Ammount
+     * @var string
+     */
+    protected $param_amounts = '';
 
     /**
      * Current lang
@@ -155,6 +173,9 @@ class Freeasso_Causes_Search
         // Names
         $myNamesApi = FreeAsso_Api_Names::getFactory();
         $this->names = $myNamesApi->getNames();
+        // Amounts
+        $myAmountsApi = FreeAsso_Api_Amounts::getFactory();
+        $this->amounts = $myAmountsApi->getAmounts();
         // Params
         $this->param_page    = $this->getParam('freeasso-cause-search-page', 1);
         $this->param_length  = $this->getParam('freeasso-cause-search-length', 16);
@@ -162,9 +183,11 @@ class Freeasso_Causes_Search
         $this->param_site    = $this->getparam('freeasso-cause-search-site', '');
         $this->param_species = $this->getparam('freeasso-cause-search-species', '');
         $this->param_names   = $this->getparam('freeasso-cause-search-names', '');
+        $this->param_amounts = $this->getparam('freeasso-cause-search-amounts', '');
         // Filters
         $myCausesApi = FreeAsso_Api_Causes::getFactory();
         $myCausesApi->setPagination($this->param_page, $this->param_length);
+        $myCausesApi->addOption('lang', $this->param_lang);
         // If specific Gibbon, prioritary, no other filters, but keeped
         if ($this->param_names != '') {
             $myCausesApi->setId($this->param_names);
@@ -185,6 +208,24 @@ class Freeasso_Causes_Search
                 }
             }
         }
+        if ($this->param_amounts != '') {
+            foreach ($this->amounts as $oneAmount) {
+                if ($oneAmount->id == $this->param_amounts) {
+                    if (isset($oneAmount->ltwe) && isset($oneAmount->gte)) {
+                        $myCausesApi->addSimpleFilter('cau_mnt_left', $oneAmount->gte, Freeasso_Api_Base::OPER_BETWEEN, $oneAmount->ltwe);
+                    } else {
+                        if (isset($oneAmount->ltwe)) {
+                            $myCausesApi->addSimpleFilter('cau_mnt_left', $oneAmount->ltwe, Freeasso_Api_Base::OPER_LOWER_EQUAL);
+                        } else {
+                            if (isset($oneAmount->gte)) {
+                                $myCausesApi->addSimpleFilter('cau_mnt_left', $oneAmount->gte, Freeasso_Api_Base::OPER_GREATER_EQUAL);
+                            }
+                        }
+                    }
+                    break;
+                }
+            }
+        }
         $updateCauses = true;
         if ($this->causes === null || $updateCauses) {
             $this->causes       = $myCausesApi->getCauses();
@@ -195,16 +236,36 @@ class Freeasso_Causes_Search
     }
 
     /**
+     * Load one cause
+     *
+     * @param mixed $p_id
+     *
+     * @return Freeasso_Causes_Search
+     */
+    public function loadData($p_id)
+    {
+        $myCausesApi = FreeAsso_Api_Cause::getFactory();
+        $myCausesApi->setId($p_id);
+        $myCausesApi->addOption('lang', $this->param_lang);
+        $this->cause = $myCausesApi->getCause();
+        return $this;
+    }
+
+    /**
      * Display searchform
      *
      * @return void
      */
     public function echoForm()
     {
-        $this
-            ->loadParams()
-            ->loadDatas()
-        ;
-        $this->includeView('cause-search', 'freeasso-causes-search');
+        $this->loadParams();
+        $mode = $this->getParam('freeasso-cause-mode', 'search');
+        if ($mode == 'detail') {
+            $this->loadData($this->getParam('freeasso-cause-id'));
+            $this->includeView('cause-detail', 'freeasso-causes-search');
+        } else {
+            $this->loadDatas();
+            $this->includeView('cause-search', 'freeasso-causes-search');
+        }
     }
 }

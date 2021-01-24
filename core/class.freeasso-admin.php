@@ -33,6 +33,12 @@ class Freeasso_Admin
     protected $configOK = false;
 
     /**
+     * Current version
+     * @var string
+     */
+    protected $version = null;
+
+    /**
      * Get only one instance
      *
      * @return Freeasso_Admin
@@ -156,6 +162,7 @@ class Freeasso_Admin
             return;
         }
         $this->initView();
+        $this->version = $this->config->getDbVersion();
         // Save Settings
         if (isset($_REQUEST['submit'])) {
             // Check nonce

@@ -79,6 +79,18 @@ class Freeasso_Config
     private $image_standard_suffix = null;
 
     /**
+     * Database vesion
+     * @var string
+     */
+    private $db_version = null;
+
+    /**
+     * Log level
+     * @var integer
+     */
+    private $db_log_level = 0;
+
+    /**
      * Constructor, only global class and uniq instance
      */
     protected function __construct()
@@ -124,6 +136,12 @@ class Freeasso_Config
                 if ($datas->image_standard_suffix) {
                     $this->setImageStandardSuffix($datas->image_standard_suffix);
                 }
+                if ($datas->db_version) {
+                    $this->setDbVersion($datas->db_version);
+                }
+                if ($datas->db_log_level) {
+                    $this->setDbLogLevel($datas->db_log_level);
+                }
             }
         }
         return $this;
@@ -146,6 +164,8 @@ class Freeasso_Config
         $datas->image_standard_prefix = $this->getImageStandardPrefix();
         $datas->image_small_suffix    = $this->getImageSmallSuffix();
         $datas->image_standard_suffix = $this->getImageStandardSuffix();
+        $datas->db_version            = $this->getDbVersion();
+        $datas->db_log_level          = $this->getDbLogLevel();
         $rawConfig                    = json_encode($datas);
         return update_option(self::FREEASSO_CONFIG, $rawConfig);
     }
@@ -372,5 +392,51 @@ class Freeasso_Config
     public function getImageStandardSuffix()
     {
         return $this->image_standard_suffix;
+    }
+
+    /**
+     * Set db version
+     *
+     * @param string $p_version
+     *
+     * @return Freeasso_Config
+     */
+    public function setDbVersion($p_version)
+    {
+        $this->db_version = $p_version;
+        return $this;
+    }
+
+    /**
+     * Get Db version
+     *
+     * @return string
+     */
+    public function getDbVersion()
+    {
+        return $this->db_version;
+    }
+
+    /**
+     * Set Db log level
+     *
+     * @param integer $p_level
+     *
+     * @return Freeasso_Config
+     */
+    public function setDbLogLevel($p_level)
+    {
+        $this->db_log_level = intval($p_level);
+        return $this;
+    }
+
+    /**
+     * Get Db log level
+     *
+     * @return integer
+     */
+    public function getDbLogLevel()
+    {
+        return $this->db_log_level;
     }
 }
