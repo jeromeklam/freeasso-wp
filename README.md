@@ -7,9 +7,9 @@ Il permet également de se connecter à l'administration Kalaweit.
 
 Les documentations se trouvent dans le dossier doc :
 
-* [Statistiques](doc/stats.md)
-* [Causes](doc/causes.md)
-* [Apis](doc/apis.md)
+* [Statistiques](./doc/stats.md)
+* [Causes](./doc/causes.md)
+* [Apis](./doc/apis.md)
 
 
 ## Paramétrage
@@ -18,7 +18,7 @@ Une fenêtre d'administration permet de paramétrer la connexion à l'administra
 
 Voici un exemple de configuration :
 
-![Configuration](doc/configuration.png)
+![Configuration](./doc/admin.png)
 
 ### Détail :
 
