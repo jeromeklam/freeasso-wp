@@ -56,6 +56,12 @@ class Freeasso_Causes_Search
     protected $names = null;
 
     /**
+     * Ages
+     * @var array
+     */
+    protected $ages = null;
+    
+    /**
      * Montants
      * @var array
      */
@@ -109,6 +115,12 @@ class Freeasso_Causes_Search
      */
     protected $param_amounts = '';
 
+    /**
+     * Filtred age range
+     * @var string
+     */
+    protected $param_age = '';
+    
     /**
      * Current lang
      * @var string
@@ -176,6 +188,9 @@ class Freeasso_Causes_Search
         // Amounts
         $myAmountsApi = FreeAsso_Api_Amounts::getFactory();
         $this->amounts = $myAmountsApi->getAmounts();
+        // Age ranges
+        $myAgesApi = FreeAsso_Api_Ages::getFactory();
+        $this->ages = $myAgesApi->getAgeRanges();
         // Params
         $this->param_page    = $this->getParam('freeasso-cause-search-page', 1);
         $this->param_length  = $this->getParam('freeasso-cause-search-length', 16);
@@ -184,6 +199,7 @@ class Freeasso_Causes_Search
         $this->param_species = $this->getparam('freeasso-cause-search-species', '');
         $this->param_names   = $this->getparam('freeasso-cause-search-names', '');
         $this->param_amounts = $this->getparam('freeasso-cause-search-amounts', '');
+        $this->param_age     = $this->getparam('freeasso-cause-search-age', '');
         // Filters
         $myCausesApi = FreeAsso_Api_Causes::getFactory();
         $myCausesApi->setPagination($this->param_page, $this->param_length);
@@ -211,16 +227,39 @@ class Freeasso_Causes_Search
         if ($this->param_amounts != '') {
             foreach ($this->amounts as $oneAmount) {
                 if ($oneAmount->id == $this->param_amounts) {
-                    if (isset($oneAmount->ltwe) && isset($oneAmount->gte)) {
-                        $myCausesApi->addSimpleFilter('cau_mnt_left', $oneAmount->gte, Freeasso_Api_Base::OPER_BETWEEN, $oneAmount->ltwe);
-                    } else {
-                        if (isset($oneAmount->ltwe)) {
-                            $myCausesApi->addSimpleFilter('cau_mnt_left', $oneAmount->ltwe, Freeasso_Api_Base::OPER_LOWER_EQUAL);
-                        } else {
-                            if (isset($oneAmount->gte)) {
-                                $myCausesApi->addSimpleFilter('cau_mnt_left', $oneAmount->gte, Freeasso_Api_Base::OPER_GREATER_EQUAL);
-                            }
-                        }
+                	$lte=null; $gte=null;
+                	if(isset($oneAmount->ltwe))    $lte=$oneAmount->ltwe;
+                	elseif(isset($oneAmount->ltw)) $lte=$oneAmount->ltw-.005;
+                	if(isset($oneAmount->gte))     $gte=$oneAmount->gte;
+                	elseif(isset($oneAmount->gt))  $gte=$oneAmount->gt+.005;
+                	
+                    if($lte!==null && $gte!==null) {
+                        $myCausesApi->addSimpleFilter('cau_mnt_left', $gte, Freeasso_Api_Base::OPER_BETWEEN, $lte);
+                    } elseif($lte!==null) {
+                        $myCausesApi->addSimpleFilter('cau_mnt_left', $lte, Freeasso_Api_Base::OPER_LOWER_EQUAL);
+                    } elseif($gte!==null) {
+                        $myCausesApi->addSimpleFilter('cau_mnt_left', $gte, Freeasso_Api_Base::OPER_GREATER_EQUAL);
+                    }
+                    break;
+                }
+            }
+        }
+        if($this->param_age != '' && $this->param_age != '-') {
+            foreach ($this->ages as $oneAge) {
+                if ($oneAge->id == $this->param_age) {
+                	$year = intval(date('Y'));
+                	$lte=null; $gte=null;
+                	if(isset($oneAge->ltwe))    $gte=($year - $oneAge->ltwe);
+                	elseif(isset($oneAge->ltw)) $gte=($year - $oneAge->ltwe + 1);
+                	if(isset($oneAge->gte))     $lte=($year - $oneAge->ltwe);
+                	elseif(isset($oneAge->gt))  $lte=($year - $oneAge->ltwe - 1);
+                	
+                    if($lte!==null && $gte!==null) {
+                        $myCausesApi->addSimpleFilter('born', $gte, Freeasso_Api_Base::OPER_BETWEEN, $lte);
+                    } elseif($lte!==null) {
+                        $myCausesApi->addSimpleFilter('born', $lte, Freeasso_Api_Base::OPER_LOWER_EQUAL);
+                    } elseif($gte!==null) {
+                        $myCausesApi->addSimpleFilter('born', $gte, Freeasso_Api_Base::OPER_GREATER_EQUAL);
                     }
                     break;
                 }

@@ -42,6 +42,7 @@ require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso-api-base.php';
 require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso-config.php';
 require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso.php';
 require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso-admin.php';
+require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-ages.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-amounts.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-cause.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-causes.php';
