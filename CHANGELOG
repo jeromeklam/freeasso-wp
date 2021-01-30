@@ -3,6 +3,11 @@
 * Vue de recherche paramétrable
 * Logs
 
+# 1.0.5 : 30/01/2021
+
+* Uniformisation lt, lte, gt et gte
+* cau_year à la place de born pour le filtre sur année de naissance
+
 # 1.0.4 : 24/01/2021
 
 * Exemple plus complet :

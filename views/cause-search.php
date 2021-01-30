@@ -161,7 +161,7 @@
 						    }
 					    ?>
 				</select>
-			</div>			
+			</div>
 			<div class="freeasso-cause-search-input-group">
 				<label for="freeasso-cause-search-amounts"
 					class="freeasso-cause-search-label"><?php esc_html_e( 'Montant à parrainer', 'freeasso' ); ?></label>
@@ -180,15 +180,15 @@
 	    ?>
 				</select>
 			</div>
-			
+
 			<div class="freeasso-cause-search-input-group">
 				<input type="submit"
 					class="search-submit freeasso-cause-search-button-send"
 					value="<?php esc_html_e( 'Rechercher', 'freeasso' ); ?>" />
 			</div>
 		</div>
-		
-		
+
+
 		<h4><?php echo esc_html_e( 'Recherche par nom', 'freeasso' ); ?></h4>
 		<div class="search-form freeasso-cause-search-input-groups">
 			<div class="freeasso-cause-search-input-group">
@@ -212,7 +212,7 @@
 					class="search-submit freeasso-cause-search-button-send"
 					value="<?php esc_html_e( 'Afficher', 'freeasso' ); ?>" />
 			</div>
-		</div>		
+		</div>
 
 		<h2><?php esc_html_e( 'Liste des gibbons', 'freeasso' ); ?></h2>
 		<p class="result-length">
@@ -224,12 +224,12 @@
 				} else {
 					esc_html_e( 'animaux listés','freeasso');
 				}
-				
+
 				if($this->total_causes>$this->param_length) {
 					echo ' - ';
 					esc_html_e('Page');
 					echo ' '.$this->param_page.' / '.ceil($this->total_causes*1./$this->param_length);
-					
+
 				}
 			?>
 		</p>
@@ -248,6 +248,7 @@
 				</div>
 				<div class="freeasso-cause-search-animals-description">
 					<p><?php echo $oneCause->site; ?></p>
+					<p><?php echo $oneCause->born; ?></p>
 					<p><?php echo $oneCause->species; ?></p>
 					<p><?php echo $oneCause->raised; ?>, <?php echo $oneCause->left; ?></p>
 					<p class="freeasso-cause-search-animals-sponsors"><?php echo $oneCause->sponsors; ?></p>
@@ -260,7 +261,7 @@
 	}
 	?>
 		</div>
-	
+
 		<div>
 			<div class="freeasso-cause-search-input-group">
 				<label for="freeasso-cause-search-page"
@@ -299,7 +300,7 @@
 	    }
 	    ?>
 				</select>
-			</div>		
+			</div>
 		</div>
-	</form>	
+	</form>
 </div>
