@@ -200,6 +200,7 @@ class Freeasso_Causes_Search
         $this->param_names   = $this->getparam('freeasso-cause-search-names', '');
         $this->param_amounts = $this->getparam('freeasso-cause-search-amounts', '');
         $this->param_age     = $this->getparam('freeasso-cause-search-age', '');
+        
         // Filters
         $myCausesApi = FreeAsso_Api_Causes::getFactory();
         $myCausesApi->setPagination($this->param_page, $this->param_length);
@@ -295,7 +296,24 @@ class Freeasso_Causes_Search
      */
     public function echoForm()
     {
+		if(!defined('CURRENCY_SYMBOL'))      define('CURRENCY_SYMBOL','€');
+		if(!defined('CURRENCY_BEFORE'))      define('CURRENCY_BEFORE',false);
+		if(!defined('INCLUDE_FULLYRAISED'))  define('INCLUDE_FULLYRAISED',true);
+		if(!defined('INCLUDE_TORAISE'))      define('INCLUDE_TORAISE',true);
+		if(!defined('INCLUDE_SPONSOR_ONCE')) define('INCLUDE_SPONSOR_ONCE',true);
+		$sel_amounts=$_GET['freeasso-cause-search-amounts'];
+		if(empty($sel_amounts)) {
+			if(INCLUDE_FULLYRAISED && !INCLUDE_TORAISE) {
+				$_GET['freeasso-cause-search-amounts']='Z';
+			} elseif(!INCLUDE_FULLYRAISED && INCLUDE_TORAISE && !INCLUDE_SPONSOR_ONCE) {
+				$_GET['freeasso-cause-search-amounts']='F';
+			} elseif(!INCLUDE_FULLYRAISED && INCLUDE_TORAISE) {
+				$_GET['freeasso-cause-search-amounts']='C';
+			}
+		}
         $this->loadParams();
+		
+		
         $mode = $this->getParam('freeasso-cause-mode', 'search');
         if ($mode == 'detail') {
             $this->loadData($this->getParam('freeasso-cause-id'));
@@ -305,4 +323,13 @@ class Freeasso_Causes_Search
             $this->includeView('cause-search', 'freeasso-causes-search');
         }
     }
+}
+
+
+// lib form views
+function _freeasso_amount_format($amount) {
+	$amount='<span class="value">'.$amount.'</span>';
+	$currency='<span class="currency">'.CURRENCY_SYMBOL.'</span>';
+	if(CURRENCY_BEFORE) return $currency.$amount;
+	return $amount.$currency;
 }

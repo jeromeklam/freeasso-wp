@@ -32,6 +32,7 @@ class Freeasso_Api_Amounts extends Freeasso_Api_Base
     {
         parent::__construct();
         $this->amounts = [
+        	(object)['id' => 'C', 'label' => esc_html('Tous les gibbons à parrainer'                 ,'freeasso'), 'gte' => 1],
             (object)['id' => 'A', 'label' => esc_html('A parrainer en totalité (280€ ou 23,33€/mois)','freeasso'), 'gte' => 280],
             (object)['id' => 'Z', 'label' => esc_html('Déjà parrainé en totalité'                    ,'freeasso'), 'lte' => 0],
             (object)['id' => '-', 'label' => '---'],

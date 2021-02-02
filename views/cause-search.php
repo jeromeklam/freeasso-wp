@@ -52,6 +52,16 @@
 .freeasso-cause-search-animals-picture {
 	text-align: center;
 	margin-bottom: 10px;
+	width:100%; padding-top:100%;
+	position:relative;
+}
+.freeasso-cause-search-animals-picture > div {
+	position:absolute;
+	left:0; right:0; top:0; bottom:0;
+/* 	background-color:black; */
+	display:flex;
+	justify-content:center;
+	align-items:center;
 }
 
 .freeasso-cause-search-animals-picture img {
@@ -70,6 +80,12 @@
 .freeasso-cause-search-animals-description {
 	font-size: 0.8rem;
 }
+.freeasso-cause-search-animals-description .amounts > span:after {
+	content:',';
+}
+.freeasso-cause-search-animals-description .amounts > span:last-child:after {
+	content:'';
+}
 .freeasso-cause-search-button-send {
 /*     position: absolute; */
 /*     bottom: 0px; */
@@ -81,11 +97,21 @@
     left: 0px;
     right: 0px;
 }
+.result-length input[type="button"] {
+	background-color:transparent; border:0px none transparent; color:inherit;
+	padding:0 15px 0 0; text-decoration:none; font-weight:bold;
+}
+.result-length input[type="button"]:first-of-type {
+	padding-left:20px;
+}
+.result-length input[type="button"]:hover {
+	color:blue;
+}
 </style>
 <div class="freeasso-cause-search-form">
-	<form role="search" class="freeasso-cause-search-form">
-		<input type="hidden" name="freeasso-cause-mode" value="search" />
-		<h4><?php echo esc_html_e( 'Recherche par filtre', 'freeasso' ); ?></h4>
+	<form role="search" id="freeasso-cause-search-form" class="freeasso-cause-search-form" method="get">
+		<input type="hidden" name="freeasso-cause-mode" id="freeasso-cause-mode" value="search" />
+		<h4><?php esc_html_e( 'Recherche par filtre', 'freeasso' ); ?></h4>
 		<div class="search-form freeasso-cause-search-input-groups">
 			<div class="freeasso-cause-search-input-group">
 				<label for="freeasso-cause-search-species"
@@ -162,24 +188,29 @@
 					    ?>
 				</select>
 			</div>
-			<div class="freeasso-cause-search-input-group">
-				<label for="freeasso-cause-search-amounts"
-					class="freeasso-cause-search-label"><?php esc_html_e( 'Montant à parrainer', 'freeasso' ); ?></label>
-				<select id="freeasso-cause-search-amounts"
-					class="freeasso-cause-search-input"
-					name="freeasso-cause-search-amounts">
-					<option value=""
-						<?php echo $this->getParam('freeasso-cause-search-amounts') == '' ? 'selected' : '' ?>><?php esc_html_e( 'Tous', 'freeasso' ); ?></option>
-					<?php
-	    foreach ($this->amounts as $oneAmount) {
-	        ?>
-						<option value="<?php echo $oneAmount->id; ?>"
-						<?php echo $oneAmount->id == $this->getParam('freeasso-cause-search-amounts') ? 'selected' : '' ?>><?php echo $oneAmount->label; ?></option>
-					<?php
-	    }
-	    ?>
-				</select>
-			</div>
+			<?php if(INCLUDE_TORAISE) { ?>
+				<div class="freeasso-cause-search-input-group">
+					<label for="freeasso-cause-search-amounts"
+						class="freeasso-cause-search-label"><?php esc_html_e( 'Montant à parrainer', 'freeasso' ); ?></label>
+					<select id="freeasso-cause-search-amounts"
+						class="freeasso-cause-search-input"
+						name="freeasso-cause-search-amounts">
+						<?php if($this->getParam('freeasso-cause-search-amounts') == '' || (INCLUDE_FULLYRAISED && INCLUDE_TORAISE)) { ?>
+							<option value=""
+								<?php echo $this->getParam('freeasso-cause-search-amounts') == '' ? 'selected' : '' ?>
+							><?php esc_html_e( 'Tous', 'freeasso' ); ?></option>
+						<?php } ?>
+						<?php foreach ($this->amounts as $oneAmount) { ?>
+							<?php if(!INCLUDE_FULLYRAISED && $oneAmount->id=='Z') continue; ?>
+							<?php if(!INCLUDE_FULLYRAISED && !INCLUDE_SPONSOR_ONCE && !preg_match('/^[ALIF]$/',$oneAmount->id)) continue; ?>
+							<option value="<?php echo $oneAmount->id; ?>"
+							<?php echo $oneAmount->id == $this->getParam('freeasso-cause-search-amounts') ? 'selected' : '' ?>><?php echo $oneAmount->label; ?></option>
+						<?php } ?>
+					</select>
+				</div>
+			<?php } elseif(INCLUDE_FULLYRAISED) { ?>
+				<input type="hidden" name="freeasso-cause-search-amounts" value="<?php $this->getParam('freeasso-cause-search-amounts'); ?>" />
+			<?php } ?>
 
 			<div class="freeasso-cause-search-input-group">
 				<input type="submit"
@@ -214,7 +245,17 @@
 			</div>
 		</div>
 
-		<h2><?php esc_html_e( 'Liste des gibbons', 'freeasso' ); ?></h2>
+		<h2 id="results">
+			<?php
+				if(INCLUDE_FULLYRAISED && !INCLUDE_TORAISE) {
+					esc_html_e( 'Liste des gibbons déjà parrainés', 'freeasso' );
+				} elseif(!INCLUDE_FULLYRAISED && INCLUDE_TORAISE) {
+					esc_html_e( 'Liste des gibbons à parrainer', 'freeasso' );
+				} else {
+					esc_html_e( 'Liste des gibbons', 'freeasso' );
+				}
+			?>
+		</h2>
 		<p class="result-length">
 			<?php
 	    		// echo count($this->causes) . ' / ';
@@ -228,8 +269,14 @@
 				if($this->total_causes>$this->param_length) {
 					echo ' - ';
 					esc_html_e('Page');
-					echo ' '.$this->param_page.' / '.ceil($this->total_causes*1./$this->param_length);
-
+					$nbpages=ceil($this->total_causes*1./$this->param_length);
+					echo ' '.$this->param_page.' / '.$nbpages;
+					if($this->param_page>1) {
+						echo ' <input type="button" id="free-asso-prevpage" onclick="document.getElementById(\'freeasso-cause-search-page\').selectedIndex='.($this->param_page-2).';document.getElementById(\'freeasso-cause-search-form\').submit();" value="&lt;" />';
+					}
+					if($this->param_page<$nbpages) {
+						echo ' <input type="button" id="free-asso-nextpage" onclick="document.getElementById(\'freeasso-cause-search-page\').selectedIndex='.($this->param_page).';document.getElementById(\'freeasso-cause-search-form\').submit();" value="&gt;" />';
+					}
 				}
 			?>
 		</p>
@@ -237,24 +284,37 @@
 			<?php
 	foreach ($this->causes as $oneCause) {
 	    ?>
-				<div class="freeasso-cause-search-animals-thumbnail">
+				<div class="freeasso-cause-search-animals-thumbnail" data-cause-id="<?php echo $oneCause->id; ?>" data-left-to-raise="<?php echo $oneCause->left; ?>">
 				<div class="freeasso-cause-search-animals-top">
 					<strong><?php echo $oneCause->name; ?></strong>
 				</div>
-				<div class="freeasso-cause-search-animals-picture">
+				<div class="freeasso-cause-search-animals-picture"><div>
 					<img
 						src="<?php echo $this->getConfig()->getImageSmallPrefix() . $oneCause->photo1 . $this->getConfig()->getImageSmallSuffix(); ?>"
 						alt="vignette" />
-				</div>
+				</div></div>
 				<div class="freeasso-cause-search-animals-description">
-					<p><?php echo $oneCause->site; ?></p>
-					<p><?php echo $oneCause->born; ?></p>
-					<p><?php echo $oneCause->species; ?></p>
-					<p><?php echo $oneCause->raised; ?>, <?php echo $oneCause->left; ?></p>
-					<p class="freeasso-cause-search-animals-sponsors"><?php echo $oneCause->sponsors; ?></p>
+					<p class="location" title="<?php esc_html_e( 'Localisation'     , 'freeasso' );?>"><?php echo $oneCause->site; ?></p>
+					<p class="born"     title="<?php esc_html_e( 'Année de naissance', 'freeasso' );?>"><?php echo $oneCause->born; ?> </p>
+					<p class="age"      title="<?php esc_html_e( 'Age'               , 'freeasso' );?>">
+						<?php echo (date('Y')-$oneCause->born); ?>
+						<?php if(date('Y')-$oneCause->born>=2) esc_html_e('ans','freeasso'); else esc_html_e('an','freeasso');?>
+					</p>
+					<p class="species"  title="<?php esc_html_e( 'Espèce'            , 'freeasso' );?>"><?php echo $oneCause->species; ?></p>
+					<p class="amounts">
+						<span class="raised"><?php echo _freeasso_amount_format($oneCause->raised); ?></span>
+						<span class="left"  title="<?php esc_html_e('Reste à parrainer','freeasso' );?>"><?php echo _freeasso_amount_format($oneCause->left); ?></span>
+					</p>
+					<p class="freeasso-cause-search-animals-sponsors" title="<?php esc_html_e( 'Parrains','freeasso' );?>"><?php echo $oneCause->sponsors; ?></p>
 				</div>
 				<div class="freeasso-cause-search-animals-bottom">
-					<a class="freeasso-cause-search-animals-go" href="?freeasso-cause-mode=detail&freeasso-cause-id=<?php echo $oneCause->id; ?>">Découvrir</a>
+					<a class="freeasso-cause-search-animals-go fancybox-iframe" href="?freeasso-cause-mode=detail&freeasso-cause-id=<?php echo $oneCause->id; ?>">Détails</a>
+					<?php if($oneCause->left>=1) { ?>
+						<a class="freeasso-cause-search-animals-donate" href="#sponsor"
+							onclick="document.getElementById('freeasso-cause-mode').value='donate-<?php echo $oneCause->id; ?>';document.getElementById('freeasso-cause-search-form').submit();">
+							<?php esc_html_e('Parrainer','freeasso' ); ?>
+						</a>
+					<?php } ?>
 				</div>
 			</div>
 			<?php
@@ -262,13 +322,14 @@
 	?>
 		</div>
 
-		<div>
+		<div class="result-pagination">
 			<div class="freeasso-cause-search-input-group">
 				<label for="freeasso-cause-search-page"
 					class="freeasso-cause-search-label"><?php esc_html_e( 'Page', 'freeasso' ); ?></label>
 				<select id="freeasso-cause-search-page"
 					class="freeasso-cause-search-input"
-					name="freeasso-cause-search-page">
+					name="freeasso-cause-search-page"
+					onchange="document.getElementById('freeasso-cause-search-form').submit();">
 					<?php
 	    for ($onePage = 1; $onePage <= ceil($this->total_causes / $this->param_length); $onePage ++) {
 	        ?>
@@ -278,13 +339,13 @@
 	    }
 	    ?>
 				</select>
+				/<?php echo $nbpages; ?>
 			</div>
 			<div class="freeasso-cause-search-input-group">
-				<label for="freeasso-cause-search-length"
-					class="freeasso-cause-search-label"><?php esc_html_e( 'Nombre / Page', 'freeasso' ); ?></label>
 				<select id="freeasso-cause-search-length"
 					class="freeasso-cause-search-input"
-					name="freeasso-cause-search-length">
+					name="freeasso-cause-search-length"
+					onchange="document.getElementById('freeasso-cause-search-form').submit();">
 					<option value=""
 						<?php echo $this->param_length == '' ? 'selected' : '' ?>><?php esc_html_e( 'Tous', 'freeasso' ); ?></option>
 					<?php
@@ -300,7 +361,17 @@
 	    }
 	    ?>
 				</select>
+				<label for="freeasso-cause-search-length"
+					class="freeasso-cause-search-label"><?php esc_html_e( 'résultats / page', 'freeasso' ); ?></label>
 			</div>
 		</div>
+		
+		<?php
+			// recopie les parametres GET, pour les conserver dans l'URL
+			foreach($_GET as $p=>$v) {
+				if(preg_match('/^freeasso-/',$p)) continue;
+				echo '<input type="hidden" name="'.esc_html($p).'" value="'.esc_html($v).'" />';
+			}
+		?>
 	</form>
 </div>
