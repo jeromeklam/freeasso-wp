@@ -32,8 +32,8 @@ class Freeasso_Api_Genders extends Freeasso_Api_Base
     {
         parent::__construct();
         $this->genders = [
-            (object)['id' => 'F', 'label' => esc_html('Femelle','freeasso')],
-            (object)['id' => 'M', 'label' => esc_html('Mâle','freeasso')]
+            (object)['id' => 'F', 'label' => translate('Femelle','freeasso')],
+            (object)['id' => 'M', 'label' => translate('Mâle','freeasso')]
         ];
     }
 }

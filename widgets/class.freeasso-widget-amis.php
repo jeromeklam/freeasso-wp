@@ -14,8 +14,8 @@ class Freeasso_Widget_Amis extends WP_Widget
      */
     public function __construct()
     {
-        parent::__construct('FreeassoWidgetAmis', esc_html__('FreeAsso : nombre d\'amis', 'freeasso'), [
-            'description' => esc_html__('Affiche le nombre d\'amis', 'freeasso')
+        parent::__construct('FreeassoWidgetAmis', esc_html__("FreeAsso : nombre d'amis", 'freeasso'), [
+            'description' => esc_html__("Affiche le nombre d'amis", 'freeasso')
         ]);
     }
 

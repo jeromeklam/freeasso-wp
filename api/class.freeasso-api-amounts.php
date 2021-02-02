@@ -32,18 +32,18 @@ class Freeasso_Api_Amounts extends Freeasso_Api_Base
     {
         parent::__construct();
         $this->amounts = [
-        	(object)['id' => 'C', 'label' => esc_html('Tous les gibbons à parrainer'                 ,'freeasso'), 'gte' => 1],
-            (object)['id' => 'A', 'label' => esc_html('A parrainer en totalité (280€ ou 23,33€/mois)','freeasso'), 'gte' => 280],
-            (object)['id' => 'Z', 'label' => esc_html('Déjà parrainé en totalité'                    ,'freeasso'), 'lte' => 0],
+        	(object)['id' => 'C', 'label' => translate('Tous les gibbons à parrainer'            ,'freeasso'), 'gte' => 1],
+            (object)['id' => 'A', 'label' => translate('280€ ou 23,33€/mois (parrainage complet)','freeasso'), 'gte' => 280],
+            (object)['id' => 'Z', 'label' => translate('Déjà parrainé en totalité'               ,'freeasso'), 'lte' => 0],
             (object)['id' => '-', 'label' => '---'],
-            (object)['id' => 'K', 'label' => esc_html('Restant à parrainer entre 200€ et 279€ '      ,'freeasso'), 'lt' => 280, 'gte' => 200],
-            (object)['id' => 'H', 'label' => esc_html('Restant à parrainer entre 100€ et 199€'       ,'freeasso'), 'lt' => 200, 'gte' => 100],
-            (object)['id' => 'E', 'label' => esc_html('Restant à parrainer entre 50€ et 99€'         ,'freeasso'), 'lt' => 100, 'gte' => 50],
-            (object)['id' => 'B', 'label' => esc_html('Restant à parrainer au maximum 49€'           ,'freeasso'), 'lt' => 50,  'gt'  => 0],
+            (object)['id' => 'K', 'label' => translate('200 à 279€'       ,'freeasso'), 'lt' => 280, 'gte' => 200],
+            (object)['id' => 'H', 'label' => translate('100 à 199€'       ,'freeasso'), 'lt' => 200, 'gte' => 100],
+            (object)['id' => 'E', 'label' => translate('50 à 99€'         ,'freeasso'), 'lt' => 100, 'gte' => 50],
+            (object)['id' => 'B', 'label' => translate('1 à 49€'          ,'freeasso'), 'lt' => 50,  'gt'  => 0],
             (object)['id' => '-', 'label' => '---'],
-            (object)['id' => 'L', 'label' => esc_html('Restant à parrainer entre 10 et 23€/mois '    ,'freeasso'), 'lt' => 280, 'gte' => 120],
-            (object)['id' => 'I', 'label' => esc_html('Restant à parrainer entre 5 et 9€/mois'       ,'freeasso'), 'lt' => 120, 'gte' => 60],
-            (object)['id' => 'F', 'label' => esc_html('Restant à parrainer 5€/mois et plus'          ,'freeasso'), 'gte' => 60]
+            (object)['id' => 'L', 'label' => translate('10 à 23€/mois'    ,'freeasso'), 'lt' => 280, 'gte' => 120],
+            (object)['id' => 'I', 'label' => translate('5 à 9€/mois'      ,'freeasso'), 'lt' => 120, 'gte' => 60],
+            (object)['id' => 'F', 'label' => translate('5€/mois et plus'  ,'freeasso'), 'gte' => 60]
         ];
     }
 }

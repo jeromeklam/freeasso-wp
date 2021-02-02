@@ -14,8 +14,8 @@ class Freeasso_Widget_Hectares extends WP_Widget
      */
     public function __construct()
     {
-        parent::__construct('FreeassoWidgetHectares', esc_html__('FreeAsso : nombre d\'hectares', 'freeasso'), [
-            'description' => esc_html__('Affiche le nombre d\'hectares', 'freeasso')
+        parent::__construct('FreeassoWidgetHectares', esc_html__("FreeAsso : nombre d'hectares", 'freeasso'), [
+            'description' => esc_html__("Affiche le nombre d'hectares", 'freeasso')
         ]);
     }
 

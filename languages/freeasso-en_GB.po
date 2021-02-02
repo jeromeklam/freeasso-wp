@@ -1,0 +1,291 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2021-02-02 20:01+0100\n"
+"PO-Revision-Date: 2021-02-02 20:01+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: esc_html_e;translate;esc_html__\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: api/class.freeasso-api-ages.php:33
+msgid "Moins de 5 ans"
+msgstr "Under 5 years of age"
+
+#: api/class.freeasso-api-ages.php:34
+msgid "De 5 à 10 ans"
+msgstr "5 to 10 years of age"
+
+#: api/class.freeasso-api-ages.php:35
+msgid "De 10 à 15 ans"
+msgstr "10 to 15 years of age"
+
+#: api/class.freeasso-api-ages.php:36
+msgid "Plus de 15 ans"
+msgstr "Over 15 years of age"
+
+#: api/class.freeasso-api-amounts.php:35
+msgid "Tous les gibbons à parrainer"
+msgstr "All gibbons to adopt"
+
+#: api/class.freeasso-api-amounts.php:36
+msgid "280€ ou 23,33€/mois (parrainage complet)"
+msgstr "280€ or 23,33€/month (Complete sponsor)"
+
+#: api/class.freeasso-api-amounts.php:37
+msgid "Déjà parrainé en totalité"
+msgstr "Already entierely sponsored"
+
+#: api/class.freeasso-api-amounts.php:39
+msgid "200 à 279€"
+msgstr "200 to 279€"
+
+#: api/class.freeasso-api-amounts.php:40
+msgid "100 à 199€"
+msgstr "100 to 199€"
+
+#: api/class.freeasso-api-amounts.php:41
+msgid "50 à 99€"
+msgstr "50 to 99€"
+
+#: api/class.freeasso-api-amounts.php:42
+msgid "1 à 49€"
+msgstr "1 to 49€"
+
+#: api/class.freeasso-api-amounts.php:44
+msgid "10 à 23€/mois"
+msgstr "10 to 23€/month"
+
+#: api/class.freeasso-api-amounts.php:45
+msgid "5 à 9€/mois"
+msgstr "5 to 9€/month"
+
+#: api/class.freeasso-api-amounts.php:46
+msgid "5€/mois et plus"
+msgstr "5€ a month or more"
+
+#: api/class.freeasso-api-genders.php:35 views/cause-detail.php:27
+msgid "Femelle"
+msgstr "Female"
+
+#: api/class.freeasso-api-genders.php:36 views/cause-detail.php:26
+msgid "Mâle"
+msgstr "Male"
+
+#: views/cause-detail.php:21 views/cause-search.php:155
+#: views/cause-search.php:297
+msgid "Localisation"
+msgstr "Location"
+
+#: views/cause-detail.php:24 views/cause-search.php:136
+msgid "Sexe"
+msgstr "Gender"
+
+#: views/cause-detail.php:32 views/cause-search.php:298
+msgid "Année de naissance"
+msgstr "Birth"
+
+#: views/cause-detail.php:33 views/cause-search.php:174
+#: views/cause-search.php:299
+msgid "Age"
+msgstr "Age"
+
+#: views/cause-detail.php:35 views/cause-search.php:301
+msgid "ans"
+msgstr "years old"
+
+#: views/cause-detail.php:35 views/cause-search.php:301
+msgid "an"
+msgstr "year old"
+
+#: views/cause-detail.php:37 views/cause-search.php:118
+#: views/cause-search.php:303
+msgid "Espèce"
+msgstr "Species"
+
+#: views/cause-detail.php:41
+msgid "Intégralement parrainé"
+msgstr "Fully sponsored"
+
+#: views/cause-detail.php:43
+msgid "Reste à parrainer :"
+msgstr "Left to sponsor:"
+
+#: views/cause-detail.php:51 views/cause-search.php:308
+msgid "Parrains"
+msgstr "Sponsors"
+
+#: views/cause-detail.php:54
+msgid "Aucun parrain."
+msgstr "No sponsor."
+
+#: views/cause-detail.php:56
+msgid "Parrainé par :"
+msgstr "Sponsored by"
+
+#: views/cause-detail.php:62 views/cause-search.php:315
+msgid "Parrainer"
+msgstr "Sponsor"
+
+#: views/cause-search.php:114
+msgid "Recherche par filtre"
+msgstr "Search by filters"
+
+#: views/cause-search.php:123 views/cause-search.php:161
+msgid "Toutes"
+msgstr "All"
+
+#: views/cause-search.php:142 views/cause-search.php:179
+#: views/cause-search.php:201 views/cause-search.php:230
+#: views/cause-search.php:350
+msgid "Tous"
+msgstr "All"
+
+#: views/cause-search.php:194
+msgid "Montant à parrainer"
+msgstr "Amount to sponsor"
+
+#: views/cause-search.php:218
+msgid "Rechercher"
+msgstr "Search"
+
+#: views/cause-search.php:223
+msgid "Recherche par nom"
+msgstr "Search by name"
+
+#: views/cause-search.php:244
+msgid "Afficher"
+msgstr "Display"
+
+#: views/cause-search.php:251
+msgid "Liste des gibbons déjà parrainés"
+msgstr "List of gibbons already sponsored"
+
+#: views/cause-search.php:253
+msgid "Liste des gibbons à parrainer"
+msgstr "List of gibbons to sponsor"
+
+#: views/cause-search.php:255
+msgid "Liste des gibbons"
+msgstr "List of gibbons"
+
+#: views/cause-search.php:264
+msgid "animal listé"
+msgstr "animal listed"
+
+#: views/cause-search.php:266
+msgid "animaux listés"
+msgstr "animals listed"
+
+#: views/cause-search.php:271 views/cause-search.php:328
+msgid "Page"
+msgstr "Page"
+
+#: views/cause-search.php:306
+msgid "Reste à parrainer"
+msgstr "Left to sponsor"
+
+#: views/cause-search.php:365
+msgid "résultats / page"
+msgstr "results / page"
+
+#: views/config.php:2 views/config.php:36
+msgid "Config"
+msgstr "Config"
+
+#: views/config.php:18
+msgid "Configuration correcte, connexion établie."
+msgstr "Correct configuration, connection established."
+
+#: views/config.php:24
+msgid "Configuration incorrecte ou non renseignée."
+msgstr "Incorrect or missing configuration."
+
+#: views/config.php:40
+msgid "Url de base du serveur"
+msgstr "Server base URL"
+
+#: views/config.php:44
+msgid "Version de l'administration"
+msgstr "Administration version"
+
+#: views/config.php:51
+msgid "Identifiant de l'application"
+msgstr "Application ID"
+
+#: views/config.php:55
+msgid "Identifiant de sécurité HAWK"
+msgstr "HAWK Security ID"
+
+#: views/config.php:59
+msgid "Clef de sécurité HAWK"
+msgstr "HAWK security key"
+
+#: views/config.php:63
+msgid "Préfixe des vignettes"
+msgstr "Prefix for thumbnails"
+
+#: views/config.php:67
+msgid "Suffixe des vignettes"
+msgstr "Suffix for thumbnails"
+
+#: views/config.php:71
+msgid "Préfixe des photos"
+msgstr "Photo prefix"
+
+#: views/config.php:75
+msgid "Suffixe des photos"
+msgstr "Photos suffix"
+
+#: views/config.php:78
+msgid ""
+"La clef ne sera jamais affichée. A renseigner pour la définir. A laisser "
+"vide pour conserver celle définie."
+msgstr ""
+"The key will never be displayed. To be filled in to define it. Leave empty "
+"to keep the defined one."
+
+#: widgets/class.freeasso-widget-amis.php:17
+msgid "FreeAsso : nombre d'amis"
+msgstr "FreeAsso: number of friends"
+
+#: widgets/class.freeasso-widget-amis.php:18
+msgid "Affiche le nombre d'amis"
+msgstr "Shows the number of friends"
+
+#: widgets/class.freeasso-widget-causes.php:24
+msgid "FreeAsso : causes"
+msgstr "FreeAsso: causes"
+
+#: widgets/class.freeasso-widget-causes.php:26
+msgid "Formulaire de visualisation des causes"
+msgstr "Cause visualization form"
+
+#: widgets/class.freeasso-widget-gibbons.php:17
+msgid "FreeAsso : nombre de Gibbons"
+msgstr "FreeAsso: number of Gibbons"
+
+#: widgets/class.freeasso-widget-gibbons.php:18
+msgid "Affiche le nombre de Gibbons"
+msgstr "Shows the number of Gibbons"
+
+#: widgets/class.freeasso-widget-hectares.php:17
+msgid "FreeAsso : nombre d'hectares"
+msgstr "FreeAsso: number of hectares"
+
+#: widgets/class.freeasso-widget-hectares.php:18
+msgid "Affiche le nombre d'hectares"
+msgstr "Displays the number of hectares"
+
+#~ msgid "A parrainer en totalité (280€ ou 23,33€/mois)"
+#~ msgstr "Complete sponsor (280€ or 23,33€/mois)"
+
+#~ msgid "Restant à parrainer entre 200€ et 279€ "
+#~ msgstr "200 to 279€"

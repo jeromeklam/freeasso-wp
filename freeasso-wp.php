@@ -6,6 +6,7 @@
  * Plugin URI: http://github.com/jeromeklam/freeasso-wp
  * Version: 1.0.0
  * Author URI: http://github.com/jeromeklam
+ * Text Domain: freeasso-wp
  */
 
 // --------------------------------------------------------------------------------------------------------------------
@@ -84,6 +85,12 @@ if (is_admin() || (defined('WP_CLI') && WP_CLI)) {
         'initHooks'
     ]);
 }
+
+add_action('init','freeasso_load_textdomain');
+function freeasso_load_textdomain() {
+	load_plugin_textdomain('freeasso',false,basename(dirname( __FILE__)).'/languages');
+}
+
 
 // --------------------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------------
