@@ -124,7 +124,7 @@ class Freeasso_Api_Causes extends Freeasso_Api_Base
             } else {
                 $cause->photo1 = null;
             }
-            if (isset($oneCause->cau_photo_1)) {
+            if (isset($oneCause->cau_photo_2)) {
                 $cause->photo2 = $oneCause->cau_photo_2;
             } else {
                 $cause->photo2 = null;
@@ -139,8 +139,8 @@ class Freeasso_Api_Causes extends Freeasso_Api_Base
                 $cause->age = $year - $cause->born;
             }
             $cause->species = $oneCause->subspecies->sspe_name;
-            $cause->raised = $oneCause->cau_mnt;
-            $cause->left = $oneCause->cau_mnt_left;
+            $cause->raised  = $oneCause->cau_mnt;
+            $cause->left    = $oneCause->cau_mnt_left;
             $this->causes[] = $cause;
         }
         return $this;

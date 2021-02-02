@@ -3,6 +3,11 @@
 * Vue de recherche paramétrable
 * Logs
 
+# 1.0.6 : 02/02/2021
+
+* Correction de l'API Cause : erreur sur sponsors + photo2
+* Correction de l'API Cuases : errreur sur photo2
+
 # 1.0.5 : 30/01/2021
 
 * Uniformisation lt, lte, gt et gte

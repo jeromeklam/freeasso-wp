@@ -96,17 +96,17 @@ class Freeasso_Api_Cause extends Freeasso_Api_Base
             } else {
                 $cause->photo1 = null;
             }
-            if (isset($oneCause->cau_photo_1)) {
+            if (isset($oneCause->cau_photo_2)) {
                 $cause->photo2 = $oneCause->cau_photo_2;
             } else {
                 $cause->photo2 = null;
             }
-            if (isset($oneCause->sponsors)) {
+            if (isset($oneCause->cau_sponsors)) {
                 $cause->sponsors = $oneCause->cau_sponsors;
             } else {
                 $cause->sponsors = null;
             }
-            $cause->age      = null;
+            $cause->age = null;
             if ($cause->born && $cause->born > 1900) {
                 $cause->age = $year - $cause->born;
             }
