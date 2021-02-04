@@ -170,7 +170,7 @@
 				</select>
 			</div>
 			<div class="freeasso-cause-search-input-group">
-				<label for="freeasso-cause-search-amounts"
+				<label for="freeasso-cause-search-age"
 					class="freeasso-cause-search-label"><?php esc_html_e( 'Age', 'freeasso' ); ?></label>
 				<select id="freeasso-cause-search-age"
 					class="freeasso-cause-search-input"
@@ -209,7 +209,7 @@
 					</select>
 				</div>
 			<?php } elseif(INCLUDE_FULLYRAISED) { ?>
-				<input type="hidden" name="freeasso-cause-search-amounts" value="<?php $this->getParam('freeasso-cause-search-amounts'); ?>" />
+				<input type="hidden" name="freeasso-cause-search-amounts" value="<?php echo $this->getParam('freeasso-cause-search-amounts'); ?>" />
 			<?php } ?>
 
 			<div class="freeasso-cause-search-input-group">
