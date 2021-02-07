@@ -85,6 +85,6 @@
 				$referer=$current_url;
 			}
 			echo $referer;
-		?>" class="back">Retour</a>
+		?>" class="back"><?php esc_html_e('Retour','freeasso'); ?></a>
 	</div>
 </article>

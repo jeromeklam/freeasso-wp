@@ -308,7 +308,7 @@
 					<p class="freeasso-cause-search-animals-sponsors" title="<?php esc_html_e( 'Parrains','freeasso' );?>"><?php echo $oneCause->sponsors; ?></p>
 				</div>
 				<div class="freeasso-cause-search-animals-bottom">
-					<a class="freeasso-cause-search-animals-go fancybox-iframe" href="?freeasso-cause-mode=detail&freeasso-cause-id=<?php echo $oneCause->id; ?>">Détails</a>
+					<a class="freeasso-cause-search-animals-go fancybox-iframe" href="?freeasso-cause-mode=detail&freeasso-cause-id=<?php echo $oneCause->id; ?>"><?php esc_html_e( 'Détails','freeasso' ); ?></a>
 					<?php if($oneCause->left>=1) { ?>
 						<a class="freeasso-cause-search-animals-donate" href="#sponsor"
 							onclick="document.getElementById('freeasso-cause-mode').value='donate-<?php echo $oneCause->id; ?>';document.getElementById('freeasso-cause-search-form').submit();">
