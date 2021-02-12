@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2021-02-07 11:33+0100\n"
-"PO-Revision-Date: 2021-02-07 11:34+0100\n"
+"POT-Creation-Date: 2021-02-12 13:41+0100\n"
+"PO-Revision-Date: 2021-02-12 13:42+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -123,18 +123,22 @@ msgid "Parrains"
 msgstr "Sponsors"
 
 #: views/cause-detail.php:54
+msgid "Parrain anonyme."
+msgstr "Anonymous sponsor."
+
+#: views/cause-detail.php:56
 msgid "Aucun parrain."
 msgstr "No sponsor."
 
-#: views/cause-detail.php:56
+#: views/cause-detail.php:58
 msgid "Parrainé par :"
 msgstr "Sponsored by"
 
-#: views/cause-detail.php:62 views/cause-search.php:315
+#: views/cause-detail.php:64 views/cause-search.php:315
 msgid "Parrainer"
 msgstr "Sponsor"
 
-#: views/cause-detail.php:88
+#: views/cause-detail.php:90
 msgid "Retour"
 msgstr "Back"
 

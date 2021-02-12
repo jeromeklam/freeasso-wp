@@ -49,8 +49,10 @@
 		</div>
 		<div class="freeasso-cause-detail-attributes long">
 			<p class="freeasso-cause-search-animals-sponsors" title="<?php esc_html_e( 'Parrains','freeasso' );?>">
-				<?php 
-					if(empty($oneCause->sponsors)) {
+				<?php
+					if(empty($oneCause->sponsors) && $oneCause->raised>1) {
+						esc_html_e('Parrain anonyme.','freeasso');
+					} elseif(empty($oneCause->sponsors)) {
 						esc_html_e('Aucun parrain.','freeasso');
 					} else {
 						esc_html_e('Parrainé par :','freeasso');
