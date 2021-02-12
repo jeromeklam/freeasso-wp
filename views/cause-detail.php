@@ -42,8 +42,8 @@
 					} else {
 						esc_html_e('Reste à parrainer :','freeasso');
 						echo ' ';
+						echo _freeasso_amount_format($oneCause->left);
 					}
-					echo _freeasso_amount_format($oneCause->left);
 				?>
 			</p>
 		</div>
