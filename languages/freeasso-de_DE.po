@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2021-02-12 13:42+0100\n"
-"PO-Revision-Date: 2021-02-12 13:42+0100\n"
+"POT-Creation-Date: 2021-03-04 13:42+0100\n"
+"PO-Revision-Date: 2021-03-04 13:43+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -79,34 +79,34 @@ msgstr "Weiblich"
 msgid "Mâle"
 msgstr "Männlich"
 
-#: views/cause-detail.php:21 views/cause-search.php:155
-#: views/cause-search.php:297
+#: views/cause-detail.php:21 views/cause-search.php:167
+#: views/cause-search.php:309
 msgid "Localisation"
 msgstr "Ort"
 
-#: views/cause-detail.php:24 views/cause-search.php:136
+#: views/cause-detail.php:24 views/cause-search.php:148
 msgid "Sexe"
 msgstr "Geschlecht"
 
-#: views/cause-detail.php:32 views/cause-search.php:298
+#: views/cause-detail.php:32 views/cause-search.php:310
 msgid "Année de naissance"
 msgstr "Geburtsjahr"
 
-#: views/cause-detail.php:33 views/cause-search.php:174
-#: views/cause-search.php:299
+#: views/cause-detail.php:33 views/cause-search.php:186
+#: views/cause-search.php:311
 msgid "Age"
 msgstr "Alter"
 
-#: views/cause-detail.php:35 views/cause-search.php:301
+#: views/cause-detail.php:35 views/cause-search.php:313
 msgid "ans"
 msgstr "Jahre"
 
-#: views/cause-detail.php:35 views/cause-search.php:301
+#: views/cause-detail.php:35 views/cause-search.php:313
 msgid "an"
 msgstr "Jahr"
 
-#: views/cause-detail.php:37 views/cause-search.php:118
-#: views/cause-search.php:303
+#: views/cause-detail.php:37 views/cause-search.php:130
+#: views/cause-search.php:315
 msgid "Espèce"
 msgstr "Spezie"
 
@@ -118,7 +118,7 @@ msgstr "Voll gesponsert"
 msgid "Reste à parrainer :"
 msgstr "Es bleibt zu sponsern:"
 
-#: views/cause-detail.php:51 views/cause-search.php:308
+#: views/cause-detail.php:51 views/cause-search.php:320
 msgid "Parrains"
 msgstr "Sponsoren"
 
@@ -134,7 +134,7 @@ msgstr "Kein Sponsor."
 msgid "Parrainé par :"
 msgstr "Gesponsert von:"
 
-#: views/cause-detail.php:64 views/cause-search.php:315
+#: views/cause-detail.php:64 views/cause-search.php:327
 msgid "Parrainer"
 msgstr "Sponsor"
 
@@ -142,69 +142,77 @@ msgstr "Sponsor"
 msgid "Retour"
 msgstr "Zurück"
 
-#: views/cause-search.php:114
+#: views/cause-search.php:126
 msgid "Recherche par filtre"
 msgstr "Suche mittels Filtern"
 
-#: views/cause-search.php:123 views/cause-search.php:161
+#: views/cause-search.php:135 views/cause-search.php:173
 msgid "Toutes"
 msgstr "Alle"
 
-#: views/cause-search.php:142 views/cause-search.php:179
-#: views/cause-search.php:201 views/cause-search.php:230
-#: views/cause-search.php:350
+#: views/cause-search.php:154 views/cause-search.php:191
+#: views/cause-search.php:213 views/cause-search.php:242
+#: views/cause-search.php:376
 msgid "Tous"
 msgstr "Alle"
 
-#: views/cause-search.php:194
+#: views/cause-search.php:206
 msgid "Montant à parrainer"
 msgstr "Betrag zum Sponsor"
 
-#: views/cause-search.php:218
+#: views/cause-search.php:230
 msgid "Rechercher"
 msgstr "Suchen"
 
-#: views/cause-search.php:223
+#: views/cause-search.php:235
 msgid "Recherche par nom"
 msgstr "Suche nach Namen"
 
-#: views/cause-search.php:244
+#: views/cause-search.php:256
 msgid "Afficher"
 msgstr "Anzeigen"
 
-#: views/cause-search.php:251
+#: views/cause-search.php:263
 msgid "Liste des gibbons déjà parrainés"
 msgstr "Liste der bereits gesponserten Gibbons"
 
-#: views/cause-search.php:253
+#: views/cause-search.php:265
 msgid "Liste des gibbons à parrainer"
 msgstr "Liste der zu sponsernden Gibbons"
 
-#: views/cause-search.php:255
+#: views/cause-search.php:267
 msgid "Liste des gibbons"
 msgstr "Liste der Gibbons"
 
-#: views/cause-search.php:264
+#: views/cause-search.php:276
 msgid "animal listé"
 msgstr "Tier aufgelistet"
 
-#: views/cause-search.php:266
+#: views/cause-search.php:278
 msgid "animaux listés"
 msgstr "Tiere aufgelistet"
 
-#: views/cause-search.php:271 views/cause-search.php:328
+#: views/cause-search.php:283 views/cause-search.php:346
 msgid "Page"
 msgstr "Seite"
 
-#: views/cause-search.php:306
+#: views/cause-search.php:318
 msgid "Reste à parrainer"
 msgstr "Bleibt zu sponsern"
 
-#: views/cause-search.php:311
+#: views/cause-search.php:323
 msgid "Détails"
 msgstr "Daten"
 
-#: views/cause-search.php:365
+#: views/cause-search.php:341
+msgid "Précédent"
+msgstr "Vorherig"
+
+#: views/cause-search.php:364
+msgid "Suivant"
+msgstr "Nächste"
+
+#: views/cause-search.php:391
 msgid "résultats / page"
 msgstr "Ergebnisse / Seite"
 

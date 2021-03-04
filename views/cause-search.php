@@ -97,15 +97,27 @@
     left: 0px;
     right: 0px;
 }
-.result-length input[type="button"] {
+.result-length input[type="button"], .result-pagination input[type="button"] {
 	background-color:transparent; border:0px none transparent; color:inherit;
 	padding:0 15px 0 0; text-decoration:none; font-weight:bold;
+	text-transform:none;
 }
 .result-length input[type="button"]:first-of-type {
 	padding-left:20px;
 }
 .result-length input[type="button"]:hover {
 	color:blue;
+}
+.result-pagination input[type="button"] {
+	font-size:inherit;
+	font-weight:normal;
+	font-family:inherit;
+}
+.result-pagination input[type="button"]#free-asso-prevpage2 {
+	padding:0 30px 0 0;
+}
+.result-pagination input[type="button"]#free-asso-nextpage2 {
+	padding:0 0 0 30px;
 }
 </style>
 <div class="freeasso-cause-search-form">
@@ -324,6 +336,12 @@
 
 		<div class="result-pagination">
 			<div class="freeasso-cause-search-input-group">
+				<?php 
+					if($this->param_page>1) {
+						echo ' <input type="button" id="free-asso-prevpage2" onclick="document.getElementById(\'freeasso-cause-search-page\').selectedIndex='.($this->param_page-2).';document.getElementById(\'freeasso-cause-search-form\').submit();" value="&lt; '.esc_html__( 'Précédent', 'freeasso' ).'" />';
+					}
+				?>
+
 				<label for="freeasso-cause-search-page"
 					class="freeasso-cause-search-label"><?php esc_html_e( 'Page', 'freeasso' ); ?></label>
 				<select id="freeasso-cause-search-page"
@@ -340,7 +358,15 @@
 	    ?>
 				</select>
 				/<?php echo $nbpages; ?>
+				
+				<?php
+					if($this->param_page<$nbpages) {
+						echo ' <input type="button" id="free-asso-nextpage2" onclick="document.getElementById(\'freeasso-cause-search-page\').selectedIndex='.($this->param_page).';document.getElementById(\'freeasso-cause-search-form\').submit();" value="'.esc_html__( 'Suivant', 'freeasso' ).' &gt;" />';
+					}
+				?>
 			</div>
+			
+			
 			<div class="freeasso-cause-search-input-group">
 				<select id="freeasso-cause-search-length"
 					class="freeasso-cause-search-input"
