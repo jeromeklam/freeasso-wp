@@ -10,7 +10,7 @@
 <article class="freeasso-cause-detail-form">
 	<div class="freeasso-cause-detail-content entry-content">
 		<div class="freeasso-cause-detail-name">
-			<h2><?php echo $this->cause->name; ?></h2>
+			<h2><a href="<?php echo $wp->request; ?>"><?php echo $this->cause->name; ?></a></h2>
 		</div>
 		<div class="freeasso-cause-detail-photos">
 			<img src="<?php echo $this->getConfig()->getImageStandardPrefix() . $this->cause->photo1 . $this->getConfig()->getImageStandardSuffix(); ?>"

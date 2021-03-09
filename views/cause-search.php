@@ -315,7 +315,16 @@
 					<p class="species"  title="<?php esc_html_e( 'Espèce'            , 'freeasso' );?>"><?php echo $oneCause->species; ?></p>
 					<p class="amounts">
 						<span class="raised"><?php echo _freeasso_amount_format($oneCause->raised); ?></span>
-						<span class="left"  title="<?php esc_html_e('Reste à parrainer','freeasso' );?>"><?php echo _freeasso_amount_format($oneCause->left); ?></span>
+						<span class="left"  title="<?php esc_html_e('Reste à parrainer','freeasso' );?>">
+							<?php
+								if($oneCause->left>=1) {
+									esc_html_e('Reste à parrainer :','freeasso' );
+									echo ' '._freeasso_amount_format($oneCause->left);
+								} else {
+									esc_html_e('Intégralement parrainé','freeasso');
+								}
+							?>
+						</span>
 					</p>
 					<p class="freeasso-cause-search-animals-sponsors" title="<?php esc_html_e( 'Parrains','freeasso' );?>"><?php echo $oneCause->sponsors; ?></p>
 				</div>

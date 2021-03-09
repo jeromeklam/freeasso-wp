@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2021-03-04 13:42+0100\n"
-"PO-Revision-Date: 2021-03-04 13:43+0100\n"
+"POT-Creation-Date: 2021-03-09 10:00+0100\n"
+"PO-Revision-Date: 2021-03-09 10:00+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -110,15 +110,15 @@ msgstr "Jahr"
 msgid "Espèce"
 msgstr "Spezie"
 
-#: views/cause-detail.php:41
+#: views/cause-detail.php:41 views/cause-search.php:324
 msgid "Intégralement parrainé"
 msgstr "Voll gesponsert"
 
-#: views/cause-detail.php:43
+#: views/cause-detail.php:43 views/cause-search.php:321
 msgid "Reste à parrainer :"
 msgstr "Es bleibt zu sponsern:"
 
-#: views/cause-detail.php:51 views/cause-search.php:320
+#: views/cause-detail.php:51 views/cause-search.php:329
 msgid "Parrains"
 msgstr "Sponsoren"
 
@@ -134,7 +134,7 @@ msgstr "Kein Sponsor."
 msgid "Parrainé par :"
 msgstr "Gesponsert von:"
 
-#: views/cause-detail.php:64 views/cause-search.php:327
+#: views/cause-detail.php:64 views/cause-search.php:336
 msgid "Parrainer"
 msgstr "Sponsor"
 
@@ -152,7 +152,7 @@ msgstr "Alle"
 
 #: views/cause-search.php:154 views/cause-search.php:191
 #: views/cause-search.php:213 views/cause-search.php:242
-#: views/cause-search.php:376
+#: views/cause-search.php:385
 msgid "Tous"
 msgstr "Alle"
 
@@ -192,7 +192,7 @@ msgstr "Tier aufgelistet"
 msgid "animaux listés"
 msgstr "Tiere aufgelistet"
 
-#: views/cause-search.php:283 views/cause-search.php:346
+#: views/cause-search.php:283 views/cause-search.php:355
 msgid "Page"
 msgstr "Seite"
 
@@ -200,19 +200,19 @@ msgstr "Seite"
 msgid "Reste à parrainer"
 msgstr "Bleibt zu sponsern"
 
-#: views/cause-search.php:323
+#: views/cause-search.php:332
 msgid "Détails"
 msgstr "Daten"
 
-#: views/cause-search.php:341
+#: views/cause-search.php:350
 msgid "Précédent"
 msgstr "Vorherig"
 
-#: views/cause-search.php:364
+#: views/cause-search.php:373
 msgid "Suivant"
 msgstr "Nächste"
 
-#: views/cause-search.php:391
+#: views/cause-search.php:400
 msgid "résultats / page"
 msgstr "Ergebnisse / Seite"
 
