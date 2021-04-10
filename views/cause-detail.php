@@ -15,6 +15,12 @@
 		<div class="freeasso-cause-detail-photos">
 			<img src="<?php echo $this->getConfig()->getImageStandardPrefix() . $this->cause->photo1 . $this->getConfig()->getImageStandardSuffix(); ?>"
 				alt="photo gibbon" />
+			<?php
+				if(!empty($this->cause->photo2) && $this->cause->photo2!=$this->cause->photo1) {
+					echo '<img src="'.$this->getConfig()->getImageStandardPrefix() . $this->cause->photo2 . $this->getConfig()->getImageStandardSuffix().'" ';
+					echo 'alt="photo gibbon" />';
+				}
+			?>
 		</div>
 			
 		<div class="freeasso-cause-detail-attributes short">
@@ -35,6 +41,8 @@
 				<?php if(date('Y')-$oneCause->born>=2) esc_html_e('ans','freeasso'); else esc_html_e('an','freeasso');?>
 			</p>
 			<p class="species"  title="<?php esc_html_e( 'Espèce'            , 'freeasso' );?>"><?php echo $oneCause->species; ?></p>
+		</div>
+		<div class="freeasso-cause-detail-attributes long">
 			<p class="amounts">
 				<?php 
 					if($oneCause->left<1) {
@@ -46,8 +54,6 @@
 					}
 				?>
 			</p>
-		</div>
-		<div class="freeasso-cause-detail-attributes long">
 			<p class="freeasso-cause-search-animals-sponsors" title="<?php esc_html_e( 'Parrains','freeasso' );?>">
 				<?php
 					if(empty($oneCause->sponsors) && $oneCause->raised>1) {
