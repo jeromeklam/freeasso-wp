@@ -3,6 +3,10 @@
 * Vue de recherche paramétrable
 * Logs
 
+# 1.1.0 : 03/10/2021
+
+* Adaptations pour la v2 : nouvelle administration Kalaweit
+
 # 1.0.6 : 02/02/2021
 
 * Correction de l'API Cause : erreur sur sponsors + photo2

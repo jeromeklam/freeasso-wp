@@ -26,10 +26,14 @@ Voici un exemple de configuration :
     * https://administration.kalaweit.org/api pour l'administration Kalaweit
     * https://freeasso.org/api/v1/asso pour l'administration FreeAsso
 * La version de l'administration
-* Identifiant de l'application : kalaweit
-* Identifiant de sécurité : kalaweit-site
-* Clef de sécurité (ne sera jamais affichée)
+* Identifiant de l'application :
+    * Champ ApiId pou identifier l'appelant
+* Identifiant de sécurité (HAWK) :
+    * Identifiant de l'accès
+* Clef de sécurité (HAWK) :
     * Ce champ est à renseigner pour enregistrer une clef de sécurité
+* Jeton de l'utilisateur (HAWK) :
+    * Ce champ est à renseigner pour enregistrer l'identifiant de l'utilisateur
 * Préfixe des vignettes :
     * https://images.kalaweit.org/images/vignettes/ pour l'administration kalaweit
     * https://freeasso.org/images/vignettes/ pour l'administration FreeAsso

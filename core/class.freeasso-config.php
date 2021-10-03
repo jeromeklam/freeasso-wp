@@ -49,6 +49,12 @@ class Freeasso_Config
     private $hawk_key = '30964d295d6f673df7dc75600ac6f345';
 
     /**
+     * Hawk access token
+     * @var string
+     */
+    private $hawk_token = '';
+
+    /**
      * Admin version
      * @var string
      */
@@ -121,6 +127,9 @@ class Freeasso_Config
                 if ($datas->hawkKey) {
                     $this->setHawkKey($datas->hawkKey);
                 }
+                if ($datas->hawkToken) {
+                    $this->setHawkToken($datas->hawkToken);
+                }
                 if ($datas->version) {
                     $this->setVersion($datas->version);
                 }
@@ -159,6 +168,7 @@ class Freeasso_Config
         $datas->apiId                 = $this->getApiId();
         $datas->hawkUser              = $this->getHawkUser();
         $datas->hawkKey               = $this->getHawkKey();
+        $datas->hawkToken             = $this->getHawkToken();
         $datas->version               = $this->getVersion();
         $datas->image_small_prefix    = $this->getImageSmallPrefix();
         $datas->image_standard_prefix = $this->getImageStandardPrefix();
@@ -272,6 +282,29 @@ class Freeasso_Config
     public function setHawkKey($p_key)
     {
         $this->hawk_key = $p_key;
+        return $this;
+    }
+
+    /**
+     * Get Hawk token
+     *
+     * @return string
+     */
+    public function getHawkToken()
+    {
+        return $this->hawk_token;
+    }
+
+    /**
+     * Set Hawk token
+     *
+     * @param string $p_user
+     *
+     * @return Freeasso_Config
+     */
+    public function setHawkToken($p_user)
+    {
+        $this->hawk_token = $p_user;
         return $this;
     }
 

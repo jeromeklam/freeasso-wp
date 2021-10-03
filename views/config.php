@@ -57,7 +57,11 @@
                                 </p>
                                 <p>
                                     <label for="freeasso_hawk_key"><strong><?php esc_html_e( 'Clef de sécurité HAWK', 'freeasso' ); ?></strong></label>
-                                    <input type="text" name="freeasso_hawk_key" id="freeasso_hawk_key" class="widefat" style="font-family:Courier New;" value="" />
+                                    <input type="text" name="freeasso_hawk_key" id="freeasso_hawk_key" class="widefat" style="font-family:Courier New;" value="<?php echo $this->config->getHawkKey(); ?>" />
+                                </p>
+                                <p>
+                                    <label for="freeasso_hawk_token"><strong><?php esc_html_e( 'Jeton d\'accès', 'freeasso' ); ?></strong></label>
+                                    <input type="text" name="freeasso_hawk_token" id="freeasso_hawk_token" class="widefat" style="font-family:Courier New;" value="<?php echo $this->config->getHawkToken(); ?>" />
                                 </p>
                                 <p>
                                     <label for="freeasso_small_prefix"><strong><?php esc_html_e( 'Préfixe des vignettes', 'freeasso' ); ?></strong></label>

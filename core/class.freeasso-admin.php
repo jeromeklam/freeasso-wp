@@ -183,10 +183,8 @@ class Freeasso_Admin
                     $this->config->setImageSmallSuffix($_REQUEST['freeasso_small_suffix']);
                     $this->config->setImageStandardPrefix($_REQUEST['freeasso_standard_prefix']);
                     $this->config->setImageStandardSuffix($_REQUEST['freeasso_standard_suffix']);
-                    $key = trim($_REQUEST['freeasso_hawk_key']);
-                    if ($key != '') {
-                        $this->config->setHawkKey($key);
-                    }
+                    $this->config->setHawkKey(trim($_REQUEST['freeasso_hawk_key']));
+                    $this->config->setHawkToken(trim($_REQUEST['freeasso_hawk_token']));
                     $this->config->saveConfig();
                     $this->message = __( 'Configuration enregistrée', 'freeasso' );
                 }

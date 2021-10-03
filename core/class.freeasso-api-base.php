@@ -510,10 +510,10 @@ class Freeasso_Api_Base
     {
         $ts      = $this->getTs();
         $nonce   = $this->getNonce();
-        $hawk    = $this->getHawkArray($p_url, $ts, $nonce);
+        $hawk    = $this->getHawkArray($p_url, $ts, $nonce, $this->getConfig()->getHawkToken());
         $hawkStr = implode("\n", $hawk) . "\n";
         $hash    = hash_hmac('sha256', $hawkStr, $this->getConfig()->getHawkKey(), true);
-        $auth    = 'Hawk ' . 'id=' . $this->getConfig()->getHawkUser() . ', ' . 'ts=' . $ts . ', ' . 'nonce=' . $nonce . ', ' . 'mac=' . base64_encode($hash);
+        $auth    = 'Hawk ' . 'id=' . $this->getConfig()->getHawkUser() . ', ' . 'ts=' . $ts . ', ' . 'nonce=' . $nonce . ', ' . 'mac=' . base64_encode($hash) . ', app=' . $this->getConfig()->getHawkToken();
         return $auth;
     }
 
@@ -630,10 +630,11 @@ class Freeasso_Api_Base
      * @param string $p_url
      * @param string $p_ts
      * @param string $p_nonce
+     * @param string $p_token
      *
      * @return array
      */
-    protected function getHawkArray($p_url, $p_ts, $p_nonce)
+    protected function getHawkArray($p_url, $p_ts, $p_nonce, $p_token = '')
     {
         $hawk   = [];
         $hawk[] = 'hawk.1.header';
@@ -644,6 +645,8 @@ class Freeasso_Api_Base
         $hawk[] = $this->getUrlHost();
         $hawk[] = $this->getUrlPort();
         $hawk[] = '';
+        $hawk[] = '';
+        $hawk[] = $p_token;
         $hawk[] = '';
         return $hawk;
     }

@@ -69,6 +69,7 @@ class Freeasso_Api_Causes extends Freeasso_Api_Base
                 ->addSortField('cau_name')
                 ->addRelation('subspecies')
                 ->addRelation('site')
+                ->addRelation('vignettes')
                 ->addFixedFilter('cau_family', 'ANIMAL', self::OPER_EQUAL)
                 ->addFixedFilter('cau_to', Freeasso_Tools::getCurrentDateAsString(), self::OPER_GREATER_OR_NULL)
             ;
@@ -114,25 +115,45 @@ class Freeasso_Api_Causes extends Freeasso_Api_Base
             } else {
                 $cause->site = null;
             }
-            if (isset($oneCause->cau_desc)) {
-                $cause->desc = $oneCause->cau_desc;
+            if (isset($oneCause->fulltext)) {
+                $cause->desc = $oneCause->fulltext;
             } else {
-                $cause->desc = null;
+                if (isset($oneCause->cau_desc)) {
+                    $cause->desc = $oneCause->cau_desc;
+                } else {
+                    $cause->desc = null;
+                }
             }
-            if (isset($oneCause->cau_photo_1)) {
-                $cause->photo1 = $oneCause->cau_photo_1;
+            if (isset($oneCause->vignettes)) {
+                $first = true;
+                foreach ($oneCause->vignettes as $oneV) {
+                    if ($first) {
+                        $cause->photo1 = $oneV;
+                        $first = false;
+                    } else {
+                        $cause->photo2 = $oneV;
+                    }
+                }
             } else {
-                $cause->photo1 = null;
+                if (isset($oneCause->cau_photo_1)) {
+                    $cause->photo1 = $oneCause->cau_photo_1;
+                } else {
+                    $cause->photo1 = null;
+                }
+                if (isset($oneCause->cau_photo_2)) {
+                    $cause->photo2 = $oneCause->cau_photo_2;
+                } else {
+                    $cause->photo2 = null;
+                }
             }
-            if (isset($oneCause->cau_photo_2)) {
-                $cause->photo2 = $oneCause->cau_photo_2;
+            if (isset($oneCause->sponsors)) {
+                $cause->sponsors = $oneCause->sponsors;
             } else {
-                $cause->photo2 = null;
-            }
-            if (isset($oneCause->cau_sponsors)) {
-                $cause->sponsors = $oneCause->cau_sponsors;
-            } else {
-                $cause->sponsors = null;
+                if (isset($oneCause->cau_sponsors)) {
+                    $cause->sponsors = $oneCause->cau_sponsors;
+                } else {
+                    $cause->sponsors = null;
+                }
             }
             $cause->age = null;
             if ($cause->born && $cause->born > 1900) {
