@@ -69,8 +69,13 @@ class Freeasso_Api_Sites extends Freeasso_Api_Base
     protected function getWS()
     {
         $result = $this->call();
-        if ($result && is_array($result)) {
-            $this->setSites($result);
+        if ($result) {
+            if (isset($result->data)) {
+                $sites = $result->data;
+            } else {
+                $sites = $result;
+            }
+            $this->setSites($sites);
             return true;
         }
         $this->setSites([]);

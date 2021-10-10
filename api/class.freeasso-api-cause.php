@@ -55,6 +55,7 @@ class Freeasso_Api_Cause extends Freeasso_Api_Base
                 ->addRelation('site')
                 ->addRelation('fulltext')
                 ->addRelation('vignettes')
+                ->addRelation('sponsors')
                 ->addFixedFilter('cau_family', 'ANIMAL', self::OPER_EQUAL)
                 ->addFixedFilter('cau_to', Freeasso_Tools::getCurrentDateAsString(), self::OPER_GREATER_OR_NULL)
             ;
@@ -120,7 +121,17 @@ class Freeasso_Api_Cause extends Freeasso_Api_Base
                 }
             }
             if (isset($oneCause->sponsors)) {
-                $cause->sponsors = $oneCause->sponsors;
+                if (is_array($oneCause->sponsors)) {
+                    $list = [];
+                    foreach ($oneCause->sponsors as $oneSponsor) {
+                        if (isset($oneSponsor->name)) {
+                            $list[] = $oneSponsor->name;
+                        }
+                    }
+                    $cause->sponsors = implode(', ', $list);
+                } else {
+                    $cause->sponsors = $oneCause->sponsors;
+                }
             } else {
                 if (isset($oneCause->cau_sponsors)) {
                     $cause->sponsors = $oneCause->cau_sponsors;
@@ -148,8 +159,13 @@ class Freeasso_Api_Cause extends Freeasso_Api_Base
     protected function getWS()
     {
         $result = $this->call();
-        if ($result && is_object($result) || is_array($result)) {
-            $this->setCause($result);
+        if ($result) {
+            if (isset($result->data)) {
+                $causes = $result->data;
+            } else {
+                $causes = $result;
+            }
+            $this->setCause($causes);
             return true;
         }
         $this->setCause(null);

@@ -4,9 +4,14 @@
  * Description: Plugin de gestion des liens avec l'administration FreeAsso.
  * Author: KLAM Jérôme
  * Plugin URI: http://github.com/jeromeklam/freeasso-wp
- * Version: 1.0.0
+ * Version: 2.0.1
  * Author URI: http://github.com/jeromeklam
  * Text Domain: freeasso-wp
+ *
+ * ===============================================================================================
+ * 2.0.1 : 10/10/2021
+ *     Intégration de la nouvelle version de l'administration freeasso.
+ * ===============================================================================================
  */
 
 // --------------------------------------------------------------------------------------------------------------------
@@ -25,7 +30,7 @@ if (! function_exists('add_action')) {
 // --------------------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------------
 define('FREEASSO', 'FreeAsso');
-define('FREEASSO_VERSION', '1.0.4');
+define('FREEASSO_VERSION', '2.0.1');
 define('FREEASSO_MINIMUM_WP_VERSION', '5.6');
 define('FREEASSO_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FREEASSO_PLUGIN_NAME', 'FreeAsso-WP');

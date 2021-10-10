@@ -85,8 +85,13 @@ class Freeasso_Api_Names extends Freeasso_Api_Base
     protected function getWS()
     {
         $result = $this->call();
-        if ($result && is_array($result)) {
-            $this->setCauses($result);
+        if ($result) {
+            if (isset($result->data)) {
+                $causes = $result->data;
+            } else {
+                $causes = $result;
+            }
+            $this->setCauses($causes);
             return true;
         }
         $this->setCauses([]);

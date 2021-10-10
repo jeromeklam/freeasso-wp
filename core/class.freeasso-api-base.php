@@ -377,7 +377,7 @@ class Freeasso_Api_Base
             $params['len']  = $this->page_size;
         } else {
             $params['page']           = [];
-            $params['page']['offset'] = $this->page;
+            $params['page']['number'] = $this->page;
             $params['page']['size']   = $this->page_size;
         }
         if (count($this->options) > 0) {

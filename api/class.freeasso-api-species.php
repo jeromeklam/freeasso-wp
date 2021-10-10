@@ -104,8 +104,13 @@ class Freeasso_Api_Species extends Freeasso_Api_Base
     protected function getWS()
     {
         $result = $this->call();
-        if ($result && is_array($result)) {
-            $this->setSpecies($result);
+        if ($result) {
+            if (isset($result->data)) {
+                $species = $result->data;
+            } else {
+                $species = $result;
+            }
+            $this->setSpecies($species);
             return true;
         }
         $this->setSpecies([]);
