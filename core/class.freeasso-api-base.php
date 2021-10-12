@@ -514,6 +514,9 @@ class Freeasso_Api_Base
         $hawkStr = implode("\n", $hawk) . "\n";
         $hash    = hash_hmac('sha256', $hawkStr, $this->getConfig()->getHawkKey(), true);
         $auth    = 'Hawk ' . 'id=' . $this->getConfig()->getHawkUser() . ', ' . 'ts=' . $ts . ', ' . 'nonce=' . $nonce . ', ' . 'mac=' . base64_encode($hash) . ', app=' . $this->getConfig()->getHawkToken();
+        freeasso_wp_log('CALL.key : ' . $this->getConfig()->getHawkKey());
+        freeasso_wp_log('CALL.token : ' . $this->getConfig()->getHawkToken());
+        freeasso_wp_log('CALL.auth : ' . $auth);
         return $auth;
     }
 
@@ -668,6 +671,8 @@ class Freeasso_Api_Base
         if ($this->isPrivate()) {
             $args['headers']['Authorization'] = $this->getHawkAuth($url);
         }
+        freeasso_wp_log('CALL.url : ' . $url);
+        freeasso_wp_log('CALL.apiId : ' . $this->getConfig()->getApiId());
         $result = wp_remote_get($url, $args);
         if ($result && array_key_exists('response', $result)) {
             $response = $result['response'];
@@ -676,6 +681,8 @@ class Freeasso_Api_Base
                     $json = $result['body'];
                     return json_decode($json);
                 }
+            } else {
+                freeasso_wp_log('CALL.error : ' . json_encode($result));
             }
         }
         return false;
