@@ -677,13 +677,19 @@ class Freeasso_Api_Base
         if ($result && array_key_exists('response', $result)) {
             $response = $result['response'];
             if (array_key_exists('code', $response) && intval($response['code']) < 300) {
+                freeasso_wp_log('CALL.code : ' .$response['code']);
                 if (array_key_exists('body', $result)) {
                     $json = $result['body'];
+                    freeasso_wp_log('CALL.body : ' . json_encode($result));
                     return json_decode($json);
+                } else {
+                    freeasso_wp_log('CALL.no.body : ' . json_encode($result));
                 }
             } else {
                 freeasso_wp_log('CALL.error : ' . json_encode($result));
             }
+        } else {
+            freeasso_wp_log('CALL.no.result : ' . json_encode($result));
         }
         return false;
     }
