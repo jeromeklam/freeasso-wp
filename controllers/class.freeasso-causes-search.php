@@ -184,7 +184,12 @@ class Freeasso_Causes_Search
         $this->sites = $mySitesApi->getSites();
         // Names
         $myNamesApi = FreeAsso_Api_Names::getFactory();
-        $this->names = $myNamesApi->getNames();
+        $with_mnt_left=null;
+        if(defined('INCLUDE_TORAISE') && defined('INCLUDE_FULLYRAISED')) {
+            if(INCLUDE_TORAISE && !INCLUDE_FULLYRAISED) $with_mnt_left=true;
+            elseif(!INCLUDE_TORAISE && INCLUDE_FULLYRAISED) $with_mnt_left=false;
+        }
+        $this->names = $myNamesApi->getNames($with_mnt_left);
         // Amounts
         $myAmountsApi = FreeAsso_Api_Amounts::getFactory();
         $this->amounts = $myAmountsApi->getAmounts();

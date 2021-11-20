@@ -22,11 +22,16 @@ class Freeasso_Api_Names extends Freeasso_Api_Base
 
     /**
      * Get all causes
-     *
+     * @param $with_mnt_left bool : null=all ; true=only cause with mnt_left>0 ; false=only cause with mnt_left=0
      * @return array
      */
-    public function getNames()
+    public function getNames($with_mnt_left=null)
     {
+        if($with_mnt_left===true) {
+            $this->addFixedFilter('cau_mnt_left', 1, self::OPER_GREATER_EQUAL);
+        } elseif($with_mnt_left===false) {
+            $this->addFixedFilter('cau_mnt_left', 1, self::OPER_LOWER);
+        }
         if ($this->causes === null) {
             $this->getWS();
         }

@@ -34,7 +34,7 @@ class Freeasso_Api_Amounts extends Freeasso_Api_Base
         $this->amounts = [
         	(object)['id' => 'C', 'label' => translate('Tous les gibbons à parrainer'            ,'freeasso'), 'gte' => 1],
             (object)['id' => 'A', 'label' => translate('280€ ou 23,33€/mois (parrainage complet)','freeasso'), 'gte' => 280],
-            (object)['id' => 'Z', 'label' => translate('Déjà parrainé en totalité'               ,'freeasso'), 'gte'=>-9999, 'lt'  => 1],
+            (object)['id' => 'Z', 'label' => translate('Déjà parrainé en totalité'               ,'freeasso'), 'lt'  => 1],
             (object)['id' => '-', 'label' => '---'],
             (object)['id' => 'K', 'label' => translate('200 à 279€'       ,'freeasso'), 'lt' => 280, 'gte' => 200],
             (object)['id' => 'H', 'label' => translate('100 à 199€'       ,'freeasso'), 'lt' => 200, 'gte' => 100],
