@@ -301,9 +301,9 @@
 					<strong><?php echo $oneCause->name; ?></strong>
 				</div>
 				<div class="freeasso-cause-search-animals-picture"><div>
-					<img
+					<a class="fancybox-iframe" href="?freeasso-cause-mode=detail&freeasso-cause-id=<?php echo $oneCause->id; ?>"><img
 						src="<?php echo $this->getConfig()->getImageSmallPrefix() . $oneCause->photo1 . $this->getConfig()->getImageSmallSuffix(); ?>"
-						alt="vignette" />
+						alt="vignette" /></a>
 				</div></div>
 				<div class="freeasso-cause-search-animals-description">
 					<p class="location" title="<?php esc_html_e( 'Localisation'     , 'freeasso' );?>"><?php echo $oneCause->site; ?></p>

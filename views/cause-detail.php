@@ -13,12 +13,16 @@
 			<h2><a href="<?php echo $wp->request; ?>"><?php echo $this->cause->name; ?></a></h2>
 		</div>
 		<div class="freeasso-cause-detail-photos">
-			<img src="<?php echo $this->getConfig()->getImageStandardPrefix() . $this->cause->photo1 . $this->getConfig()->getImageStandardSuffix(); ?>"
-				alt="photo gibbon" />
+			<a href="<?php echo $this->getConfig()->getImageStandardPrefix() . $this->cause->photo1 . $this->getConfig()->getImageStandardSuffix(); ?>"><img
+				src="<?php echo $this->getConfig()->getImageSmallPrefix() . $this->cause->photo1 . $this->getConfig()->getImageSmallSuffix(); ?>"
+				alt="photo gibbon"
+			/></a>
 			<?php
 				if(!empty($this->cause->photo2) && $this->cause->photo2!=$this->cause->photo1) {
-					echo '<img src="'.$this->getConfig()->getImageStandardPrefix() . $this->cause->photo2 . $this->getConfig()->getImageStandardSuffix().'" ';
+					echo '<a href="'.$this->getConfig()->getImageStandardPrefix() . $this->cause->photo2 . $this->getConfig()->getImageStandardSuffix().'">';
+					echo '<img src="'.$this->getConfig()->getImageSmallPrefix() . $this->cause->photo2 . $this->getConfig()->getImageSmallSuffix().'" ';
 					echo 'alt="photo gibbon" />';
+					echo '</a>';
 				}
 			?>
 		</div>
