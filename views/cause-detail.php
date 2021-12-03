@@ -15,13 +15,13 @@
 		<div class="freeasso-cause-detail-photos">
 			<a href="<?php echo $this->getConfig()->getImageStandardPrefix() . $this->cause->photo1 . $this->getConfig()->getImageStandardSuffix(); ?>"><img
 				src="<?php echo $this->getConfig()->getImageSmallPrefix() . $this->cause->photo1 . $this->getConfig()->getImageSmallSuffix(); ?>"
-				alt="photo gibbon"
+				alt="" <?php /* NO ALT = no caption on the fancybox "zoomed image" */ ?>
 			/></a>
 			<?php
 				if(!empty($this->cause->photo2) && $this->cause->photo2!=$this->cause->photo1) {
 					echo '<a href="'.$this->getConfig()->getImageStandardPrefix() . $this->cause->photo2 . $this->getConfig()->getImageStandardSuffix().'">';
 					echo '<img src="'.$this->getConfig()->getImageSmallPrefix() . $this->cause->photo2 . $this->getConfig()->getImageSmallSuffix().'" ';
-					echo 'alt="photo gibbon" />';
+					echo 'alt="" />';
 					echo '</a>';
 				}
 			?>
