@@ -45,14 +45,14 @@ class Freeasso_Api_Names extends Freeasso_Api_Base
     {
         parent::__construct();
         if ($this->getConfig()->getVersion() == 'v1') {
-            $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/names');
+            $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/asso/names');
             $this->setPrivate();
             $this
                 ->addSortField('cau_name')
                 ->setPagination(1, 999999)
             ;
         } else {
-            $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/cause');
+            $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/asso/cause');
             $this->setPrivate();
             $this
                 ->addSortField('cau_name')

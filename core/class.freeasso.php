@@ -45,7 +45,7 @@ class Freeasso
      */
     public static function getInstance()
     {
-        if (! self::$instance) {
+        if (!self::$instance) {
             self::$instance = new static();
         }
         return self::$instance;
@@ -68,6 +68,27 @@ class Freeasso
     }
 
     /**
+     * Get member from freeAsso
+     */
+    public function initMember()
+    {
+        $user  = wp_get_current_user();
+        $jwt   = $this->session->get('client-jwt', null);
+        $token = null;
+        if ($user && $user->ID) {
+            if (!$jwt) {
+                $token = get_user_meta($user->ID, 'freeasso-client-token', true);
+                $auth  = Freeasso_Api_Auth::getFactory();
+                $auth->login($token, $token . '##' . $user->ID);
+            } else {
+                $this->session->set('client-jwt', null);
+            }
+        } else {
+            $this->session->set('client-jwt', null);
+        }
+    }
+
+    /**
      * init hooks
      *
      * @return Freeasso
@@ -78,6 +99,8 @@ class Freeasso
         $this->initSession();
         // Filters
         $this->initFilters();
+        // Check user
+        $this->initMember();
         // Actions
         $this->initActions();
         // Shortcodes

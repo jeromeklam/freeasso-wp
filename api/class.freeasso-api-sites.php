@@ -34,7 +34,7 @@ class Freeasso_Api_Sites extends Freeasso_Api_Base
     protected function __construct()
     {
         parent::__construct();
-        $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/site');
+        $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/asso/site');
         $this->setPrivate();
     }
 

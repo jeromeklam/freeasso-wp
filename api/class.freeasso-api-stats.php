@@ -106,7 +106,7 @@ class Freeasso_Api_Stats extends Freeasso_Api_Base {
         parent::__construct();
         $this
             ->setMethod(self::FREEASSO_METHOD_GET)
-            ->setUrl('/dashboard/stats')
+            ->setUrl('/asso/dashboard/stats')
         ;
     }
 

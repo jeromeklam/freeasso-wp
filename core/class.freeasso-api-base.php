@@ -140,6 +140,12 @@ class Freeasso_Api_Base
     protected $id = null;
 
     /**
+     * Datas
+     * @var mixed
+     */
+    protected $datas = null;
+
+    /**
      * Get factory
      *
      * @return Freeasso_Api_Base
@@ -148,6 +154,38 @@ class Freeasso_Api_Base
     {
         $ws = new static();
         return $ws;
+    }
+
+    /**
+     * Purge des données
+     * 
+     * @return self
+     */
+    public function flushDatas()
+    {
+        $this->datas = null;
+        return $this;
+    }
+
+    /**
+     * Set datas
+     * 
+     * @return self
+     */
+    public function setDatas($p_datas)
+    {
+        $this->datas = $p_datas;
+        return $this;
+    }
+
+    /**
+     * get Datas
+     * 
+     * @return mixed
+     */
+    public function getDatas()
+    {
+        return $this->datas;
     }
 
     /**
@@ -673,7 +711,19 @@ class Freeasso_Api_Base
         }
         freeasso_wp_log('CALL.url : ' . $url);
         freeasso_wp_log('CALL.apiId : ' . $this->getConfig()->getApiId());
-        $result = wp_remote_get($url, $args);
+        switch ($this->getMethod()) {
+            case self::FREEASSO_METHOD_POST:
+                $args['body']        = json_encode($this->getDatas());
+                $args['method']      = 'POST';
+                $args['data_format'] = 'body';
+                var_dump($args);
+                $result = wp_remote_post($url, $args);
+                var_dump($result);
+                break;
+            default:
+                $result = wp_remote_get($url, $args);
+                break;
+        }
         if ($result && array_key_exists('response', $result)) {
             $response = $result['response'];
             if (array_key_exists('code', $response) && intval($response['code']) < 300) {

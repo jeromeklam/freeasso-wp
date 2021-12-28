@@ -56,14 +56,14 @@ class Freeasso_Api_Causes extends Freeasso_Api_Base
     {
         parent::__construct();
         if ($this->getConfig()->getVersion() == 'v1') {
-            $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/gibbon');
+            $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/asso/gibbon');
             $this->setPrivate();
             $this
                 ->addSortField('cau_name')
                 ->setPagination(1, 16)
             ;
         } else {
-            $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/cause');
+            $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/asso/cause');
             $this->setPrivate();
             $this
                 ->addSortField('cau_name')
