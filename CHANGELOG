@@ -3,6 +3,11 @@
 * Vue de recherche paramétrable
 * Logs
 
+# 2.1.0 : 17/01/2022
+
+* Option monnaie pour les montants
+* Utilisation du montant parrainé plafonné
+
 # 2.0.3 : 13/10/2021
 
 * ... debug ...

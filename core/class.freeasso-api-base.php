@@ -716,9 +716,7 @@ class Freeasso_Api_Base
                 $args['body']        = json_encode($this->getDatas());
                 $args['method']      = 'POST';
                 $args['data_format'] = 'body';
-                var_dump($args);
                 $result = wp_remote_post($url, $args);
-                var_dump($result);
                 break;
             default:
                 $result = wp_remote_get($url, $args);
