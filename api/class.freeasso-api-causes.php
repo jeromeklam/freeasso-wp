@@ -188,7 +188,7 @@ class Freeasso_Api_Causes extends Freeasso_Api_Base
                 $cause->age = $year - $cause->born;
             }
             $cause->species = $oneCause->subspecies->sspe_name;
-            $cause->raised  = $oneCause->cau_mnt;
+            $cause->raised  = $oneCause->cau_mnt_raised;
             $cause->left    = $oneCause->cau_mnt_left;
             $this->causes[] = $cause;
         }

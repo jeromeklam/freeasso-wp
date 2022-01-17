@@ -128,6 +128,12 @@ class Freeasso_Causes_Search
     protected $param_lang = 'fr_FR';
 
     /**
+     * Money
+     * @var string
+     */
+    protected $param_money = 'EUR';
+
+    /**
      * Instance
      *
      * @var Freeasso_Causes_Search
@@ -184,10 +190,10 @@ class Freeasso_Causes_Search
         $this->sites = $mySitesApi->getSites();
         // Names
         $myNamesApi = FreeAsso_Api_Names::getFactory();
-        $with_mnt_left=null;
-        if(defined('INCLUDE_TORAISE') && defined('INCLUDE_FULLYRAISED')) {
-            if(INCLUDE_TORAISE && !INCLUDE_FULLYRAISED) $with_mnt_left=true;
-            elseif(!INCLUDE_TORAISE && INCLUDE_FULLYRAISED) $with_mnt_left=false;
+        $with_mnt_left = null;
+        if (defined('INCLUDE_TORAISE') && defined('INCLUDE_FULLYRAISED')) {
+            if (INCLUDE_TORAISE && !INCLUDE_FULLYRAISED) $with_mnt_left = true;
+            elseif (!INCLUDE_TORAISE && INCLUDE_FULLYRAISED) $with_mnt_left = false;
         }
         $this->names = $myNamesApi->getNames($with_mnt_left);
         // Amounts
@@ -199,13 +205,14 @@ class Freeasso_Causes_Search
         // Params
         $this->param_page    = $this->getParam('freeasso-cause-search-page', 1);
         $this->param_length  = $this->getParam('freeasso-cause-search-length', 16);
-        $this->param_gender  = $this->getparam('freeasso-cause-search-gender', '');
-        $this->param_site    = $this->getparam('freeasso-cause-search-site', '');
-        $this->param_species = $this->getparam('freeasso-cause-search-species', '');
-        $this->param_names   = $this->getparam('freeasso-cause-search-names', '');
-        $this->param_amounts = $this->getparam('freeasso-cause-search-amounts', '');
-        $this->param_age     = $this->getparam('freeasso-cause-search-age', '');
-        
+        $this->param_gender  = $this->getParam('freeasso-cause-search-gender', '');
+        $this->param_site    = $this->getParam('freeasso-cause-search-site', '');
+        $this->param_species = $this->getParam('freeasso-cause-search-species', '');
+        $this->param_names   = $this->getParam('freeasso-cause-search-names', '');
+        $this->param_amounts = $this->getParam('freeasso-cause-search-amounts', '');
+        $this->param_age     = $this->getParam('freeasso-cause-search-age', '');
+        $this->param_money   = $this->getParam('freeasso-cause-search-money', 'EUR');
+
         // Filters
         $myCausesApi = FreeAsso_Api_Causes::getFactory();
         $myCausesApi->setPagination($this->param_page, $this->param_length);
@@ -233,41 +240,46 @@ class Freeasso_Causes_Search
         if ($this->param_amounts != '') {
             foreach ($this->amounts as $oneAmount) {
                 if ($oneAmount->id == $this->param_amounts) {
-                    $lte=null; $gte=null;
-                    if(isset($oneAmount->lte))    $lte=$oneAmount->lte;
-                    elseif(isset($oneAmount->lt)) $lte=$oneAmount->lt-.005;
-                    if(isset($oneAmount->gte))     $gte=$oneAmount->gte;
-                    elseif(isset($oneAmount->gt))  $gte=$oneAmount->gt+.005;
-                    if($lte!==null && $gte!==null) {
+                    $lte = null;
+                    $gte = null;
+                    if (isset($oneAmount->lte))    $lte = $oneAmount->lte;
+                    elseif (isset($oneAmount->lt)) $lte = $oneAmount->lt - .005;
+                    if (isset($oneAmount->gte))     $gte = $oneAmount->gte;
+                    elseif (isset($oneAmount->gt))  $gte = $oneAmount->gt + .005;
+                    if ($lte !== null && $gte !== null) {
                         $myCausesApi->addSimpleFilter('cau_mnt_left', $gte, Freeasso_Api_Base::OPER_BETWEEN, $lte);
-                    } elseif($lte!==null) {
+                    } elseif ($lte !== null) {
                         $myCausesApi->addSimpleFilter('cau_mnt_left', $lte, Freeasso_Api_Base::OPER_LOWER_EQUAL);
-                    } elseif($gte!==null) {
+                    } elseif ($gte !== null) {
                         $myCausesApi->addSimpleFilter('cau_mnt_left', $gte, Freeasso_Api_Base::OPER_GREATER_EQUAL);
                     }
                     break;
                 }
             }
         }
-        if($this->param_age != '' && $this->param_age != '-') {
+        if ($this->param_age != '' && $this->param_age != '-') {
             foreach ($this->ages as $oneAge) {
                 if ($oneAge->id == $this->param_age) {
                     $year = intval(date('Y'));
-                    $lte=null; $gte=null;
-                    if(isset($oneAge->lte))    $gte=($year - $oneAge->lte);
-                    elseif(isset($oneAge->lt)) $gte=($year - $oneAge->lt + 1);
-                    if(isset($oneAge->gte))     $lte=($year - $oneAge->gte);
-                    elseif(isset($oneAge->gt))  $lte=($year - $oneAge->gt - 1);
-                    if($lte!==null && $gte!==null) {
+                    $lte = null;
+                    $gte = null;
+                    if (isset($oneAge->lte))    $gte = ($year - $oneAge->lte);
+                    elseif (isset($oneAge->lt)) $gte = ($year - $oneAge->lt + 1);
+                    if (isset($oneAge->gte))     $lte = ($year - $oneAge->gte);
+                    elseif (isset($oneAge->gt))  $lte = ($year - $oneAge->gt - 1);
+                    if ($lte !== null && $gte !== null) {
                         $myCausesApi->addSimpleFilter('cau_year', $gte, Freeasso_Api_Base::OPER_BETWEEN, $lte);
-                    } elseif($lte!==null) {
+                    } elseif ($lte !== null) {
                         $myCausesApi->addSimpleFilter('cau_year', $lte, Freeasso_Api_Base::OPER_LOWER_EQUAL);
-                    } elseif($gte!==null) {
+                    } elseif ($gte !== null) {
                         $myCausesApi->addSimpleFilter('cau_year', $gte, Freeasso_Api_Base::OPER_GREATER_EQUAL);
                     }
                     break;
                 }
             }
+        }
+        if ($this->param_money != '') {
+            $myCausesApi->addOption('money', $this->param_money);
         }
         $updateCauses = true;
         if ($this->causes === null || $updateCauses) {
@@ -301,24 +313,22 @@ class Freeasso_Causes_Search
      */
     public function echoForm()
     {
-		if(!defined('CURRENCY_SYMBOL'))      define('CURRENCY_SYMBOL','€');
-		if(!defined('CURRENCY_BEFORE'))      define('CURRENCY_BEFORE',false);
-		if(!defined('INCLUDE_FULLYRAISED'))  define('INCLUDE_FULLYRAISED',true);
-		if(!defined('INCLUDE_TORAISE'))      define('INCLUDE_TORAISE',true);
-		if(!defined('INCLUDE_SPONSOR_ONCE')) define('INCLUDE_SPONSOR_ONCE',true);
-		$sel_amounts=$_GET['freeasso-cause-search-amounts'];
-		if(empty($sel_amounts)) {
-			if(INCLUDE_FULLYRAISED && !INCLUDE_TORAISE) {
-				$_GET['freeasso-cause-search-amounts']='Z';
-			} elseif(!INCLUDE_FULLYRAISED && INCLUDE_TORAISE && !INCLUDE_SPONSOR_ONCE) {
-				$_GET['freeasso-cause-search-amounts']='F';
-			} elseif(!INCLUDE_FULLYRAISED && INCLUDE_TORAISE) {
-				$_GET['freeasso-cause-search-amounts']='C';
-			}
-		}
+        if (!defined('CURRENCY_SYMBOL'))      define('CURRENCY_SYMBOL', '€');
+        if (!defined('CURRENCY_BEFORE'))      define('CURRENCY_BEFORE', false);
+        if (!defined('INCLUDE_FULLYRAISED'))  define('INCLUDE_FULLYRAISED', true);
+        if (!defined('INCLUDE_TORAISE'))      define('INCLUDE_TORAISE', true);
+        if (!defined('INCLUDE_SPONSOR_ONCE')) define('INCLUDE_SPONSOR_ONCE', true);
+        $sel_amounts = $_GET['freeasso-cause-search-amounts'];
+        if (empty($sel_amounts)) {
+            if (INCLUDE_FULLYRAISED && !INCLUDE_TORAISE) {
+                $_GET['freeasso-cause-search-amounts'] = 'Z';
+            } elseif (!INCLUDE_FULLYRAISED && INCLUDE_TORAISE && !INCLUDE_SPONSOR_ONCE) {
+                $_GET['freeasso-cause-search-amounts'] = 'F';
+            } elseif (!INCLUDE_FULLYRAISED && INCLUDE_TORAISE) {
+                $_GET['freeasso-cause-search-amounts'] = 'C';
+            }
+        }
         $this->loadParams();
-		
-		
         $mode = $this->getParam('freeasso-cause-mode', 'search');
         if ($mode == 'detail') {
             $this->loadData($this->getParam('freeasso-cause-id'));
@@ -332,9 +342,10 @@ class Freeasso_Causes_Search
 
 
 // lib form views
-function _freeasso_amount_format($amount) {
-	$amount='<span class="value">'.$amount.'</span>';
-	$currency='<span class="currency">'.CURRENCY_SYMBOL.'</span>';
-	if(CURRENCY_BEFORE) return $currency.$amount;
-	return $amount.$currency;
+function _freeasso_amount_format($amount)
+{
+    $amount = '<span class="value">' . $amount . '</span>';
+    $currency = '<span class="currency">' . CURRENCY_SYMBOL . '</span>';
+    if (CURRENCY_BEFORE) return $currency . $amount;
+    return $amount . $currency;
 }
