@@ -143,8 +143,23 @@
 </style>
 <div class="freeasso-cause-search-form">
 	<form role="search" id="freeasso-cause-search-form" class="freeasso-cause-search-form" method="get">
+		<?php if (INCLUDE_TORAISE && $this->getParam('freeasso-cause-search-money')=='CHF') { ?>
+			<?php $currency='CHF'; ?>
+			<p class="goto-eur">
+				<?php esc_html_e('Vous préférez l\'Euro ?', 'freeasso'); ?>
+				<a href="<?php esc_html_e('/parrainer-un-gibbon', 'freeasso'); ?>/?ami=<?php echo $this->getParam('ami')?'1':'0'; ?>&amp;freeasso-cause-search-money=EUR" onclick="document.getElementById('freeasso-cause-search-money').value='EUR';document.getElementById('freeasso-cause-search-button').click();return false;"><?php printf(translate('Afficher les montants en %1$s', 'freeasso'),'€'); ?></a>.
+			</p>
+		<?php } elseif(INCLUDE_TORAISE) { ?>
+			<?php $currency='EUR'; ?>
+			<p class="goto-chf">
+				<?php esc_html_e('Donateur Suisse ?', 'freeasso'); ?>
+				<a href="<?php esc_html_e('/parrainer-un-gibbon', 'freeasso'); ?>/?ami=<?php echo $this->getParam('ami')?'1':'0'; ?>&amp;freeasso-cause-search-money=CHF" onclick="document.getElementById('freeasso-cause-search-money').value='CHF';document.getElementById('freeasso-cause-search-button').click();return false;"><?php printf(translate('Afficher les montants en %1$s', 'freeasso'),'CHF'); ?></a>.
+			</p>
+		<?php } ?>
+		<input type="hidden" name="freeasso-cause-search-money" id="freeasso-cause-search-money" value="<?php echo $currency; ?>" />
+
 		<input type="hidden" name="freeasso-cause-mode" id="freeasso-cause-mode" value="search" />
-		<h4><?php esc_html_e('Recherche par filtre', 'freeasso'); ?></h4>
+		<h4 class="filtersearch"><?php esc_html_e('Recherche par filtre', 'freeasso'); ?></h4>
 		<div class="search-form freeasso-cause-search-input-groups">
 			<div class="freeasso-cause-search-input-group">
 				<label for="freeasso-cause-search-species" class="freeasso-cause-search-label"><?php esc_html_e('Espèce', 'freeasso'); ?></label>
@@ -219,14 +234,7 @@
 			<?php } ?>
 
 			<div class="freeasso-cause-search-input-group">
-				<label for="freeasso-cause-search-money-eur" class="freeasso-cause-search-label"><?php esc_html_e('MoneyEur', 'freeasso'); ?></label>
-				<input type="radio" name="freeasso-cause-search-money" id="freeasso-cause-search-money-eur" value="EUR" <?php echo $this->param_money == 'EUR' ? 'checked' : '' ?>/>
-				<label for="freeasso-cause-search-money-chf" class="freeasso-cause-search-label"><?php esc_html_e('MoneyChf', 'freeasso'); ?></label>
-				<input type="radio" name="freeasso-cause-search-money" id="freeasso-cause-search-money-chf" value="CHF" <?php echo $this->param_money == 'CHF' ? 'checked' : '' ?>/>
-			</div>
-
-			<div class="freeasso-cause-search-input-group">
-				<input type="submit" class="search-submit freeasso-cause-search-button-send" value="<?php esc_html_e('Rechercher', 'freeasso'); ?>" />
+				<input type="submit" class="search-submit freeasso-cause-search-button-send" id="freeasso-cause-search-button" value="<?php esc_html_e('Rechercher', 'freeasso'); ?>" />
 			</div>
 		</div>
 
@@ -313,7 +321,7 @@
 								<?php
 								if ($oneCause->left >= 1) {
 									esc_html_e('Reste à parrainer :', 'freeasso');
-									echo ' ' . _freeasso_amount_format($oneCause->left);
+									echo ' ' . _freeasso_amount_format($oneCause->left,0);
 								} else {
 									esc_html_e('Intégralement parrainé', 'freeasso');
 								}
@@ -323,7 +331,7 @@
 						<p class="freeasso-cause-search-animals-sponsors" title="<?php esc_html_e('Parrains', 'freeasso'); ?>"><?php echo $oneCause->sponsors; ?></p>
 					</div>
 					<div class="freeasso-cause-search-animals-bottom">
-						<a class="freeasso-cause-search-animals-go fancybox-iframe" href="?freeasso-cause-mode=detail&freeasso-cause-id=<?php echo $oneCause->id; ?>"><?php esc_html_e('Détails', 'freeasso'); ?></a>
+						<a class="freeasso-cause-search-animals-go fancybox-iframe" href="?freeasso-cause-mode=detail&freeasso-cause-id=<?php echo $oneCause->id; ?>&freeasso-cause-search-money=<?php echo $currency; ?>"><?php esc_html_e('Détails', 'freeasso'); ?></a>
 						<?php if ($oneCause->left >= 1) { ?>
 							<a class="freeasso-cause-search-animals-donate" href="#sponsor" onclick="document.getElementById('freeasso-cause-mode').value='donate-<?php echo $oneCause->id; ?>';document.getElementById('freeasso-cause-search-form').submit();return false;">
 								<?php esc_html_e('Parrainer', 'freeasso'); ?>

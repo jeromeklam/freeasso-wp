@@ -73,6 +73,7 @@
 				<form role="search" id="freeasso-cause-search-form" class="freeasso-cause-search-form" method="get">
 					<input type="submit" name="btn" value="<?php esc_html_e('Parrainer','freeasso'); ?>" />
 					<input type="hidden" name="freeasso-cause-mode" value="donate-<?php echo $oneCause->id; ?>" />
+					<input type="hidden" name="freeasso-cause-search-money" value="<?php echo CURRENCY; ?>" />
 					<?php
 						// recopie les parametres GET, pour les conserver dans l'URL
 						foreach($_GET as $p=>$v) {

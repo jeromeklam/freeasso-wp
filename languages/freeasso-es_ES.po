@@ -1,17 +1,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2021-03-09 11:18+0100\n"
-"PO-Revision-Date: 2021-03-09 11:18+0100\n"
+"POT-Creation-Date: 2022-01-18 10:28+0100\n"
+"PO-Revision-Date: 2022-01-18 10:33+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
-"X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: esc_html_e;translate;esc_html__\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -31,188 +31,237 @@ msgstr "De 10 a 15 años"
 msgid "Plus de 15 ans"
 msgstr "Más de 15 años"
 
-#: api/class.freeasso-api-amounts.php:35
+#: api/class.freeasso-api-amounts.php:39 api/class.freeasso-api-amounts.php:53
 msgid "Tous les gibbons à parrainer"
 msgstr "Todos los gibones para patrocinar"
 
-#: api/class.freeasso-api-amounts.php:36
+#: api/class.freeasso-api-amounts.php:40
 msgid "280€ ou 23,33€/mois (parrainage complet)"
 msgstr "280€ o 23,33 €/mes (Apadrinamiento completo)"
 
-#: api/class.freeasso-api-amounts.php:37
+#: api/class.freeasso-api-amounts.php:41 api/class.freeasso-api-amounts.php:55
 msgid "Déjà parrainé en totalité"
 msgstr "Ya patrocinado en su totalidad"
 
-#: api/class.freeasso-api-amounts.php:39
+#: api/class.freeasso-api-amounts.php:43
 msgid "200 à 279€"
 msgstr "De 200 a 279€"
 
-#: api/class.freeasso-api-amounts.php:40
+#: api/class.freeasso-api-amounts.php:44
 msgid "100 à 199€"
 msgstr "De 100 a 199€"
 
-#: api/class.freeasso-api-amounts.php:41
+#: api/class.freeasso-api-amounts.php:45
 msgid "50 à 99€"
 msgstr "De 50 a 99€"
 
-#: api/class.freeasso-api-amounts.php:42
+#: api/class.freeasso-api-amounts.php:46
 msgid "1 à 49€"
 msgstr "De 1 a 49€"
 
-#: api/class.freeasso-api-amounts.php:44
+#: api/class.freeasso-api-amounts.php:48
 msgid "10 à 23€/mois"
 msgstr "De 10 a 23 €/mes"
 
-#: api/class.freeasso-api-amounts.php:45
+#: api/class.freeasso-api-amounts.php:49
 msgid "5 à 9€/mois"
 msgstr "De 5 a 9€ /mes"
 
-#: api/class.freeasso-api-amounts.php:46
+#: api/class.freeasso-api-amounts.php:50
 msgid "5€/mois et plus"
 msgstr "5 €/mes y más"
 
-#: api/class.freeasso-api-genders.php:35 views/cause-detail.php:27
+#: api/class.freeasso-api-amounts.php:54
+msgid "290CHF ou 24,16CHF/mois (parrainage complet)"
+msgstr "290CHF o 24,16 CHF/mes (Apadrinamiento completo)"
+
+#: api/class.freeasso-api-amounts.php:57
+msgid "200 à 290CHF"
+msgstr "De 200 a 290CHF"
+
+#: api/class.freeasso-api-amounts.php:58
+msgid "100 à 199CHF"
+msgstr "De 100 a 199CHF"
+
+#: api/class.freeasso-api-amounts.php:59
+msgid "50 à 99CHF"
+msgstr "De 50 a 99CHF"
+
+#: api/class.freeasso-api-amounts.php:60
+msgid "1 à 49CHF"
+msgstr "De 1 a 49CHF"
+
+#: api/class.freeasso-api-amounts.php:62
+msgid "10 à 24CHF/mois"
+msgstr "De 10 a 23 CHF/mes"
+
+#: api/class.freeasso-api-amounts.php:63
+msgid "5 à 9CHF/mois"
+msgstr "De 5 a 9CHF/mes"
+
+#: api/class.freeasso-api-amounts.php:64
+msgid "5CHF/mois et plus"
+msgstr "5 CHF/mes y más"
+
+#: api/class.freeasso-api-genders.php:35 views/cause-detail.php:37
 msgid "Femelle"
 msgstr "Femenino"
 
-#: api/class.freeasso-api-genders.php:36 views/cause-detail.php:26
+#: api/class.freeasso-api-genders.php:36 views/cause-detail.php:36
 msgid "Mâle"
 msgstr "Macho"
 
-#: views/cause-detail.php:21 views/cause-search.php:167
-#: views/cause-search.php:309
+#: views/cause-detail.php:31 views/cause-search.php:191
+#: views/cause-search.php:310
 msgid "Localisation"
 msgstr "Localización"
 
-#: views/cause-detail.php:24 views/cause-search.php:148
+#: views/cause-detail.php:34 views/cause-search.php:178
 msgid "Sexe"
 msgstr "Sexo"
 
-#: views/cause-detail.php:32 views/cause-search.php:310
+#: views/cause-detail.php:42 views/cause-search.php:311
 msgid "Année de naissance"
 msgstr "Año de nacimiento"
 
-#: views/cause-detail.php:33 views/cause-search.php:186
-#: views/cause-search.php:311
+#: views/cause-detail.php:43 views/cause-search.php:204
+#: views/cause-search.php:312
 msgid "Age"
 msgstr "Edad"
 
-#: views/cause-detail.php:35 views/cause-search.php:313
+#: views/cause-detail.php:45 views/cause-search.php:314
 msgid "ans"
 msgstr "años"
 
-#: views/cause-detail.php:35 views/cause-search.php:313
+#: views/cause-detail.php:45 views/cause-search.php:315
 msgid "an"
 msgstr "año"
 
-#: views/cause-detail.php:37 views/cause-search.php:130
-#: views/cause-search.php:315
+#: views/cause-detail.php:47 views/cause-search.php:165
+#: views/cause-search.php:317
 msgid "Espèce"
 msgstr "Especie"
 
-#: views/cause-detail.php:41 views/cause-search.php:324
+#: views/cause-detail.php:53 views/cause-search.php:326
 msgid "Intégralement parrainé"
 msgstr "Totalmente patrocinado"
 
-#: views/cause-detail.php:43 views/cause-search.php:321
+#: views/cause-detail.php:55 views/cause-search.php:323
 msgid "Reste à parrainer :"
 msgstr "Queda por patrocinar:"
 
-#: views/cause-detail.php:51 views/cause-search.php:329
+#: views/cause-detail.php:61 views/cause-search.php:331
 msgid "Parrains"
 msgstr "Patrocinadores"
 
-#: views/cause-detail.php:54
+#: views/cause-detail.php:64
 msgid "Parrain anonyme."
 msgstr "Patrocinador anónimo."
 
-#: views/cause-detail.php:56
+#: views/cause-detail.php:66
 msgid "Aucun parrain."
 msgstr "Sin patrocinador."
 
-#: views/cause-detail.php:58
+#: views/cause-detail.php:68
 msgid "Parrainé par :"
 msgstr "Patrocinado por :"
 
-#: views/cause-detail.php:64 views/cause-search.php:336
+#: views/cause-detail.php:74 views/cause-search.php:337
 msgid "Parrainer"
 msgstr "Patrocinar"
 
-#: views/cause-detail.php:90
+#: views/cause-detail.php:101
 msgid "Retour"
 msgstr "Regresar"
 
-#: views/cause-search.php:126
+#: views/cause-search.php:149
+msgid "Vous préférez l'Euro ?"
+msgstr "¿Prefieres el euro?"
+
+#: views/cause-search.php:150 views/cause-search.php:156
+msgid "/parrainer-un-gibbon"
+msgstr "/es/patrocinar-un-gibbon"
+
+#: views/cause-search.php:150 views/cause-search.php:156
+#, php-format
+msgid "Afficher les montants en %1$s"
+msgstr "Mostrar importes en %1$s"
+
+#: views/cause-search.php:155
+msgid "Donateur Suisse ?"
+msgstr "¿Donante suizo?"
+
+#: views/cause-search.php:162
 msgid "Recherche par filtre"
 msgstr "Búsqueda por filtros"
 
-#: views/cause-search.php:135 views/cause-search.php:173
+#: views/cause-search.php:167 views/cause-search.php:193
 msgid "Toutes"
 msgstr "Todos"
 
-#: views/cause-search.php:154 views/cause-search.php:191
-#: views/cause-search.php:213 views/cause-search.php:242
-#: views/cause-search.php:385
+#: views/cause-search.php:180 views/cause-search.php:206
+#: views/cause-search.php:223 views/cause-search.php:246
+#: views/cause-search.php:377
 msgid "Tous"
 msgstr "Todos"
 
-#: views/cause-search.php:206
+#: views/cause-search.php:220
 msgid "Montant à parrainer"
 msgstr "Monto a patrocinar"
 
-#: views/cause-search.php:230
+#: views/cause-search.php:237
 msgid "Rechercher"
 msgstr "Buscar"
 
-#: views/cause-search.php:235
+#: views/cause-search.php:242
 msgid "Recherche par nom"
 msgstr "Buscar por nombre"
 
-#: views/cause-search.php:256
+#: views/cause-search.php:257
 msgid "Afficher"
 msgstr "Monitor"
 
-#: views/cause-search.php:263
+#: views/cause-search.php:264
 msgid "Liste des gibbons déjà parrainés"
 msgstr "Lista de gibones ya patrocinados"
 
-#: views/cause-search.php:265
+#: views/cause-search.php:266
 msgid "Liste des gibbons à parrainer"
 msgstr "Lista de gibones para patrocinar"
 
-#: views/cause-search.php:267
+#: views/cause-search.php:268
 msgid "Liste des gibbons"
 msgstr "Lista de gibones"
 
-#: views/cause-search.php:276
+#: views/cause-search.php:277
 msgid "animal listé"
 msgstr "animal en la lista"
 
-#: views/cause-search.php:278
+#: views/cause-search.php:279
 msgid "animaux listés"
 msgstr "animales listados"
 
-#: views/cause-search.php:283 views/cause-search.php:355
+#: views/cause-search.php:284 views/cause-search.php:355
 msgid "Page"
 msgstr "Página"
 
-#: views/cause-search.php:318
+#: views/cause-search.php:320
 msgid "Reste à parrainer"
 msgstr "Queda por patrocinar"
 
-#: views/cause-search.php:332
+#: views/cause-search.php:334
 msgid "Détails"
 msgstr "Detalles"
 
-#: views/cause-search.php:350
+#: views/cause-search.php:351
 msgid "Précédent"
 msgstr "Anterior"
 
-#: views/cause-search.php:373
+#: views/cause-search.php:369
 msgid "Suivant"
 msgstr "Siguiente"
 
-#: views/cause-search.php:400
+#: views/cause-search.php:390
 msgid "résultats / page"
 msgstr "resultados / página"
 
@@ -249,22 +298,26 @@ msgid "Clef de sécurité HAWK"
 msgstr "Llave de seguridad HAWK"
 
 #: views/config.php:63
+msgid "Jeton d'accès"
+msgstr "Ficha de acceso"
+
+#: views/config.php:67
 msgid "Préfixe des vignettes"
 msgstr "Prefijo para miniaturas"
 
-#: views/config.php:67
+#: views/config.php:71
 msgid "Suffixe des vignettes"
 msgstr "Sufijo para miniaturas"
 
-#: views/config.php:71
+#: views/config.php:75
 msgid "Préfixe des photos"
 msgstr "Prefijo de foto"
 
-#: views/config.php:75
+#: views/config.php:79
 msgid "Suffixe des photos"
 msgstr "Fotos sufijo"
 
-#: views/config.php:78
+#: views/config.php:82
 msgid ""
 "La clef ne sera jamais affichée. A renseigner pour la définir. A laisser "
 "vide pour conserver celle définie."
