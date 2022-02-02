@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-01-18 10:29+0100\n"
-"PO-Revision-Date: 2022-01-18 10:32+0100\n"
+"POT-Creation-Date: 2022-02-02 18:37+0100\n"
+"PO-Revision-Date: 2022-02-02 18:37+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -175,21 +175,25 @@ msgid "Retour"
 msgstr "Back"
 
 #: views/cause-search.php:149
-msgid "Vous préférez l'Euro ?"
-msgstr "Do you prefer the Euro?"
+msgid "Afficher les montants en Euro ?"
+msgstr "Show amounts in Euro?"
 
 #: views/cause-search.php:150 views/cause-search.php:156
 msgid "/parrainer-un-gibbon"
 msgstr "/en/sponsor-a-gibbon"
 
-#: views/cause-search.php:150 views/cause-search.php:156
-#, php-format
-msgid "Afficher les montants en %1$s"
-msgstr "Show amounts in %1$s"
+#: views/cause-search.php:150
+msgid "Cliquez ici"
+msgstr "Click here"
 
 #: views/cause-search.php:155
 msgid "Donateur Suisse ?"
 msgstr "Swiss donor?"
+
+#: views/cause-search.php:156
+#, php-format
+msgid "Afficher les montants en %1$s"
+msgstr "Show amounts in %1$s"
 
 #: views/cause-search.php:162
 msgid "Recherche par filtre"
@@ -356,6 +360,9 @@ msgstr "FreeAsso: number of hectares"
 #: widgets/class.freeasso-widget-hectares.php:18
 msgid "Affiche le nombre d'hectares"
 msgstr "Displays the number of hectares"
+
+#~ msgid "Vous préférez l'Euro ?"
+#~ msgstr "Do you prefer the Euro?"
 
 #~ msgid "A parrainer en totalité (280€ ou 23,33€/mois)"
 #~ msgstr "Complete sponsor (280€ or 23,33€/mois)"

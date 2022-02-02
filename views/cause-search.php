@@ -146,8 +146,8 @@
 		<?php if (INCLUDE_TORAISE && $this->getParam('freeasso-cause-search-money')=='CHF') { ?>
 			<?php $currency='CHF'; ?>
 			<p class="goto-eur">
-				<?php esc_html_e('Vous préférez l\'Euro ?', 'freeasso'); ?>
-				<a href="<?php esc_html_e('/parrainer-un-gibbon', 'freeasso'); ?>/?ami=<?php echo $this->getParam('ami')?'1':'0'; ?>&amp;freeasso-cause-search-money=EUR" onclick="document.getElementById('freeasso-cause-search-money').value='EUR';document.getElementById('freeasso-cause-search-button').click();return false;"><?php printf(translate('Afficher les montants en %1$s', 'freeasso'),'€'); ?></a>.
+				<?php esc_html_e('Afficher les montants en Euro ?', 'freeasso'); ?>
+				<a href="<?php esc_html_e('/parrainer-un-gibbon', 'freeasso'); ?>/?ami=<?php echo $this->getParam('ami')?'1':'0'; ?>&amp;freeasso-cause-search-money=EUR" onclick="document.getElementById('freeasso-cause-search-money').value='EUR';document.getElementById('freeasso-cause-search-button').click();return false;"><?php esc_html_e('Cliquez ici', 'freeasso'); ?></a>.
 			</p>
 		<?php } elseif(INCLUDE_TORAISE) { ?>
 			<?php $currency='EUR'; ?>
