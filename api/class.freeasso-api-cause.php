@@ -14,7 +14,7 @@ class Freeasso_Api_Cause extends Freeasso_Api_Base
     use Freeasso_View;
 
     /**
-     * Causes
+     * Cause
      *
      * @var array
      */

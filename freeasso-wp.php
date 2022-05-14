@@ -22,6 +22,9 @@
  * 2.0.1 : 10/10/2021
  *     Intégration de la nouvelle version de l'administration freeasso.
  * ===============================================================================================
+ * 2.2.0 : 14/05/2022
+ *     test intégration partie membre
+ * ===============================================================================================
  */
 
 // --------------------------------------------------------------------------------------------------------------------
@@ -70,7 +73,7 @@ if (! function_exists('add_action')) {
 // --------------------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------------
 define('FREEASSO', 'FreeAsso');
-define('FREEASSO_VERSION', '2.1.0');
+define('FREEASSO_VERSION', '2.2.0');
 define('FREEASSO_MINIMUM_WP_VERSION', '5.6');
 define('FREEASSO_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FREEASSO_PLUGIN_NAME', 'FreeAsso-WP');
@@ -84,6 +87,7 @@ require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso-tools.php';
 require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso-migration.php';
 require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso-session.php';
 require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso-view.php';
+require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso-user.php';
 require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso-api-base.php';
 require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso-config.php';
 require_once FREEASSO_PLUGIN_DIR . 'core/class.freeasso.php';
@@ -94,11 +98,13 @@ require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-auth.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-cause.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-causes.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-genders.php';
+require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-member.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-names.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-sites.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-species.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-stats.php';
 require_once FREEASSO_PLUGIN_DIR . 'controllers/class.freeasso-causes-search.php';
+require_once FREEASSO_PLUGIN_DIR . 'controllers/class.freeasso-member.php';
 require_once FREEASSO_PLUGIN_DIR . 'controllers/class.freeasso-stats.php';
 require_once FREEASSO_PLUGIN_DIR . 'widgets/class.freeasso-widget-amis.php';
 require_once FREEASSO_PLUGIN_DIR . 'widgets/class.freeasso-widget-causes.php';

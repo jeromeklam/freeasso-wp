@@ -73,9 +73,12 @@ class Freeasso
     public function initMember()
     {
         $user  = wp_get_current_user();
+        $email = null;
         $jwt   = $this->session->get('client-jwt', null);
         $token = null;
         if ($user && $user->ID) {
+            $email = $user->user_email;
+            /*
             if (!$jwt) {
                 $token = get_user_meta($user->ID, 'freeasso-client-token', true);
                 $auth  = Freeasso_Api_Auth::getFactory();
@@ -85,7 +88,9 @@ class Freeasso
             }
         } else {
             $this->session->set('client-jwt', null);
+            */
         }
+        $this->session->set('member-email', $email);
     }
 
     /**
@@ -207,6 +212,7 @@ class Freeasso
     {
         $freeStats = Freeasso_Stats::getInstance();
         $freeCauses = Freeasso_Causes_Search::getInstance();
+        $freeMember = Freeasso_Member::getInstance();
         add_shortcode('FreeAsso_Gibbons', [
             &$freeStats,
             'echoGibbons'
@@ -222,6 +228,10 @@ class Freeasso
         add_shortcode('FreeAsso_Causes', [
             &$freeCauses,
             'echoForm'
+        ]);
+        add_shortcode('FreeAsso_Member_Infos', [
+            &$freeMember,
+            'echoInfos'
         ]);
         return $this;
     }
