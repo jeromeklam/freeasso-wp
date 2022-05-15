@@ -23,7 +23,10 @@
  *     Intégration de la nouvelle version de l'administration freeasso.
  * ===============================================================================================
  * 2.2.0 : 14/05/2022
- *     test intégration partie membre
+ *     Test intégration partie membre
+ * ===============================================================================================
+ * 2.2.1 : 15/05/2022
+ *     Suite test intégration partie membre
  * ===============================================================================================
  */
 
@@ -73,7 +76,7 @@ if (! function_exists('add_action')) {
 // --------------------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------------
 define('FREEASSO', 'FreeAsso');
-define('FREEASSO_VERSION', '2.2.0');
+define('FREEASSO_VERSION', '2.2.1');
 define('FREEASSO_MINIMUM_WP_VERSION', '5.6');
 define('FREEASSO_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FREEASSO_PLUGIN_NAME', 'FreeAsso-WP');
@@ -99,6 +102,11 @@ require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-cause.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-causes.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-genders.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-member.php';
+require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-member-certificate.php';
+require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-member-certificates.php';
+require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-member-gibbons.php';
+require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-member-receipt.php';
+require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-member-receipts.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-names.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-sites.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-species.php';

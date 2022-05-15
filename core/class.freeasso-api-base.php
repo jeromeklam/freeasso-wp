@@ -146,6 +146,12 @@ class Freeasso_Api_Base
     protected $datas = null;
 
     /**
+     * Rax result
+     * @var boolean
+     */
+    protected $raw = false;
+
+    /**
      * Get factory
      *
      * @return Freeasso_Api_Base
@@ -186,6 +192,19 @@ class Freeasso_Api_Base
     public function getDatas()
     {
         return $this->datas;
+    }
+
+    /**
+     * Set raw result
+     * 
+     * @var boolean $p_raw
+     * 
+     * @return self
+     */
+    public function setRaw($p_raw = true)
+    {
+        $this->raw = $p_raw;
+        return $this;
     }
 
     /**
@@ -727,9 +746,12 @@ class Freeasso_Api_Base
             if (array_key_exists('code', $response) && intval($response['code']) < 300) {
                 freeasso_wp_log('CALL.code : ' .$response['code']);
                 if (array_key_exists('body', $result)) {
-                    $json = $result['body'];
+                    $content = $result['body'];
+                    if ($this->raw) {
+                        return $content;
+                    }
                     freeasso_wp_log('CALL.body : ' . json_encode($result));
-                    return json_decode($json);
+                    return json_decode($content);
                 } else {
                     freeasso_wp_log('CALL.no.body : ' . json_encode($result));
                 }

@@ -16,10 +16,20 @@ class Freeasso_Api_Member extends Freeasso_Api_Base
 
     /**
      * Member
-     *
      * @var \StdClass
      */
     protected $member = null;
+
+    /**
+     * Constructor
+     */
+    protected function __construct()
+    {
+        parent::__construct();
+        $email = $this->getCurrentUserEmail();
+        $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/asso/member/' . $email . '/infos');
+        $this->setPrivate();
+    }
 
     /**
      * Get member
@@ -32,17 +42,6 @@ class Freeasso_Api_Member extends Freeasso_Api_Base
             $this->getWS();
         }
         return $this->member;
-    }
-
-    /**
-     * Constructor
-     */
-    protected function __construct()
-    {
-        parent::__construct();
-        $email = $this->getCurrentUserEmail();
-        $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/asso/member/' . $email . '/infos');
-        $this->setPrivate();
     }
 
     /**
