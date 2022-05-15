@@ -358,7 +358,10 @@ class Freeasso_Causes_Search
 }
 
 
-// lib form views
+/**
+ * lib form views
+ * @see formatAmountAsHtml if updated
+ */
 function _freeasso_amount_format($amount,$decimals=2)
 {
     if($amount-floor($amount)<.005) {

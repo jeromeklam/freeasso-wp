@@ -106,6 +106,8 @@ class Freeasso
         $this->initFilters();
         // Check user
         $this->initMember();
+        // Check urls
+        $this->initUrls();
         // Actions
         $this->initActions();
         // Shortcodes
@@ -229,10 +231,72 @@ class Freeasso
             &$freeCauses,
             'echoForm'
         ]);
+        add_shortcode('FreeAsso_Member_Tabs', [
+            &$freeMember,
+            'echoTabs'
+        ]);
         add_shortcode('FreeAsso_Member_Infos', [
             &$freeMember,
             'echoInfos'
         ]);
         return $this;
+    }
+
+    public static function sendFile($p_filename, $p_content)
+    {
+        // HTTP headers for downloads
+        header("Pragma: public");
+        header("Expires: 0");
+        header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+        header("Content-Type: application/force-download");
+        header("Content-Type: application/octet-stream");
+        header("Content-Type: application/download");
+        header("Content-Disposition: attachment; filename=$p_filename");
+        header("Content-Transfer-Encoding: binary");
+        echo $p_content;
+        exit(0);
+    }
+
+    /**
+     * Check specific urls
+     */
+    public function initUrls()
+    {
+        // Download receipt ??
+        if (isset($_GET['download_receipt_id'])) {
+            $receipt_id = intval($_GET['download_receipt_id']);
+            if ($receipt_id > 0) {
+                /**
+                 * @var Freeasso_Api_Member_Receipt $freereceipt
+                 */
+                $freereceipt = Freeasso_Api_Member_Receipt::getFactory();
+                $data = $freereceipt->download($receipt_id);
+                if ($data) {
+                    $filename = "receipt_" . $receipt_id . ".pdf";
+                    if (isset($_GET['download_name'])) {
+                        $filename = $_GET['download_name'];
+                    }
+                    self::sendFile($filename, $data);
+                }
+            }
+        }
+        // Download certificate ??
+        if (isset($_GET['download_certificate_id'])) {
+            $cert_id = intval($_GET['download_certificate_id']);
+            if ($cert_id > 0) {
+                /**
+                 * @var Freeasso_Api_Member_Certificate $freecert
+                 */
+                $freecert = Freeasso_Api_Member_Certificate::getFactory();
+                $data = $freecert->download($cert_id);
+                if ($data) {
+                    $filename = "certificat_" . $cert_id . ".pdf";
+                    if (isset($_GET['download_name'])) {
+                        $filename = $_GET['download_name'];
+                    }
+                    self::sendFile($filename, $data);
+                }
+            }
+        }
     }
 }

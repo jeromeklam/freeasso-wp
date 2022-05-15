@@ -21,6 +21,7 @@ trait Freeasso_User
         if ($user && $user->ID) {
             $email = $user->user_email;
         }
+        return 'fannykuster@free.fr';
         return $email;
     }
 }
