@@ -60,6 +60,10 @@ class Freeasso_Member
         return self::$instance;
     }
 
+    public function isKalaweitMember() {
+        return ($this->member == true);
+    }
+
     /**
      * Echo Amis
      *

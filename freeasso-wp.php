@@ -102,6 +102,7 @@ require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-cause.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-causes.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-genders.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-member.php';
+require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-member-exists.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-member-certificate.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-member-certificates.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-member-gibbons.php';
