@@ -11,12 +11,20 @@
 			<thead>
 				<tr>
 					<th><?php esc_html_e('Nom', 'freeasso'); ?></th>
+					<th><?php esc_html_e('Sexe', 'freeasso'); ?></th>
+					<th><?php esc_html_e('Naissance', 'freeasso'); ?></th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php foreach($this->gibbons as $oneGibbon) { ?>
 					<tr>
 						<td><?php echo $oneGibbon->name; ?></td>
+						<td><?php echo $oneGibbon->gender; ?></td>
+						<td><?php echo $oneGibbon->born; ?></td>
+						<td>
+							<a href="<?php echo $oneGibbon->link; ?>"><?php esc_html_e('Download', 'freeasso'); ?></a>
+						</td>
 					</tr>
 				<?php } ?>
 			</tbody>

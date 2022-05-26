@@ -59,8 +59,10 @@ class Freeasso_Api_Member_Certificates extends Freeasso_Api_Base
             foreach ($p_certificates as $oneCertificate) {
                 $certificate     = new StdClass();
                 $certificate->id     = $oneCertificate->rec_id;
-                $certificate->mnt    = $oneCertificate->cert_input_mnt;
-                $certificate->money  = $oneCertificate->cert_input_money;
+                $certificate->cause  = $oneCertificate->cau_name;
+                $certificate->date   = $oneCertificate->cert_ts;
+                $certificate->mnt    = $oneCertificate->cert_mnt;
+                $certificate->money  = $oneCertificate->cert_money;
                 $certificate->link   = $oneCertificate->file_id > 0 ? $this->addCurrentUrlParams(
                     [
                         'download_certificate_id' => $oneCertificate->cert_id,

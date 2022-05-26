@@ -28,6 +28,9 @@
  * 2.2.1 : 15/05/2022
  *     Suite test intégration partie membre
  * ===============================================================================================
+ * 2.2.2 : 26/05/2022
+ *     Suite test intégration partie membre
+ * ===============================================================================================
  */
 
 // --------------------------------------------------------------------------------------------------------------------
@@ -76,7 +79,7 @@ if (! function_exists('add_action')) {
 // --------------------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------------
 define('FREEASSO', 'FreeAsso');
-define('FREEASSO_VERSION', '2.2.1');
+define('FREEASSO_VERSION', '2.2.2');
 define('FREEASSO_MINIMUM_WP_VERSION', '5.6');
 define('FREEASSO_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FREEASSO_PLUGIN_NAME', 'FreeAsso-WP');
@@ -108,9 +111,12 @@ require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-member.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-member-exists.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-member-certificate.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-member-certificates.php';
+require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-member-donations.php';
+require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-member-gibbon.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-member-gibbons.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-member-receipt.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-member-receipts.php';
+require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-member-sponsorships.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-names.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-sites.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-species.php';

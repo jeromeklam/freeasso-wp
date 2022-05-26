@@ -134,6 +134,41 @@ trait Freeasso_View
     }
 
     /**
+     * Format date
+     * 
+     * @param string $p_date;
+     * 
+     * return string
+     */
+    public function formatDate($p_date)
+    {
+        $formatted = '';
+        if ($p_date) {
+            $date = new \DateTime($p_date);
+            if ($date) {
+                return $date->format('d/m/Y');
+            }
+        }
+        return $formatted;
+    }
+
+    /**
+     * Get status formated
+     * 
+     * @param string $p_status
+     * 
+     * @return string
+     */
+    public function formatStatus($p_status)
+    {
+        $formated = esc_html('OK', 'freeasso');
+        if ($p_status != "OK") {
+            $formated = esc_html('KO', 'freeasso');
+        }
+        return $formated;
+    }
+
+    /**
      * Return url
      * 
      * @return string

@@ -10,6 +10,8 @@
 		<table class="freeasso-member-table">
 			<thead>
 				<tr>
+				    <th><?php esc_html_e('Programme', 'freeasso'); ?></th>
+					<th><?php esc_html_e('Date', 'freeasso'); ?></th>
 					<th><?php esc_html_e('Montant', 'freeasso'); ?></th>
 					<th></th>
 				</tr>
@@ -17,6 +19,8 @@
 			<tbody>
 				<?php foreach($this->certificates as $oneCertificate) { ?>
 					<tr>
+						<td><?php echo $oneCertificate->cause; ?></td>	
+						<td><?php echo $this->formatDate($oneCertificate->date); ?></td>	
 						<td><?php echo $this->formatAmountAsHtml($oneCertificate->mnt, $oneCertificate->money); ?></td>
 						<td>
 							<?php if ($oneCertificate->link) { ?>
