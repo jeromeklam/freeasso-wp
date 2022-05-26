@@ -56,6 +56,16 @@ class Freeasso_Member
     protected $certificates = [];
 
     /**
+     * @var Array
+     */
+    protected $donations = [];
+
+    /**
+     * @var Array
+     */
+    protected $sponsorships = [];
+    
+    /**
      * Constructor
      */
     protected function __construct()
@@ -159,6 +169,42 @@ class Freeasso_Member
     }
 
     /**
+     * Sponsosrships
+     */
+    public function echoSponsorships($p_formated = true)
+    {
+        $freeMember = Freeasso_Api_Member::getFactory();
+        if ($this->member) {
+            /**
+             * @var Freeasso_Api_Member_Sponsorships $freeSpopnsor
+             */
+            $freeSpopnsor = Freeasso_Api_Member_Sponsorships::getFactory();
+            $this->sponsorships = $freeSpopnsor->getSponsorships();
+            $this->includeView('member-sponsorships', 'freeasso-member-sponsorships');
+        } else {
+            $this->includeView('member-none', 'freeasso-member-infos');
+        }
+    }
+
+    /**
+     * Donations
+     */
+    public function echoDonations($p_formated = true)
+    {
+        $freeMember = Freeasso_Api_Member::getFactory();
+        if ($this->member) {
+            /**
+             * @var Freeasso_Api_Member_Donations $freeDon
+             */
+            $freeDon = Freeasso_Api_Member_Donations::getFactory();
+            $this->donations = $freeDon->getDonations();
+            $this->includeView('member-donations', 'freeasso-member-donations');
+        } else {
+            $this->includeView('member-none', 'freeasso-member-infos');
+        }
+    }
+
+    /**
      * Tabs
      */
     public function echoTabs($p_formated = true)
@@ -191,6 +237,12 @@ class Freeasso_Member
             echo "    </div>";
             echo "    <div class=\"freeasso-member-tab-content\">";
             switch ($tab) {
+                case 'dons':
+                    $this->echoDonations($p_formated);
+                    break;
+                case 'parrainages':
+                    $this->echoSponsorships($p_formated);
+                    break;
                 case 'gibbons':
                     $this->echoGibbons($p_formated);
                     break;

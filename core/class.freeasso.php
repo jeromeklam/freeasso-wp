@@ -251,6 +251,14 @@ class Freeasso
             &$freeMember,
             'echoGibbons'
         ]);
+        add_shortcode('FreeAsso_Member_Sponsorships', [
+            &$freeMember,
+            'echoSponsorships'
+        ]);
+        add_shortcode('FreeAsso_Member_Donations', [
+            &$freeMember,
+            'echoDonations'
+        ]);
         return $this;
     }
 
@@ -303,6 +311,24 @@ class Freeasso
                 $data = $freecert->download($cert_id);
                 if ($data) {
                     $filename = "certificat_" . $cert_id . ".pdf";
+                    if (isset($_GET['download_name'])) {
+                        $filename = $_GET['download_name'];
+                    }
+                    self::sendFile($filename, $data);
+                }
+            }
+        }
+        // Download cause ??
+        if (isset($_GET['download_cause_id'])) {
+            $cau_id = intval($_GET['download_cause_id']);
+            if ($cau_id > 0) {
+                /**
+                 * @var Freeasso_Api_Member_Gibbon $freeCause
+                 */
+                $freeCause = Freeasso_Api_Member_Gibbon::getFactory();
+                $data = $freeCause->download($cau_id);
+                if ($data) {
+                    $filename = "gibbon_" . $cau_id . ".pdf";
                     if (isset($_GET['download_name'])) {
                         $filename = $_GET['download_name'];
                     }

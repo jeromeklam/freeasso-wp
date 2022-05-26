@@ -10,7 +10,7 @@ Les documentations se trouvent dans le dossier doc :
 * [Statistiques](./doc/stats.md)
 * [Causes](./doc/causes.md)
 * [Apis](./doc/apis.md)
-
+* [Espace membre](./doc/member_area.md)
 
 ## Paramétrage
 
