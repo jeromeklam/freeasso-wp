@@ -26,6 +26,21 @@ class Freeasso_Member
     protected $member = null;
 
     /**
+     * @var Array
+     */
+    protected $categories = null;
+
+    /**
+     * @var Array
+     */
+    protected $langs = null;
+
+    /**
+     * @var Array
+     */
+    protected $countries = null;
+
+    /**
      * @var array
      */
     protected $gibbons = [];
@@ -69,10 +84,71 @@ class Freeasso_Member
      */
     public function echoInfos($p_formated = true)
     {
-        $freemember = Freeasso_Api_Member::getFactory();
-        $this->member = $freemember->getMember();
+        $freeMember = Freeasso_Api_Member::getFactory();
+        $freeCat    = Freeasso_Api_Categories::getFactory();
+        $freeLang   = Freeasso_Api_Langs::getFactory();
+        $freeCoun   = Freeasso_Api_Countries::getFactory();
+        $this->member     = $freeMember->getMember();
+        $this->categories = $freeCat->getCategories();
+        $this->langs      = $freeLang->getLangs();
+        $this->countries  = $freeCoun->getCountries();
+        //var_export($this->member);die('dfsfsdfds');
         if ($this->member) {
             $this->includeView('member-infos', 'freeasso-member-infos');
+        } else {
+            $this->includeView('member-none', 'freeasso-member-infos');
+        }
+    }
+
+    /**
+     * Receipts
+     */
+    public function echoReceipts($p_formated = true)
+    {
+        $freeMember = Freeasso_Api_Member::getFactory();
+        if ($this->member) {
+            /**
+             * @var Freeasso_Api_Member_Receipts $freereceipts
+             */
+            $freereceipts = Freeasso_Api_Member_Receipts::getFactory();
+            $this->receipts = $freereceipts->getReceipts();
+            $this->includeView('member-receipts', 'freeasso-member-receipts');
+        } else {
+            $this->includeView('member-none', 'freeasso-member-infos');
+        }
+    }
+
+    /**
+     * Certificates
+     */
+    public function echoCertificates($p_formated = true)
+    {
+        $freeMember = Freeasso_Api_Member::getFactory();
+        if ($this->member) {
+            /**
+             * @var Freeasso_Api_Member_Certificates $freecerts
+             */
+            $freecerts = Freeasso_Api_Member_Certificates::getFactory();
+            $this->certificates = $freecerts->getCertificates();
+            $this->includeView('member-certificates', 'freeasso-member-certificates');
+        } else {
+            $this->includeView('member-none', 'freeasso-member-infos');
+        }
+    }
+
+    /**
+     * Gibbons
+     */
+    public function echoGibbons($p_formated = true)
+    {
+        $freeMember = Freeasso_Api_Member::getFactory();
+        if ($this->member) {
+            /**
+             * @var Freeasso_Api_Member_Gibbons $freegibbons
+             */
+            $freegibbons = Freeasso_Api_Member_Gibbons::getFactory();
+            $this->gibbons = $freegibbons->getGibbons();
+            $this->includeView('member-gibbons', 'freeasso-member-gibbons');
         } else {
             $this->includeView('member-none', 'freeasso-member-infos');
         }
@@ -112,33 +188,18 @@ class Freeasso_Member
             echo "    <div class=\"freeasso-member-tab-content\">";
             switch ($tab) {
                 case 'gibbons':
-                    /**
-                     * @var Freeasso_Api_Member_Gibbons $freegibbons
-                     */
-                    $freegibbons = Freeasso_Api_Member_Gibbons::getFactory();
-                    $this->gibbons = $freegibbons->getGibbons();
-                    $this->includeView('member-gibbons', 'freeasso-member-gibbons');
+                    $this->echoGibbons($p_formated);
                     break;
                 case 'certificats':
-                    /**
-                     * @var Freeasso_Api_Member_Certificates $freecerts
-                     */
-                    $freecerts = Freeasso_Api_Member_Certificates::getFactory();
-                    $this->certificates = $freecerts->getCertificates();
-                    $this->includeView('member-certificates', 'freeasso-member-certificates');
+                    $this->echoCertificates($p_formated);
                     break;
                 case 'recus':
-                    /**
-                     * @var Freeasso_Api_Member_Receipts $freereceipts
-                     */
-                    $freereceipts = Freeasso_Api_Member_Receipts::getFactory();
-                    $this->receipts = $freereceipts->getReceipts();
-                    $this->includeView('member-receipts', 'freeasso-member-receipts');
+                    $this->echoReceipts($p_formated);
                     break;
                 case 'dons':
                     break;
                 default:
-                    $this->includeView('member-infos', 'freeasso-member-infos');
+                    $this->echoInfos($p_formated);
                     break;
             }
             echo "    </div>";

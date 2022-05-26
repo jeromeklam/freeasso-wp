@@ -1,5 +1,19 @@
 <div class="freeasso-member-form">
-	<div class="freeasso-member-input-group">
+    <div class="freeasso-member-input-group">
+		<label for="freeasso-member-category" class="freeasso-member-label"><?php esc_html_e('Catégorie', 'freeasso'); ?></label>
+		<select name="freeasso-member-category" id="freeasso-member-category" value="<?php echo $this->member->mbr_category; ?>">
+		<?php
+			foreach ($this->categories as $oneCat) {
+				$selected = '';
+				if ($oneCat->code == $this->member->mbr_category) {
+					$selected = 'selected';
+				}
+				echo '<option value="' . $oneCat->code . '" ' . $selected . '>' . $oneCat->label . '</option>';
+			}
+		?>
+		</select>
+	</div>
+    <div class="freeasso-member-input-group">
 		<label for="freeasso-member-firstname" class="freeasso-member-label"><?php esc_html_e('Prénom', 'freeasso'); ?></label>
 		<input type="text" name="freeasso-member-firstname" id="freeasso-member-firstname" value="<?php echo $this->member->mbr_firstname; ?>" />
 	</div>
@@ -23,7 +37,7 @@
 	</div>
 	<div class="freeasso-member-input-group">
 		<label for="freeasso-member-email" class="freeasso-member-label"><?php esc_html_e('Email', 'freeasso'); ?></label>
-		<input type="text" name="freeasso-member-email" id="freeasso-member-email" value="<?php echo $this->member->mbr_email; ?>" />
+		<input type="text" name="freeasso-member-email" id="freeasso-member-email" disabled value="<?php echo $this->member->mbr_email; ?>" />
 	</div>
 	<div class="freeasso-member-input-group">
 		<label for="freeasso-member-phone" class="freeasso-member-label"><?php esc_html_e('Téléphone', 'freeasso'); ?></label>
@@ -32,5 +46,33 @@
 	<div class="freeasso-member-input-group">
 		<label for="freeasso-member-receipt" class="freeasso-member-label"><?php esc_html_e('Envoyer le(s) reçu(s)', 'freeasso'); ?></label>
 		<input type="checkbox" name="freeasso-member-receipt" id="freeasso-member-receipt" checked="<?php echo $this->member->mbr_receipt ? "checkzed" : ""; ?>" />
+	</div>
+	<div class="freeasso-member-input-group">
+		<label for="freeasso-member-country" class="freeasso-member-label"><?php esc_html_e('Pays', 'freeasso'); ?></label>
+		<select name="freeasso-member-country" id="freeasso-member-country" value="<?php echo $this->member->mbr_country; ?>">
+		<?php
+			foreach ($this->countries as $oneCountry) {
+				$selected = '';
+				if ($oneCountry->code == $this->member->mbr_country) {
+					$selected = 'selected';
+				}
+				echo '<option value="' . $oneCountry->code . '" ' . $selected . '>' . $oneCountry->label . '</option>';
+			}
+		?>
+		</select>
+	</div>
+	<div class="freeasso-member-input-group">
+		<label for="freeasso-member-lang" class="freeasso-member-label"><?php esc_html_e('Langue', 'freeasso'); ?></label>
+		<select name="freeasso-member-lang" id="freeasso-member-lang" value="<?php echo $this->member->mbr_langage; ?>">
+		<?php
+			foreach ($this->langs as $oneLang) {
+				$selected = '';
+				if ($oneLang->code == $this->member->mbr_langage) {
+					$selected = 'selected';
+				}
+				echo '<option value="' . $oneLang->code . '" ' . $selected . '>' . $oneLang->label . '</option>';
+			}
+		?>
+		</select>
 	</div>
 </div>

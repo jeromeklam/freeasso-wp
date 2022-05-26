@@ -239,6 +239,18 @@ class Freeasso
             &$freeMember,
             'echoInfos'
         ]);
+        add_shortcode('FreeAsso_Member_Receipts', [
+            &$freeMember,
+            'echoReceipts'
+        ]);
+        add_shortcode('FreeAsso_Member_Certificates', [
+            &$freeMember,
+            'echoCertificates'
+        ]);
+        add_shortcode('FreeAsso_Member_Gibbons', [
+            &$freeMember,
+            'echoGibbons'
+        ]);
         return $this;
     }
 
