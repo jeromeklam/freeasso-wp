@@ -12,6 +12,7 @@ class Freeasso_Member
      * Behaviour
      */
     use Freeasso_View;
+    use Freeasso_User;
 
     /**
      * Instance
@@ -66,10 +67,22 @@ class Freeasso_Member
     protected $sponsorships = [];
     
     /**
+     * @var Array
+     */
+    protected $payment_types = [];
+
+    /**
+     * Current lang
+     * @var string
+     */
+    protected $param_lang = 'fr_FR';
+
+    /**
      * Constructor
      */
     protected function __construct()
     {
+        $this->param_lang = get_locale();
     }
 
     /**
@@ -98,11 +111,16 @@ class Freeasso_Member
      */
     public function echoInfos($p_formated = true)
     {
-        $freeMember = Freeasso_Api_Member::getFactory();
         $freeCat    = Freeasso_Api_Categories::getFactory();
         $freeLang   = Freeasso_Api_Langs::getFactory();
         $freeCoun   = Freeasso_Api_Countries::getFactory();
-        $this->member     = $freeMember->getMember();
+        if ($this->member === null) {
+            /**
+             * @var Freeasso_Api_Member $freemember
+             */
+            $freemember = Freeasso_Api_Member::getFactory();
+            $this->member = $freemember->getMember();
+        }
         $this->categories = $freeCat->getCategories();
         $this->langs      = $freeLang->getLangs();
         $this->countries  = $freeCoun->getCountries();
@@ -119,7 +137,13 @@ class Freeasso_Member
      */
     public function echoReceipts($p_formated = true)
     {
-        $freeMember = Freeasso_Api_Member::getFactory();
+        if ($this->member === null) {
+            /**
+             * @var Freeasso_Api_Member $freemember
+             */
+            $freemember = Freeasso_Api_Member::getFactory();
+            $this->member = $freemember->getMember();
+        }
         if ($this->member) {
             /**
              * @var Freeasso_Api_Member_Receipts $freereceipts
@@ -137,7 +161,13 @@ class Freeasso_Member
      */
     public function echoCertificates($p_formated = true)
     {
-        $freeMember = Freeasso_Api_Member::getFactory();
+        if ($this->member === null) {
+            /**
+             * @var Freeasso_Api_Member $freemember
+             */
+            $freemember = Freeasso_Api_Member::getFactory();
+            $this->member = $freemember->getMember();
+        }
         if ($this->member) {
             /**
              * @var Freeasso_Api_Member_Certificates $freecerts
@@ -155,7 +185,13 @@ class Freeasso_Member
      */
     public function echoGibbons($p_formated = true)
     {
-        $freeMember = Freeasso_Api_Member::getFactory();
+        if ($this->member === null) {
+            /**
+             * @var Freeasso_Api_Member $freemember
+             */
+            $freemember = Freeasso_Api_Member::getFactory();
+            $this->member = $freemember->getMember();
+        }
         if ($this->member) {
             /**
              * @var Freeasso_Api_Member_Gibbons $freegibbons
@@ -173,13 +209,24 @@ class Freeasso_Member
      */
     public function echoSponsorships($p_formated = true)
     {
-        $freeMember = Freeasso_Api_Member::getFactory();
+        if ($this->member === null) {
+            /**
+             * @var Freeasso_Api_Member $freemember
+             */
+            $freemember = Freeasso_Api_Member::getFactory();
+            $this->member = $freemember->getMember();
+        }
         if ($this->member) {
             /**
-             * @var Freeasso_Api_Member_Sponsorships $freeSpopnsor
+             * @var Freeasso_Api_PaymentType $freePtyp
              */
-            $freeSpopnsor = Freeasso_Api_Member_Sponsorships::getFactory();
-            $this->sponsorships = $freeSpopnsor->getSponsorships();
+            $freePtyp = Freeasso_Api_PaymentType::getFactory();
+            $this->payment_types = $freePtyp->getPaymentTypes();
+            /**
+             * @var Freeasso_Api_Member_Sponsorships $freeSponsor
+             */
+            $freeSponsor = Freeasso_Api_Member_Sponsorships::getFactory();
+            $this->sponsorships = $freeSponsor->getSponsorships();
             $this->includeView('member-sponsorships', 'freeasso-member-sponsorships');
         } else {
             $this->includeView('member-none', 'freeasso-member-infos');
@@ -191,8 +238,19 @@ class Freeasso_Member
      */
     public function echoDonations($p_formated = true)
     {
-        $freeMember = Freeasso_Api_Member::getFactory();
+        if ($this->member === null) {
+            /**
+             * @var Freeasso_Api_Member $freemember
+             */
+            $freemember = Freeasso_Api_Member::getFactory();
+            $this->member = $freemember->getMember();
+        }
         if ($this->member) {
+            /**
+             * @var Freeasso_Api_PaymentType $freePtyp
+             */
+            $freePtyp = Freeasso_Api_PaymentType::getFactory();
+            $this->payment_types = $freePtyp->getPaymentTypes();
             /**
              * @var Freeasso_Api_Member_Donations $freeDon
              */
@@ -218,11 +276,13 @@ class Freeasso_Member
             "dons"        => "Mes dons",
             "gibbons"     => "Animaux parrainés"
         ];
-        /**
-         * @var Freeasso_Api_Member $freemember
-         */
-        $freemember = Freeasso_Api_Member::getFactory();
-        $this->member = $freemember->getMember();
+        if ($this->member === null) {
+            /**
+             * @var Freeasso_Api_Member $freemember
+             */
+            $freemember = Freeasso_Api_Member::getFactory();
+            $this->member = $freemember->getMember();
+        }
         if ($this->member) {
             $tab = $this->getParam("member_tab", "infos");
             echo "<div class=\"freeasso-member-tab-wrapper\">";
@@ -262,6 +322,89 @@ class Freeasso_Member
             echo "</div>";
         } else {
             $this->includeView('member-none', 'freeasso-member-infos');
+        }
+    }
+
+    /**
+     * POST to StdClass
+     * 
+     * @return object
+     */
+    protected function postMemberToData()
+    {
+        $data = new \StdClass();
+        $type = '@type';
+        $data->$type = 'FreeAsso\\Model\\Member';
+        $data->mbr_send_receipt = false;
+        foreach ($_POST as $name => $value) {
+            if (strpos($name, 'freeasso-member-mbr_') !== false) {
+                $key = str_replace('freeasso-member-', '', $name);
+                if ($key == 'mbr_send_receipt') {
+                    if ($value == 'on' || $value == '1') {
+                        $data->mbr_send_receipt = true;
+                    }
+                    continue;
+                }
+                $data->$key = $value;
+            }
+        }
+        return $data;
+    }
+
+    /**
+     * Update member infos
+     * Handle form submission
+     */
+    public function updateMember()
+    {
+        if (isset($_POST['freeasso-member-infos-submit'])) {
+            if (wp_verify_nonce($_POST['user'], 'freeasso-infos')) {
+                // get new record from POST....
+                // Tout bon...
+                $data = $this->postMemberToData();
+                $data->mbr_email = $this->getCurrentUserEmail();
+                /**
+                 * @var Freeasso_Api_Member $memberApi;
+                 */
+                $memberApi = \Freeasso_Api_Member::getFactory();
+                $result = $memberApi->updateMember($data);
+                $this->member = $result;
+                if (isset($result->errors)) {
+                    // Send errors to view...
+                    foreach ($result->errors as $oneError) {
+                        $oneError = (array)$oneError;
+                        $this->addError($oneError['code'], esc_html($oneError['message'], 'freeasso'), $oneError['field']);
+                    }
+                } else {
+                    // @todo OK
+                }
+            }
+        }
+    }
+
+    /**
+     * Update email 
+     */
+    public function updateMemberEmail($p_mbr_id, $p_new_email)
+    {
+        $type = '@type';
+        //
+        $data            = new \StdClass();
+        $data->$type     = 'FreeAsso\\Model\\Member';
+        $data->mbr_id    = $p_mbr_id;
+        $data->mbr_email = $p_new_email;
+        $result = $memberApi->updateMemberEmail($data);
+        $this->member = $result;
+        if (isset($result->errors)) {
+            // Send errors to view...
+            foreach ($result->errors as $oneError) {
+                $oneError = (array)$oneError;
+                $this->addError($oneError['code'], esc_html($oneError['message'], 'freeasso'), $oneError['field']);
+            }
+            return false;
+        } else {
+            // @todo OK
+            return true;
         }
     }
 }

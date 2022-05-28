@@ -731,6 +731,12 @@ class Freeasso_Api_Base
         freeasso_wp_log('CALL.url : ' . $url);
         freeasso_wp_log('CALL.apiId : ' . $this->getConfig()->getApiId());
         switch ($this->getMethod()) {
+            case self::FREEASSO_METHOD_PUT:
+                $args['body']        = json_encode($this->getDatas());
+                $args['method']      = 'PUT';
+                $args['data_format'] = 'body';
+                $result = wp_remote_request($url, $args);
+                break;
             case self::FREEASSO_METHOD_POST:
                 $args['body']        = json_encode($this->getDatas());
                 $args['method']      = 'POST';
@@ -756,9 +762,19 @@ class Freeasso_Api_Base
                     freeasso_wp_log('CALL.no.body : ' . json_encode($result));
                 }
             } else {
-                freeasso_wp_log('CALL.error : ' . json_encode($result));
+                if (array_key_exists('body', $result)) {
+                    $content = $result['body'];
+                    if ($this->raw) {
+                        return $content;
+                    }
+                    freeasso_wp_log('CALL.body : ' . json_encode($result));
+                    return json_decode($content);
+                } else {
+                    freeasso_wp_log('CALL.no.body : ' . json_encode($result));
+                }
             }
         } else {
+            var_dump($result);die;
             freeasso_wp_log('CALL.no.result : ' . json_encode($result));
         }
         return false;

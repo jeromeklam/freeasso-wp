@@ -13,6 +13,7 @@
 					<th><?php esc_html_e('Nom', 'freeasso'); ?></th>
 					<th><?php esc_html_e('Montant', 'freeasso'); ?></th>
 					<th><?php esc_html_e('Date', 'freeasso'); ?></th>
+					<th><?php esc_html_e('Paiement', 'freeasso'); ?></th>
 					<th><?php esc_html_e('Status', 'freeasso'); ?></th>
 				</tr>
 			</thead>
@@ -22,6 +23,7 @@
 						<td><?php echo $oneDonation->cause; ?></td>
 						<td><?php echo $this->formatAmountAsHtml($oneDonation->mnt, $oneDonation->money); ?></td>
 						<td><?php echo $this->formatDate($oneDonation->date); ?></td>
+						<td><?php echo $this->getLabelFromCode($this->payment_types, $oneDonation->ptyp, ''); ?>
 						<td><?php echo $oneDonation->status == 'OK' ? esc_html_e('OK', 'freeasso') : esc_html_e('KO', 'freeasso'); ?></td>
 					</tr>
 				<?php } ?>

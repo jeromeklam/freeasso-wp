@@ -31,6 +31,9 @@
  * 2.2.2 : 26/05/2022
  *     Suite test intégration partie membre
  * ===============================================================================================
+ * 2.2.3 : 28/05/2022
+ *     Version initiale partie membre
+ * ===============================================================================================
  */
 
 // --------------------------------------------------------------------------------------------------------------------
@@ -79,7 +82,7 @@ if (! function_exists('add_action')) {
 // --------------------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------------
 define('FREEASSO', 'FreeAsso');
-define('FREEASSO_VERSION', '2.2.2');
+define('FREEASSO_VERSION', '2.2.3');
 define('FREEASSO_MINIMUM_WP_VERSION', '5.6');
 define('FREEASSO_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FREEASSO_PLUGIN_NAME', 'FreeAsso-WP');
@@ -118,6 +121,7 @@ require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-member-receipt.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-member-receipts.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-member-sponsorships.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-names.php';
+require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-payment-type.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-sites.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-species.php';
 require_once FREEASSO_PLUGIN_DIR . 'api/class.freeasso-api-stats.php';

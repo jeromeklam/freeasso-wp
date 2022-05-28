@@ -40,6 +40,18 @@ trait Freeasso_View
     protected $params = null;
 
     /**
+     * Errors
+     * @var Array
+     */
+    protected $errors = [];
+
+    /**
+     * Errors
+     * @var Array
+     */
+    protected $field_errors = [];
+
+    /**
      * Init all
      *
      * @return self
@@ -210,5 +222,112 @@ trait Freeasso_View
         $old = $this->getCurrentUrl();
         $url = add_query_arg($p_params, '', $old);
         return $url;
+    }
+
+    /**
+     * Return label for code
+     * 
+     * @param array  $p_tab
+     * @param string $p_code
+     * @param string $p_default
+     * 
+     * @return string
+     */
+    public function getLabelFromCode($p_tab, $p_code, $p_default = '')
+    {
+        foreach ($p_tab as $oneLine) {
+            if ($oneLine->code == $p_code) {
+                return $oneLine->label;
+            }
+        }
+        return $p_default;
+    }
+
+    /**
+     * Add error
+     * 
+     * @param string $p_code
+     * @param string $p_label
+     * @param string $p_field
+     * 
+     * @return self
+     */
+    protected function addError($p_code, $p_label, $p_field = '')
+    {
+        $this->errors[] = [
+            'code'  => $p_code,
+            'label' => $p_label,
+            'field' => $p_field
+        ];
+        if ($p_field != '') {
+            $this->field_errors[$p_field] = $p_label;
+        }
+        return $this;
+    }
+
+    /**
+     * Get errors
+     * 
+     * @return array 
+     */
+    protected function getErrors()
+    {
+        return $this->errors;
+    }
+
+    /**
+     * Field has error
+     * 
+     * @param string $p_field
+     * 
+     * @return boolean
+     */
+    public function isError($p_field)
+    {
+        return isset($this->field_errors[$p_field]);
+    }
+
+    /**
+     * Field error
+     * 
+     * @param string $p_field
+     * 
+     * @return string
+     */
+    public function getError($p_field)
+    {
+        if (isset($this->field_errors[$p_field])) {
+            return $this->field_errors[$p_field];
+        }
+        return '';
+    }
+
+    /**
+     * Display error
+     * 
+     * @param string $p_field
+     * 
+     * @return string
+     */
+    public function displayError($p_field)
+    {
+        if (isset($this->field_errors[$p_field])) {
+            return '<div class="freeasso-error-msg"><span>' . $this->field_errors[$p_field] . '</span></div>';
+        }
+        return '';
+    }
+
+    /**
+     * Display otjher errors
+     */
+    public function displayOtherErrors()
+    {
+        $errors = '';
+        foreach ($this->errors as $oneError) {
+            if ($oneError['field'] == '') {
+                $errors .= '<div class="freeasso-error-msg"><span>' . $oneError['label'] . '</span></div>';
+            }
+        }
+        return $errors;
     }
 }

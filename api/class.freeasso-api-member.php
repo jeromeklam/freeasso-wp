@@ -80,4 +80,32 @@ class Freeasso_Api_Member extends Freeasso_Api_Base
         $this->setMember(null);
         return false;
     }
+
+    /**
+     * Specific call for update
+     * 
+     * @param object $p_member 
+     */
+    public function updateMember($p_member)
+    {
+        $email = $this->getCurrentUserEmail();
+        $this->setMethod(self::FREEASSO_METHOD_PUT)->setUrl('/asso/member/' . $email . '/infos');
+        $this->setDatas($p_member);
+        $this->setPrivate();
+        return $this->call();
+    }
+
+        /**
+     * Specific call for update
+     * 
+     * @param object $p_member 
+     */
+    public function updateMemberEmail($p_member)
+    {
+        $email = $this->getCurrentUserEmail();
+        $this->setMethod(self::FREEASSO_METHOD_PUT)->setUrl('/asso/member/' . $email . '/email');
+        $this->setDatas($p_member);
+        $this->setPrivate();
+        return $this->call();
+    }
 }

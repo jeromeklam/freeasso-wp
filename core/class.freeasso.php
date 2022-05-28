@@ -202,6 +202,11 @@ class Freeasso
                 'filterStats'
             ], 1);
         }
+        $freeMember = Freeasso_Member::getInstance();
+        add_action('template_redirect', [
+            &$freeMember,
+            'updateMember'
+        ]);
         return $this;
     }
 

@@ -64,6 +64,7 @@ class Freeasso_Api_Member_Sponsorships extends Freeasso_Api_Base
                 $sponsorship->money   = $oneSponsorship->spo_money;
                 $sponsorship->from    = $oneSponsorship->spo_from;
                 $sponsorship->to      = $oneSponsorship->spo_to;
+                $sponsorship->ptyp    = $oneSponsorship->ptyp_code;
                 //
                 $this->sponsorships[] = $sponsorship;
             }
