@@ -16,6 +16,7 @@ trait Freeasso_User
      */
     protected function getCurrentUserEmail()
     {
+        return 'fannykuster@free.fr';
         $user  = wp_get_current_user();
         $email = false;
         if ($user && $user->ID) {

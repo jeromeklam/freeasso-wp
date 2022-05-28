@@ -34,3 +34,7 @@ Il existe un tag général qui gère via des onglets l'ensemble des informations
 * FreeAsso_Member_Sponsorships : Les parrainages
 * FreeAsso_Member_Donations : Les dons
 
+### Enregistrement
+
+Les informations peuvent être modifiées, excepté l'email.
+Pour modifier l'email il existe la méthode updateMemberEmail sur la classe Freeasso_Api_Member

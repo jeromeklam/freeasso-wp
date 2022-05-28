@@ -65,6 +65,7 @@ class Freeasso_Api_Member_Donations extends Freeasso_Api_Base
                 $donation->money   = $oneDonation->don_money;
                 $donation->date    = $oneDonation->don_ts;
                 $donation->status  = $oneDonation->don_status;
+                $donation->ptyp    = $oneDonation->ptyp_code;
                 //
                 $this->donations[] = $donation;
             }
