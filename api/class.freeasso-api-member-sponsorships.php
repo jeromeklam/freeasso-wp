@@ -57,14 +57,15 @@ class Freeasso_Api_Member_Sponsorships extends Freeasso_Api_Base
         $this->sponsorships = [];
         if ($p_sponsorships) {
             foreach ($p_sponsorships as $oneSponsorship) {
-                $sponsorship          = new StdClass();
-                $sponsorship->id      = $oneSponsorship->spo_id;
-                $sponsorship->cause   = $oneSponsorship->cau_name;
-                $sponsorship->mnt     = $oneSponsorship->spo_mnt;
-                $sponsorship->money   = $oneSponsorship->spo_money;
-                $sponsorship->from    = $oneSponsorship->spo_from;
-                $sponsorship->to      = $oneSponsorship->spo_to;
-                $sponsorship->ptyp    = $oneSponsorship->ptyp_code;
+                $sponsorship           = new StdClass();
+                $sponsorship->id       = $oneSponsorship->spo_id;
+                $sponsorship->cause    = $oneSponsorship->cau_name;
+                $sponsorship->cause_id = $oneSponsorship->cau_id;
+                $sponsorship->mnt      = $oneSponsorship->spo_mnt;
+                $sponsorship->money    = $oneSponsorship->spo_money;
+                $sponsorship->from     = $oneSponsorship->spo_from;
+                $sponsorship->to       = $oneSponsorship->spo_to;
+                $sponsorship->ptyp     = $oneSponsorship->ptyp_code;
                 //
                 $this->sponsorships[] = $sponsorship;
             }
