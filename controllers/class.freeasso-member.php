@@ -98,10 +98,6 @@ class Freeasso_Member
         return self::$instance;
     }
 
-    public function isKalaweitMember() {
-        return ($this->member == true);
-    }
-
     /**
      * Echo Amis
      *
@@ -369,14 +365,15 @@ class Freeasso_Member
                 $memberApi = \Freeasso_Api_Member::getFactory();
                 $result = $memberApi->updateMember($data);
                 $this->member = $result;
-                if (isset($result->errors)) {
+                if (!empty($result->errors)) {
                     // Send errors to view...
                     foreach ($result->errors as $oneError) {
                         $oneError = (array)$oneError;
                         $this->addError($oneError['code'], esc_html($oneError['message'], 'freeasso'), $oneError['field']);
                     }
                 } else {
-                    // @todo OK
+                    // saved in freeasso
+                    wp_redirect( add_query_arg( array('updated' => 'true') ) );
                 }
             }
         }
