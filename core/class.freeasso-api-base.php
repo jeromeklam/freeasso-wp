@@ -418,7 +418,7 @@ class Freeasso_Api_Base
     protected function getFullUrl()
     {
         $url = rtrim($this->getConfig()->getWsBaseUrl(), "/");
-        $url = $url . '/' . ltrim($this->url, '/');
+        $url = $url . '/' . urlencode(ltrim($this->url, '/'));
         if ($this->id != '') {
             $url .= '/' . $this->id;
         }
