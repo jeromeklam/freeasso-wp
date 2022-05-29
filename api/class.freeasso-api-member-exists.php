@@ -6,9 +6,8 @@
  */
 class Freeasso_Api_Member_Exists extends Freeasso_Api_Base
 {
-
     /**
-     * Get member
+     * Get member to check if exists
      *
      * @return array
      */
@@ -17,6 +16,6 @@ class Freeasso_Api_Member_Exists extends Freeasso_Api_Base
         $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/asso/member/' . $email . '/infos');
         $this->setPrivate();
         $result = $this->call();
-        return $result !== false;
+        return ($result == true);
     }
 }

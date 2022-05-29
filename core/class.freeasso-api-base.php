@@ -422,6 +422,11 @@ class Freeasso_Api_Base
         if ($this->id != '') {
             $url .= '/' . $this->id;
         }
+
+        if($this->getMethod() != self::FREEASSO_METHOD_GET) {
+            return $url;
+        }
+
         $params = [];
         if (is_array($this->sort)) {
             $params['sort'] = implode(',', $this->sort);
@@ -728,8 +733,10 @@ class Freeasso_Api_Base
         if ($this->isPrivate()) {
             $args['headers']['Authorization'] = $this->getHawkAuth($url);
         }
+        freeasso_wp_log('CALL.method : ' . $this->getMethod());
         freeasso_wp_log('CALL.url : ' . $url);
         freeasso_wp_log('CALL.apiId : ' . $this->getConfig()->getApiId());
+        freeasso_wp_log('CALL.req.body : ' . json_encode($this->getDatas()));
         switch ($this->getMethod()) {
             case self::FREEASSO_METHOD_PUT:
                 $args['body']        = json_encode($this->getDatas());
@@ -756,10 +763,10 @@ class Freeasso_Api_Base
                     if ($this->raw) {
                         return $content;
                     }
-                    freeasso_wp_log('CALL.body : ' . json_encode($result));
+                    freeasso_wp_log('CALL.resp.body : ' . json_encode($result));
                     return json_decode($content);
                 } else {
-                    freeasso_wp_log('CALL.no.body : ' . json_encode($result));
+                    freeasso_wp_log('CALL.resp.no.body : ' . json_encode($result));
                 }
             } else {
                 if (array_key_exists('body', $result)) {
@@ -767,10 +774,10 @@ class Freeasso_Api_Base
                     if ($this->raw) {
                         return $content;
                     }
-                    freeasso_wp_log('CALL.body : ' . json_encode($result));
+                    freeasso_wp_log('CALL.resp.body : ' . json_encode($result));
                     return json_decode($content);
                 } else {
-                    freeasso_wp_log('CALL.no.body : ' . json_encode($result));
+                    freeasso_wp_log('CALL.resp.no.body : ' . json_encode($result));
                 }
             }
         } else {
