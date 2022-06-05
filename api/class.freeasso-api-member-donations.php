@@ -27,7 +27,7 @@ class Freeasso_Api_Member_Donations extends Freeasso_Api_Base
     {
         parent::__construct();
         $email = $this->getCurrentUserEmail();
-        $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/asso/member/' . $email . '/donations');
+        $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/asso/member/' . urlencode($email) . '/donations');
         $this->addSortField('don_ts', self::SORT_DOWN);
         $this->setPagination(1, 100);
         $this->setPrivate();

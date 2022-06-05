@@ -27,7 +27,7 @@ class Freeasso_Api_Member_Certificates extends Freeasso_Api_Base
     {
         parent::__construct();
         $email = $this->getCurrentUserEmail();
-        $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/asso/member/' . $email . '/certificates');
+        $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/asso/member/' . urlencode($email) . '/certificates');
         $this->addSortField('rec_ts', self::SORT_DOWN);
         $this->setPrivate();
     }

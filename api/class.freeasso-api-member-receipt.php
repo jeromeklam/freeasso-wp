@@ -30,7 +30,7 @@ class Freeasso_Api_Member_Receipt extends Freeasso_Api_Base
     public function download($p_rec_id)
     {
         $email = $this->getCurrentUserEmail();
-        $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/asso/member/' . $email . '/receipts/' . $p_rec_id);
+        $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/asso/member/' . urlencode($email) . '/receipts/' . $p_rec_id);
         $this->setPrivate();
         $this->setRaw(true);
         return $this->call();

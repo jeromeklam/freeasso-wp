@@ -30,7 +30,7 @@ class Freeasso_Api_Member_Certificate extends Freeasso_Api_Base
     public function download($p_cert_id)
     {
         $email = $this->getCurrentUserEmail();
-        $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/asso/member/' . $email . '/certificates/' . $p_cert_id);
+        $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/asso/member/' . urlencode($email) . '/certificates/' . $p_cert_id);
         $this->setPrivate();
         $this->setRaw(true);
         return $this->call();

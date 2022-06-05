@@ -27,7 +27,7 @@ class Freeasso_Api_Member_Receipts extends Freeasso_Api_Base
     {
         parent::__construct();
         $email = $this->getCurrentUserEmail();
-        $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/asso/member/' . $email . '/receipts');
+        $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/asso/member/' . urlencode($email) . '/receipts');
         $this->addSortField('rec_ts', self::SORT_DOWN);
         $this->setPrivate();
     }

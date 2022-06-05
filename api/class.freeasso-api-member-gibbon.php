@@ -30,7 +30,7 @@ class Freeasso_Api_Member_Gibbon extends Freeasso_Api_Base
     public function download($p_cau_id)
     {
         $email = $this->getCurrentUserEmail();
-        $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/asso/member/' . $email . '/cause/' . $p_cau_id);
+        $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/asso/member/' . urlencode($email) . '/cause/' . $p_cau_id);
         $this->setPrivate();
         $this->setRaw(true);
         return $this->call();

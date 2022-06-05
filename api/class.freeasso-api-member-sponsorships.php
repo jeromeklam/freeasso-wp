@@ -27,7 +27,7 @@ class Freeasso_Api_Member_Sponsorships extends Freeasso_Api_Base
     {
         parent::__construct();
         $email = $this->getCurrentUserEmail();
-        $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/asso/member/' . $email . '/sponsorships');
+        $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/asso/member/' . urlencode($email) . '/sponsorships');
         $this->addSortField('spo_to', self::SORT_DOWN);
         $this->setPrivate();
     }

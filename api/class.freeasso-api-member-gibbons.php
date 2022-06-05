@@ -27,7 +27,7 @@ class Freeasso_Api_Member_Gibbons extends Freeasso_Api_Base
     {
         parent::__construct();
         $email = $this->getCurrentUserEmail();
-        $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/asso/member/' . $email . '/gibbons');
+        $this->setMethod(self::FREEASSO_METHOD_GET)->setUrl('/asso/member/' . urlencode($email) . '/gibbons');
         $this->addSortField('cau_name', self::SORT_UP);
         $this->setPrivate();
     }

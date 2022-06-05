@@ -418,11 +418,10 @@ class Freeasso_Api_Base
     protected function getFullUrl()
     {
         $url = rtrim($this->getConfig()->getWsBaseUrl(), "/");
-        $url = $url . '/' . urlencode(ltrim($this->url, '/'));
+        $url = $url . '/' . ltrim($this->url, '/');
         if ($this->id != '') {
             $url .= '/' . $this->id;
         }
-
         if($this->getMethod() != self::FREEASSO_METHOD_GET) {
             return $url;
         }
@@ -628,7 +627,7 @@ class Freeasso_Api_Base
         if (is_array($parts) && array_key_exists('path', $parts)) {
             $result = trim($parts['path']);
             if ($p_with_query && array_key_exists('query', $parts)) {
-                $result = $result . '?' . trim($parts['query']);
+                $result = $result . '?' . urldecode(trim($parts['query']));
             }
         }
         return $result;
@@ -706,7 +705,7 @@ class Freeasso_Api_Base
         $hawk[] = $p_ts;
         $hawk[] = $p_nonce;
         $hawk[] = strtoupper($this->getMethod());
-        $hawk[] = urldecode($this->getUrlPathWithQuery($p_url));
+        $hawk[] = $this->getUrlPathWithQuery($p_url);
         $hawk[] = $this->getUrlHost();
         $hawk[] = $this->getUrlPort();
         $hawk[] = '';
