@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-02-02 18:37+0100\n"
-"PO-Revision-Date: 2022-02-02 18:37+0100\n"
+"POT-Creation-Date: 2022-06-13 11:42+0200\n"
+"PO-Revision-Date: 2022-06-13 11:43+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -117,6 +117,7 @@ msgid "Localisation"
 msgstr "Location"
 
 #: views/cause-detail.php:34 views/cause-search.php:178
+#: views/member-gibbons.php:14
 msgid "Sexe"
 msgstr "Gender"
 
@@ -328,6 +329,150 @@ msgid ""
 msgstr ""
 "The key will never be displayed. To be filled in to define it. Leave empty "
 "to keep the defined one."
+
+#: views/member-certificates.php:4
+msgid "Aucun certificat"
+msgstr "No certificate"
+
+#: views/member-certificates.php:8
+msgid "Certificat(s)"
+msgstr "Certificate(s)"
+
+#: views/member-certificates.php:13
+msgid "Programme"
+msgstr "Program"
+
+#: views/member-certificates.php:14 views/member-donations.php:15
+msgid "Date"
+msgstr "Date"
+
+#: views/member-certificates.php:15 views/member-donations.php:14
+#: views/member-receipts.php:15 views/member-sponsorships.php:14
+msgid "Montant"
+msgstr "Amount"
+
+#: views/member-certificates.php:16 views/member-certificates.php:27
+#: views/member-gibbons.php:26 views/member-receipts.php:16
+#: views/member-receipts.php:27
+msgid "Télécharger"
+msgstr "Download"
+
+#: views/member-donations.php:4 views/member-sponsorships.php:4
+msgid "Aucun parrainage"
+msgstr "No sponsorship"
+
+#: views/member-donations.php:8
+msgid "Don(s)"
+msgstr "Don(s)"
+
+#: views/member-donations.php:13 views/member-gibbons.php:13
+#: views/member-infos.php:26 views/member-sponsorships.php:13
+msgid "Nom"
+msgstr "Name"
+
+#: views/member-donations.php:16 views/member-sponsorships.php:15
+msgid "Paiement"
+msgstr "Payment"
+
+#: views/member-donations.php:17
+msgid "Statut"
+msgstr "Status"
+
+#: views/member-donations.php:27
+msgid "OK"
+msgstr "OK"
+
+#: views/member-donations.php:27
+msgid "KO"
+msgstr "KO"
+
+#: views/member-gibbons.php:4
+msgid "Aucun Gibbon parrainé"
+msgstr "No sponsored Gibbons"
+
+#: views/member-gibbons.php:8
+msgid "Gibbon(s) parrainé(s)"
+msgstr "Sponsored Gibbon(s)"
+
+#: views/member-gibbons.php:15
+msgid "Naissance"
+msgstr "Birth"
+
+#: views/member-gibbons.php:16
+msgid "Fiche"
+msgstr "Sheet"
+
+#: views/member-infos.php:6
+msgid "Catégorie"
+msgstr "Category"
+
+#: views/member-infos.php:21
+msgid "Prénom"
+msgstr "First name"
+
+#: views/member-infos.php:31
+msgid "Adresse"
+msgstr "Address"
+
+#: views/member-infos.php:38
+msgid "Code postal"
+msgstr "Postal code"
+
+#: views/member-infos.php:43
+msgid "Ville"
+msgstr "Town"
+
+#: views/member-infos.php:48
+msgid "Email"
+msgstr "E-mail"
+
+#: views/member-infos.php:53
+msgid "Téléphone"
+msgstr "Telephone"
+
+#: views/member-infos.php:58
+msgid "Envoyer le(s) reçu(s)"
+msgstr "Send receipt(s)"
+
+#: views/member-infos.php:63
+msgid "Pays"
+msgstr "Country"
+
+#: views/member-infos.php:78
+msgid "Langue"
+msgstr "Language"
+
+#: views/member-none.php:3
+msgid "Je ne suis pas membre de Kalaweit"
+msgstr "I am not a member of Kalaweit"
+
+#: views/member-receipts.php:4
+msgid "Aucun reçu"
+msgstr "No receipt"
+
+#: views/member-receipts.php:8
+msgid "Reçu(s)"
+msgstr "Receipt(s)"
+
+#: views/member-receipts.php:13
+msgid "Numéro"
+msgstr "Number"
+
+#: views/member-receipts.php:14
+msgid "Année"
+msgstr "Year"
+
+#: views/member-sponsorships.php:8
+msgid "Parrainage(s)"
+msgstr "Sponsorship(s)"
+
+#: views/member-sponsorships.php:16
+msgid "Début"
+msgstr "Beginning"
+
+#: views/member-sponsorships.php:17
+msgid "Fin"
+msgstr "End"
 
 #: widgets/class.freeasso-widget-amis.php:17
 msgid "FreeAsso : nombre d'amis"

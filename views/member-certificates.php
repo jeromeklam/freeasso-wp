@@ -13,7 +13,7 @@
 				    <th><?php esc_html_e('Programme', 'freeasso'); ?></th>
 					<th><?php esc_html_e('Date', 'freeasso'); ?></th>
 					<th><?php esc_html_e('Montant', 'freeasso'); ?></th>
-					<th></th>
+					<th><?php esc_html_e('Télécharger', 'freeasso'); ?></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -24,7 +24,7 @@
 						<td><?php echo $this->formatAmountAsHtml($oneCertificate->mnt, $oneCertificate->money); ?></td>
 						<td>
 							<?php if ($oneCertificate->link) { ?>
-							    <a href="<?php echo $oneCertificate->link; ?>"><?php esc_html_e('Download', 'freeasso'); ?></a>
+							    <a href="<?php echo $oneCertificate->link; ?>" class="download"><?php esc_html_e('Télécharger', 'freeasso'); ?></a>
 							<?php } ?>
 						</td>
 					</tr>

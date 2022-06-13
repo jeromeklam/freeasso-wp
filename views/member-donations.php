@@ -14,7 +14,7 @@
 					<th><?php esc_html_e('Montant', 'freeasso'); ?></th>
 					<th><?php esc_html_e('Date', 'freeasso'); ?></th>
 					<th><?php esc_html_e('Paiement', 'freeasso'); ?></th>
-					<th><?php esc_html_e('Status', 'freeasso'); ?></th>
+					<th><?php esc_html_e('Statut', 'freeasso'); ?></th>
 				</tr>
 			</thead>
 			<tbody>

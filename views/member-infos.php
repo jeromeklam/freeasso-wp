@@ -56,7 +56,7 @@
 		</div>
 		<div class="freeasso-member-input-group <?php echo $this->isError('mbr_send_receipt') ? 'is-error' : '' ?>">
 			<label for="freeasso-member-receipt" class="freeasso-member-label"><?php esc_html_e('Envoyer le(s) reçu(s)', 'freeasso'); ?></label>
-			<input type="checkbox" name="freeasso-member-mbr_send_receipt" id="freeasso-member-receipt" checked="<?php echo $this->member->mbr_receipt ? "checkzed" : ""; ?>" />
+			<input type="checkbox" name="freeasso-member-mbr_send_receipt" id="freeasso-member-receipt" <?php if($this->member->mbr_send_receipt) echo 'checked="checked"'; ?> />
 			<?php echo $this->displayError('mbr_send_receipt'); ?>
 		</div>
 		<div class="freeasso-member-input-group <?php echo $this->isError('mbr_country') ? 'is-error' : '' ?>">

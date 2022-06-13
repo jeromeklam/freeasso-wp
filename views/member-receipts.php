@@ -13,7 +13,7 @@
 					<th><?php esc_html_e('Numéro', 'freeasso'); ?></th>
 					<th><?php esc_html_e('Année', 'freeasso'); ?></th>
 					<th><?php esc_html_e('Montant', 'freeasso'); ?></th>
-					<th></th>
+					<th><?php esc_html_e('Télécharger', 'freeasso'); ?></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -24,7 +24,7 @@
 						<td><?php echo $this->formatAmountAsHtml($oneReceipt->mnt, $oneReceipt->money); ?></td>
 						<td>
 							<?php if ($oneReceipt->link) { ?>
-							    <a href="<?php echo $oneReceipt->link; ?>"><?php esc_html_e('Download', 'freeasso'); ?></a>
+							    <a href="<?php echo $oneReceipt->link; ?>" class="download"><?php esc_html_e('Télécharger', 'freeasso'); ?></a>
 							<?php } ?>
 						</td>
 					</tr>
