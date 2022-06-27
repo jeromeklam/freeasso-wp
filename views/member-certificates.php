@@ -1,11 +1,11 @@
 <div class="freeasso-member-form">
 	<?php if (count($this->certificates) <= 0) { ?>
 		<span class="freeasso-member-message freeasso-member-no-certificates">
-			<?php esc_html_e('Aucun certificat', 'freeasso'); ?>
+			<?php esc_html_e('Aucune attestation', 'freeasso'); ?>
 		</span>
 	<?php } else { ?>
 		<span class="freeasso-member-title freeasso-member-certificates">
-			<?php esc_html_e('Certificat(s)', 'freeasso'); ?>
+			<?php esc_html_e('Attestation(s)', 'freeasso'); ?>
 		</span>
 		<table class="freeasso-member-table">
 			<thead>

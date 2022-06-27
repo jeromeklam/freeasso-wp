@@ -267,7 +267,7 @@ class Freeasso_Member
         $tabs = [
             "infos"       => "Mes informations",
             "parrainages" => "Mes parrainages",
-            "certificats" => "Mes certificats",
+            "certificats" => "Mes attestations",
             "recus"       => "Mes reçus",
             "dons"        => "Mes dons",
             "gibbons"     => "Animaux parrainés"

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-02-02 18:38+0100\n"
-"PO-Revision-Date: 2022-02-02 18:43+0100\n"
+"POT-Creation-Date: 2022-06-27 09:07+0200\n"
+"PO-Revision-Date: 2022-06-27 09:10+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: esc_html_e;translate;esc_html__\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -117,6 +117,7 @@ msgid "Localisation"
 msgstr "Ort"
 
 #: views/cause-detail.php:34 views/cause-search.php:178
+#: views/member-gibbons.php:14
 msgid "Sexe"
 msgstr "Geschlecht"
 
@@ -328,6 +329,150 @@ msgid ""
 msgstr ""
 "Der Schlüssel wird niemals angezeigt. Auszufüllen, um es zu definieren. Leer "
 "lassen, um die definierte zu behalten."
+
+#: views/member-certificates.php:4
+msgid "Aucune attestation"
+msgstr "Kein Zertifikat"
+
+#: views/member-certificates.php:8
+msgid "Attestation(s)"
+msgstr "Zertifikat(e)"
+
+#: views/member-certificates.php:13
+msgid "Programme"
+msgstr "Programm"
+
+#: views/member-certificates.php:14 views/member-donations.php:15
+msgid "Date"
+msgstr "Datum"
+
+#: views/member-certificates.php:15 views/member-donations.php:14
+#: views/member-receipts.php:15 views/member-sponsorships.php:14
+msgid "Montant"
+msgstr "Steigend"
+
+#: views/member-certificates.php:16 views/member-certificates.php:27
+#: views/member-gibbons.php:26 views/member-receipts.php:16
+#: views/member-receipts.php:27
+msgid "Télécharger"
+msgstr "Herunterladen"
+
+#: views/member-donations.php:4 views/member-sponsorships.php:4
+msgid "Aucun parrainage"
+msgstr "Keine Förderung"
+
+#: views/member-donations.php:8
+msgid "Don(s)"
+msgstr "Spende(n)"
+
+#: views/member-donations.php:13 views/member-gibbons.php:13
+#: views/member-infos.php:26 views/member-sponsorships.php:13
+msgid "Nom"
+msgstr "Nachname"
+
+#: views/member-donations.php:16 views/member-sponsorships.php:15
+msgid "Paiement"
+msgstr "Zahlung"
+
+#: views/member-donations.php:17
+msgid "Statut"
+msgstr "Status"
+
+#: views/member-donations.php:27
+msgid "OK"
+msgstr "OK"
+
+#: views/member-donations.php:27
+msgid "KO"
+msgstr "KO"
+
+#: views/member-gibbons.php:4
+msgid "Aucun Gibbon parrainé"
+msgstr "Keine gesponserten Gibbons"
+
+#: views/member-gibbons.php:8
+msgid "Gibbon(s) parrainé(s)"
+msgstr "Gesponserte(r) Gibbon(s)"
+
+#: views/member-gibbons.php:15
+msgid "Naissance"
+msgstr "Geburt"
+
+#: views/member-gibbons.php:16
+msgid "Fiche"
+msgstr "Bilden"
+
+#: views/member-infos.php:6
+msgid "Catégorie"
+msgstr "Kategorie"
+
+#: views/member-infos.php:21
+msgid "Prénom"
+msgstr "Vorname"
+
+#: views/member-infos.php:31
+msgid "Adresse"
+msgstr "Adresse"
+
+#: views/member-infos.php:38
+msgid "Code postal"
+msgstr "Code postal"
+
+#: views/member-infos.php:43
+msgid "Ville"
+msgstr "Stadt"
+
+#: views/member-infos.php:48
+msgid "Email"
+msgstr "Email"
+
+#: views/member-infos.php:53
+msgid "Téléphone"
+msgstr "Telefon"
+
+#: views/member-infos.php:58
+msgid "Envoyer le(s) reçu(s)"
+msgstr "Quittung(en) senden"
+
+#: views/member-infos.php:63
+msgid "Pays"
+msgstr "Land"
+
+#: views/member-infos.php:78
+msgid "Langue"
+msgstr "Sprache"
+
+#: views/member-none.php:3
+msgid "Je ne suis pas membre de Kalaweit"
+msgstr "Ich bin kein Mitglied von Kalaweit"
+
+#: views/member-receipts.php:4
+msgid "Aucun reçu"
+msgstr "Kein Beleg"
+
+#: views/member-receipts.php:8
+msgid "Reçu(s)"
+msgstr "Quittung(en)"
+
+#: views/member-receipts.php:13
+msgid "Numéro"
+msgstr "Nummer"
+
+#: views/member-receipts.php:14
+msgid "Année"
+msgstr "Jahr"
+
+#: views/member-sponsorships.php:8
+msgid "Parrainage(s)"
+msgstr "Patenschaft(en)"
+
+#: views/member-sponsorships.php:16
+msgid "Début"
+msgstr "Anfang"
+
+#: views/member-sponsorships.php:17
+msgid "Fin"
+msgstr "Ende"
 
 #: widgets/class.freeasso-widget-amis.php:17
 msgid "FreeAsso : nombre d'amis"

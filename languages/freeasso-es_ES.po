@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-02-02 18:37+0100\n"
-"PO-Revision-Date: 2022-02-02 18:38+0100\n"
+"POT-Creation-Date: 2022-06-27 09:11+0200\n"
+"PO-Revision-Date: 2022-06-27 09:15+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: esc_html_e;translate;esc_html__\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -117,6 +117,7 @@ msgid "Localisation"
 msgstr "Localización"
 
 #: views/cause-detail.php:34 views/cause-search.php:178
+#: views/member-gibbons.php:14
 msgid "Sexe"
 msgstr "Sexo"
 
@@ -328,6 +329,150 @@ msgid ""
 msgstr ""
 "La clave nunca se mostrará. Completar para definirlo. Dejar vacío para "
 "mantener el definido."
+
+#: views/member-certificates.php:4
+msgid "Aucune attestation"
+msgstr "Sin certificado"
+
+#: views/member-certificates.php:8
+msgid "Attestation(s)"
+msgstr "Certificado(s)"
+
+#: views/member-certificates.php:13
+msgid "Programme"
+msgstr "Programa"
+
+#: views/member-certificates.php:14 views/member-donations.php:15
+msgid "Date"
+msgstr "Fecha"
+
+#: views/member-certificates.php:15 views/member-donations.php:14
+#: views/member-receipts.php:15 views/member-sponsorships.php:14
+msgid "Montant"
+msgstr "Creciente"
+
+#: views/member-certificates.php:16 views/member-certificates.php:27
+#: views/member-gibbons.php:26 views/member-receipts.php:16
+#: views/member-receipts.php:27
+msgid "Télécharger"
+msgstr "Descargar"
+
+#: views/member-donations.php:4 views/member-sponsorships.php:4
+msgid "Aucun parrainage"
+msgstr "Sin patrocinio"
+
+#: views/member-donations.php:8
+msgid "Don(s)"
+msgstr "Donación(es)"
+
+#: views/member-donations.php:13 views/member-gibbons.php:13
+#: views/member-infos.php:26 views/member-sponsorships.php:13
+msgid "Nom"
+msgstr "Apellido"
+
+#: views/member-donations.php:16 views/member-sponsorships.php:15
+msgid "Paiement"
+msgstr "Pago"
+
+#: views/member-donations.php:17
+msgid "Statut"
+msgstr "Estado"
+
+#: views/member-donations.php:27
+msgid "OK"
+msgstr "OK"
+
+#: views/member-donations.php:27
+msgid "KO"
+msgstr "KO"
+
+#: views/member-gibbons.php:4
+msgid "Aucun Gibbon parrainé"
+msgstr "Sin gibones patrocinados"
+
+#: views/member-gibbons.php:8
+msgid "Gibbon(s) parrainé(s)"
+msgstr "Gibbon(s) patrocinado(s)"
+
+#: views/member-gibbons.php:15
+msgid "Naissance"
+msgstr "Nacimiento"
+
+#: views/member-gibbons.php:16
+msgid "Fiche"
+msgstr "Forma"
+
+#: views/member-infos.php:6
+msgid "Catégorie"
+msgstr "Categoría"
+
+#: views/member-infos.php:21
+msgid "Prénom"
+msgstr "Nombre de pila"
+
+#: views/member-infos.php:31
+msgid "Adresse"
+msgstr "Dirección"
+
+#: views/member-infos.php:38
+msgid "Code postal"
+msgstr "Código postal"
+
+#: views/member-infos.php:43
+msgid "Ville"
+msgstr "Pueblo"
+
+#: views/member-infos.php:48
+msgid "Email"
+msgstr "Correo electrónico"
+
+#: views/member-infos.php:53
+msgid "Téléphone"
+msgstr "Teléfono"
+
+#: views/member-infos.php:58
+msgid "Envoyer le(s) reçu(s)"
+msgstr "Enviar recibo(s)"
+
+#: views/member-infos.php:63
+msgid "Pays"
+msgstr "País"
+
+#: views/member-infos.php:78
+msgid "Langue"
+msgstr "Lengua"
+
+#: views/member-none.php:3
+msgid "Je ne suis pas membre de Kalaweit"
+msgstr "No soy miembro de Kalaweit"
+
+#: views/member-receipts.php:4
+msgid "Aucun reçu"
+msgstr "Sin recibo"
+
+#: views/member-receipts.php:8
+msgid "Reçu(s)"
+msgstr "Recibo(s)"
+
+#: views/member-receipts.php:13
+msgid "Numéro"
+msgstr "Número"
+
+#: views/member-receipts.php:14
+msgid "Année"
+msgstr "Año"
+
+#: views/member-sponsorships.php:8
+msgid "Parrainage(s)"
+msgstr "Patrocinio(s)"
+
+#: views/member-sponsorships.php:16
+msgid "Début"
+msgstr "Inicio"
+
+#: views/member-sponsorships.php:17
+msgid "Fin"
+msgstr "Final"
 
 #: widgets/class.freeasso-widget-amis.php:17
 msgid "FreeAsso : nombre d'amis"
