@@ -3,6 +3,10 @@
 * Vue de recherche paramétrable
 * Logs
 
+# 2.2.7 : 28/02/2023
+
+* Paiements : on ne récupère que les paiements OK, donc suppression de la colonne
+
 # 2.2.6 : 11/06/2022
 
 * Correction encodage + hack user
