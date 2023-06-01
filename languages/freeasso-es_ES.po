@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-06-27 09:11+0200\n"
-"PO-Revision-Date: 2022-06-27 09:15+0200\n"
+"POT-Creation-Date: 2023-06-01 10:54+0200\n"
+"PO-Revision-Date: 2023-06-01 10:54+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.3.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: esc_html_e;translate;esc_html__\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -357,9 +357,9 @@ msgstr "Creciente"
 msgid "Télécharger"
 msgstr "Descargar"
 
-#: views/member-donations.php:4 views/member-sponsorships.php:4
-msgid "Aucun parrainage"
-msgstr "Sin patrocinio"
+#: views/member-donations.php:4
+msgid "Aucun don ponctuel."
+msgstr "Sin donación única."
 
 #: views/member-donations.php:8
 msgid "Don(s)"
@@ -373,18 +373,6 @@ msgstr "Apellido"
 #: views/member-donations.php:16 views/member-sponsorships.php:15
 msgid "Paiement"
 msgstr "Pago"
-
-#: views/member-donations.php:17
-msgid "Statut"
-msgstr "Estado"
-
-#: views/member-donations.php:27
-msgid "OK"
-msgstr "OK"
-
-#: views/member-donations.php:27
-msgid "KO"
-msgstr "KO"
 
 #: views/member-gibbons.php:4
 msgid "Aucun Gibbon parrainé"
@@ -462,6 +450,10 @@ msgstr "Número"
 msgid "Année"
 msgstr "Año"
 
+#: views/member-sponsorships.php:4
+msgid "Aucun don mensuel."
+msgstr "Sin donación mensual."
+
 #: views/member-sponsorships.php:8
 msgid "Parrainage(s)"
 msgstr "Patrocinio(s)"
@@ -505,6 +497,18 @@ msgstr "FreeAsso: número de hectáreas"
 #: widgets/class.freeasso-widget-hectares.php:18
 msgid "Affiche le nombre d'hectares"
 msgstr "Muestra el número de hectáreas"
+
+#~ msgid "Aucun parrainage"
+#~ msgstr "Sin patrocinio"
+
+#~ msgid "Statut"
+#~ msgstr "Estado"
+
+#~ msgid "OK"
+#~ msgstr "OK"
+
+#~ msgid "KO"
+#~ msgstr "KO"
 
 #~ msgid "Vous préférez l'Euro ?"
 #~ msgstr "¿Prefieres el euro?"

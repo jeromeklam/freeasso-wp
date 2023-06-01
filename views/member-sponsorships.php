@@ -1,7 +1,7 @@
 <div class="freeasso-member-form">
 	<?php if (count($this->sponsorships) <= 0) { ?>
 		<span class="freeasso-member-message freeasso-member-no-sponsorships">
-			<?php esc_html_e('Aucun parrainage', 'freeasso'); ?>
+			<?php esc_html_e('Aucun don mensuel.', 'freeasso'); ?>
 		</span>
 	<?php } else { ?>
 		<span class="freeasso-member-title freeasso-member-sponsorships">

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-06-27 09:07+0200\n"
-"PO-Revision-Date: 2022-06-27 09:10+0200\n"
+"POT-Creation-Date: 2023-06-01 10:52+0200\n"
+"PO-Revision-Date: 2023-06-01 10:53+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.3.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: esc_html_e;translate;esc_html__\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -357,9 +357,9 @@ msgstr "Steigend"
 msgid "Télécharger"
 msgstr "Herunterladen"
 
-#: views/member-donations.php:4 views/member-sponsorships.php:4
-msgid "Aucun parrainage"
-msgstr "Keine Förderung"
+#: views/member-donations.php:4
+msgid "Aucun don ponctuel."
+msgstr "Keine einmalige Spende."
 
 #: views/member-donations.php:8
 msgid "Don(s)"
@@ -373,18 +373,6 @@ msgstr "Nachname"
 #: views/member-donations.php:16 views/member-sponsorships.php:15
 msgid "Paiement"
 msgstr "Zahlung"
-
-#: views/member-donations.php:17
-msgid "Statut"
-msgstr "Status"
-
-#: views/member-donations.php:27
-msgid "OK"
-msgstr "OK"
-
-#: views/member-donations.php:27
-msgid "KO"
-msgstr "KO"
 
 #: views/member-gibbons.php:4
 msgid "Aucun Gibbon parrainé"
@@ -416,7 +404,7 @@ msgstr "Adresse"
 
 #: views/member-infos.php:38
 msgid "Code postal"
-msgstr "Code postal"
+msgstr "Postleitzahl"
 
 #: views/member-infos.php:43
 msgid "Ville"
@@ -462,6 +450,10 @@ msgstr "Nummer"
 msgid "Année"
 msgstr "Jahr"
 
+#: views/member-sponsorships.php:4
+msgid "Aucun don mensuel."
+msgstr "Keine monatliche Spende."
+
 #: views/member-sponsorships.php:8
 msgid "Parrainage(s)"
 msgstr "Patenschaft(en)"
@@ -505,6 +497,18 @@ msgstr "FreeAsso: Anzahl der Hektar"
 #: widgets/class.freeasso-widget-hectares.php:18
 msgid "Affiche le nombre d'hectares"
 msgstr "Zeigt die Anzahl der Hektar an"
+
+#~ msgid "Aucun parrainage"
+#~ msgstr "Keine Förderung"
+
+#~ msgid "Statut"
+#~ msgstr "Status"
+
+#~ msgid "OK"
+#~ msgstr "OK"
+
+#~ msgid "KO"
+#~ msgstr "KO"
 
 #~ msgid "Vous préférez l'Euro ?"
 #~ msgstr "Bevorzugen Sie den Euro?"
