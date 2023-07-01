@@ -1,4 +1,6 @@
 <?php 
+	global $wp;
+	$localCurrency = ($this->getParam('freeasso-cause-search-money')=='CHF' ? 'CHF' : 'EUR');
 	$oneCause = $this->cause;
 ?>
 <style>
@@ -73,7 +75,7 @@
 				<form role="search" id="freeasso-cause-search-form" class="freeasso-cause-search-form" method="get">
 					<input type="submit" name="btn" value="<?php esc_html_e('Parrainer','freeasso'); ?>" />
 					<input type="hidden" name="freeasso-cause-mode" value="donate-<?php echo $oneCause->id; ?>" />
-					<input type="hidden" name="freeasso-cause-search-money" value="<?php echo CURRENCY; ?>" />
+					<input type="hidden" name="freeasso-cause-search-money" value="<?php echo $localCurrency; ?>" />
 					<?php
 						// recopie les parametres GET, pour les conserver dans l'URL
 						foreach($_GET as $p=>$v) {
@@ -91,7 +93,6 @@
 	</div>
 	<div class="freeasso-cause-detail-input-group">
 		<a href="<?php
-			global $wp;
 			$current_url = home_url( add_query_arg( array(), $wp->request ) );
 			$referer=wp_get_referer();
 			if(empty($referer) || strpos($referer,$current_url)!=0 || strpos($referer,'freeasso-cause-mode=detail')!==false) {

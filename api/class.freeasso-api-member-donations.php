@@ -60,7 +60,7 @@ class Freeasso_Api_Member_Donations extends Freeasso_Api_Base
         if ($p_donations) {
             foreach ($p_donations as $oneDonation) {
                 $donation          = new StdClass();
-                $donation->id      = $oneDonation->spo_id;
+                $donation->id      = $oneDonation->spo_id ?? -1;
                 $donation->cause   = $oneDonation->cau_name;
                 $donation->mnt     = $oneDonation->don_mnt;
                 $donation->money   = $oneDonation->don_money;

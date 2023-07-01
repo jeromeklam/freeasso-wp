@@ -318,7 +318,7 @@ class Freeasso_Causes_Search
      */
     public function echoForm()
     {
-        $_GET['freeasso-cause-search-amounts'] = $this->_default_sel_amount($_GET['freeasso-cause-search-amounts']);
+        $_GET['freeasso-cause-search-amounts'] = $this->_default_sel_amount($_GET['freeasso-cause-search-amounts'] ?? null);
         $this->loadParams();
         if (!defined('CURRENCY_SYMBOL')) {
             if($this->getParam('freeasso-cause-search-money')=='CHF') {
@@ -369,8 +369,9 @@ function _freeasso_amount_format($amount,$decimals=2)
     } else {
         $amount=number_format($amount,$decimals,".","");
     }
+    $currencySymbol = ((isset($_GET['freeasso-cause-search-money']) && $_GET['freeasso-cause-search-money']=='CHF') ? 'CHF' : '&euro;');
     $amount = '<span class="value">' . $amount . '</span>';
-    $currency = '<span class="currency">' . CURRENCY_SYMBOL . '</span>';
+    $currency = '<span class="currency">' . $currencySymbol . '</span>';
     if (CURRENCY_BEFORE) return $currency . $amount;
     return $amount . $currency;
 }

@@ -189,7 +189,7 @@ trait Freeasso_View
     {
         global $wp;
         $qst = $wp->query_string;
-        $url = home_url($pw->request) . ($qst != '' ? '?' : '') . $qst;
+        $url = home_url($wp->request) . ($qst != '' ? '?' : '') . $qst;
         return $url;
     }
 
