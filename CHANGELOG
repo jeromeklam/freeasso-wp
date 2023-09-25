@@ -3,6 +3,10 @@
 * Vue de recherche paramétrable
 * Logs
 
+# 2.3.0 : 01/07/2023
+
+* PHP 8.2
+
 # 2.2.7 : 28/02/2023
 
 * Paiements : on ne récupère que les paiements OK, donc suppression de la colonne

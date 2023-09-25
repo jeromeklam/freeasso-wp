@@ -4,7 +4,7 @@
  * Description: Plugin de gestion des liens avec l'administration FreeAsso.
  * Author: KLAM Jérôme
  * Plugin URI: http://github.com/jeromeklam/freeasso-wp
- * Version: 2.1.0
+ * Version: 2.3.0
  * Author URI: http://github.com/jeromeklam
  * Text Domain: freeasso-wp
  *
@@ -45,6 +45,9 @@
  * ===============================================================================================
  * 2.2.7 : 28/02/2023
  *     Que les paiements OK, donc suppression de la colonne
+ * ===============================================================================================
+ * 2.3.0 : 01/07/2023
+ *     PHP 8.2
  * ===============================================================================================
  */
 
