@@ -279,6 +279,7 @@
 				esc_html_e('animaux listés', 'freeasso');
 			}
 
+			$nbpages = 1;
 			if ($this->total_causes > $this->param_length) {
 				echo ' - ';
 				esc_html_e('Page');
