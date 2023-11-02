@@ -280,7 +280,11 @@
 			}
 
 			$nbpages = 1;
-			if ($this->total_causes > $this->param_length) {
+			if ($this->param_length == '') {
+				echo ' - ';
+				esc_html_e('Page');
+				$nbpages = 1;
+			} elseif ($this->total_causes > $this->param_length) {
 				echo ' - ';
 				esc_html_e('Page');
 				$nbpages = ceil($this->total_causes * 1. / $this->param_length);
@@ -356,7 +360,7 @@
 				<label for="freeasso-cause-search-page" class="freeasso-cause-search-label"><?php esc_html_e('Page', 'freeasso'); ?></label>
 				<select id="freeasso-cause-search-page" class="freeasso-cause-search-input" name="freeasso-cause-search-page" onchange="document.getElementById('freeasso-cause-search-form').submit();">
 					<?php
-					for ($onePage = 1; $onePage <= ceil($this->total_causes / $this->param_length); $onePage++) {
+					for ($onePage = 1; $onePage <= $nbpages; $onePage++) {
 					?>
 						<option value="<?php echo $onePage; ?>" <?php echo $onePage == $this->param_page ? 'selected' : '' ?>><?php echo $onePage; ?></option>
 					<?php
