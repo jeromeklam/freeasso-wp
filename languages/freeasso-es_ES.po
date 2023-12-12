@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2023-06-01 10:54+0200\n"
-"PO-Revision-Date: 2023-06-01 10:54+0200\n"
+"POT-Creation-Date: 2023-12-12 13:58+0100\n"
+"PO-Revision-Date: 2023-12-12 13:59+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.4.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: esc_html_e;translate;esc_html__\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -60,24 +60,24 @@ msgid "1 à 49€"
 msgstr "De 1 a 49€"
 
 #: api/class.freeasso-api-amounts.php:48
-msgid "10 à 23€/mois"
-msgstr "De 10 a 23 €/mes"
+msgid "10 à 23,33€/mois"
+msgstr "De 10 a 23,33 €/mes"
 
 #: api/class.freeasso-api-amounts.php:49
 msgid "5 à 9€/mois"
 msgstr "De 5 a 9€ /mes"
 
 #: api/class.freeasso-api-amounts.php:50
-msgid "5€/mois et plus"
-msgstr "5 €/mes y más"
+msgid "5 à 23,33€/mois"
+msgstr "De 5 a 23,33 €/mes"
 
 #: api/class.freeasso-api-amounts.php:54
-msgid "290CHF ou 24,16CHF/mois (parrainage complet)"
-msgstr "290CHF o 24,16 CHF/mes (Apadrinamiento completo)"
+msgid "280CHF ou 23,33CHF/mois (parrainage complet)"
+msgstr "280CHF o 23,33CHF/mes (Apadrinamiento completo)"
 
 #: api/class.freeasso-api-amounts.php:57
-msgid "200 à 290CHF"
-msgstr "De 200 a 290CHF"
+msgid "200 à 279CHF"
+msgstr "De 200 a 279CHF"
 
 #: api/class.freeasso-api-amounts.php:58
 msgid "100 à 199CHF"
@@ -92,86 +92,86 @@ msgid "1 à 49CHF"
 msgstr "De 1 a 49CHF"
 
 #: api/class.freeasso-api-amounts.php:62
-msgid "10 à 24CHF/mois"
-msgstr "De 10 a 23 CHF/mes"
+msgid "10 à 23,33CHF/mois"
+msgstr "De 10 a 23,33CHF/mes"
 
 #: api/class.freeasso-api-amounts.php:63
 msgid "5 à 9CHF/mois"
 msgstr "De 5 a 9CHF/mes"
 
 #: api/class.freeasso-api-amounts.php:64
-msgid "5CHF/mois et plus"
-msgstr "5 CHF/mes y más"
+msgid "5 à 23,33CHF/mois"
+msgstr "De 5 a 23,33CHF/mes"
 
-#: api/class.freeasso-api-genders.php:35 views/cause-detail.php:37
+#: api/class.freeasso-api-genders.php:35 views/cause-detail.php:39
 msgid "Femelle"
 msgstr "Femenino"
 
-#: api/class.freeasso-api-genders.php:36 views/cause-detail.php:36
+#: api/class.freeasso-api-genders.php:36 views/cause-detail.php:38
 msgid "Mâle"
 msgstr "Macho"
 
-#: views/cause-detail.php:31 views/cause-search.php:191
-#: views/cause-search.php:310
+#: views/cause-detail.php:33 views/cause-search.php:191
+#: views/cause-search.php:315
 msgid "Localisation"
 msgstr "Localización"
 
-#: views/cause-detail.php:34 views/cause-search.php:178
+#: views/cause-detail.php:36 views/cause-search.php:178
 #: views/member-gibbons.php:14
 msgid "Sexe"
 msgstr "Sexo"
 
-#: views/cause-detail.php:42 views/cause-search.php:311
+#: views/cause-detail.php:44 views/cause-search.php:316
 msgid "Année de naissance"
 msgstr "Año de nacimiento"
 
-#: views/cause-detail.php:43 views/cause-search.php:204
-#: views/cause-search.php:312
+#: views/cause-detail.php:45 views/cause-search.php:204
+#: views/cause-search.php:317
 msgid "Age"
 msgstr "Edad"
 
-#: views/cause-detail.php:45 views/cause-search.php:314
+#: views/cause-detail.php:47 views/cause-search.php:319
 msgid "ans"
 msgstr "años"
 
-#: views/cause-detail.php:45 views/cause-search.php:315
+#: views/cause-detail.php:47 views/cause-search.php:320
 msgid "an"
 msgstr "año"
 
-#: views/cause-detail.php:47 views/cause-search.php:165
-#: views/cause-search.php:317
+#: views/cause-detail.php:49 views/cause-search.php:165
+#: views/cause-search.php:322
 msgid "Espèce"
 msgstr "Especie"
 
-#: views/cause-detail.php:53 views/cause-search.php:326
+#: views/cause-detail.php:55 views/cause-search.php:331
 msgid "Intégralement parrainé"
 msgstr "Totalmente patrocinado"
 
-#: views/cause-detail.php:55 views/cause-search.php:323
+#: views/cause-detail.php:57 views/cause-search.php:328
 msgid "Reste à parrainer :"
 msgstr "Queda por patrocinar:"
 
-#: views/cause-detail.php:61 views/cause-search.php:331
+#: views/cause-detail.php:63 views/cause-search.php:336
 msgid "Parrains"
 msgstr "Patrocinadores"
 
-#: views/cause-detail.php:64
+#: views/cause-detail.php:66
 msgid "Parrain anonyme."
 msgstr "Patrocinador anónimo."
 
-#: views/cause-detail.php:66
+#: views/cause-detail.php:68
 msgid "Aucun parrain."
 msgstr "Sin patrocinador."
 
-#: views/cause-detail.php:68
+#: views/cause-detail.php:70
 msgid "Parrainé par :"
 msgstr "Patrocinado por :"
 
-#: views/cause-detail.php:74 views/cause-search.php:337
+#: views/cause-detail.php:76 views/cause-search.php:342
 msgid "Parrainer"
 msgstr "Patrocinar"
 
-#: views/cause-detail.php:101
+#: views/cause-detail.php:102
 msgid "Retour"
 msgstr "Regresar"
 
@@ -206,7 +206,7 @@ msgstr "Todos"
 
 #: views/cause-search.php:180 views/cause-search.php:206
 #: views/cause-search.php:223 views/cause-search.php:246
-#: views/cause-search.php:377
+#: views/cause-search.php:382
 msgid "Tous"
 msgstr "Todos"
 
@@ -246,27 +246,28 @@ msgstr "animal en la lista"
 msgid "animaux listés"
 msgstr "animales listados"
 
-#: views/cause-search.php:284 views/cause-search.php:355
+#: views/cause-search.php:285 views/cause-search.php:289
+#: views/cause-search.php:360
 msgid "Page"
 msgstr "Página"
 
-#: views/cause-search.php:320
+#: views/cause-search.php:325
 msgid "Reste à parrainer"
 msgstr "Queda por patrocinar"
 
-#: views/cause-search.php:334
+#: views/cause-search.php:339
 msgid "Détails"
 msgstr "Detalles"
 
-#: views/cause-search.php:351
+#: views/cause-search.php:356
 msgid "Précédent"
 msgstr "Anterior"
 
-#: views/cause-search.php:369
+#: views/cause-search.php:374
 msgid "Suivant"
 msgstr "Siguiente"
 
-#: views/cause-search.php:390
+#: views/cause-search.php:395
 msgid "résultats / page"
 msgstr "resultados / página"
 
@@ -497,6 +498,12 @@ msgstr "FreeAsso: número de hectáreas"
 #: widgets/class.freeasso-widget-hectares.php:18
 msgid "Affiche le nombre d'hectares"
 msgstr "Muestra el número de hectáreas"
+
+#~ msgid "5€/mois et plus"
+#~ msgstr "5 €/mes y más"
+
+#~ msgid "5CHF/mois et plus"
+#~ msgstr "5 CHF/mes y más"
 
 #~ msgid "Aucun parrainage"
 #~ msgstr "Sin patrocinio"
