@@ -308,7 +308,9 @@
 					</div>
 					<div class="freeasso-cause-search-animals-picture">
 						<div>
-							<a class="fancybox-iframe" href="?freeasso-cause-mode=detail&freeasso-cause-id=<?php echo $oneCause->id; ?>"><img src="<?php echo $this->getConfig()->getImageSmallPrefix() . $oneCause->photo1 . $this->getConfig()->getImageSmallSuffix(); ?>" alt="vignette" /></a>
+							<a class="fancybox-iframe" alt="vignette" 
+								href="?freeasso-cause-mode=detail&freeasso-cause-id=<?php echo $oneCause->id; ?>&ami=<?php echo $this->getParam('ami')?'1':'0'; ?>&v=<?php echo $this->getParam('v') ?? '1'; ?>"
+							><img src="<?php echo $this->getConfig()->getImageSmallPrefix() . $oneCause->photo1 . $this->getConfig()->getImageSmallSuffix(); ?>" /></a>
 						</div>
 					</div>
 					<div class="freeasso-cause-search-animals-description">
